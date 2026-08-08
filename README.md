@@ -25,27 +25,27 @@ Không còn `DECISIONS.md`/`BRAND.md`/`UI.md` — nội dung còn hiệu lực �
 
 ## Trạng thái
 
-**Sprint 0 — chưa bắt đầu.** Repo mới, chưa có code.
+**Sprint 0 — chưa bắt đầu.** Repo mới, chưa có code. Rust đã cài, Supabase project đã tạo (09/08/2026).
 
-Một roadmap 8 tuần duy nhất (không tách bản phát hành) — Supabase và đồng bộ đa máy là **P0 ngay từ Sprint 3**, Meta OAuth ở Sprint 4–5. Xem [`docs/SOURCE-OF-TRUTH.md` §14](docs/SOURCE-OF-TRUTH.md#14-roadmap-8-tuần).
+Một roadmap **6 tuần** duy nhất (không tách bản phát hành) — Supabase và đồng bộ đa máy là **P0 ngay từ Sprint 3**. **Không có Meta OAuth/follower tự động** — đã bỏ khỏi scope 09/08/2026, follower chỉ nhập tay. Xem [`docs/SOURCE-OF-TRUTH.md` §12](docs/SOURCE-OF-TRUTH.md#12-roadmap-6-tuần).
 
 ## Việc tiếp theo
 
-Xem [`docs/SOURCE-OF-TRUTH.md` §20](docs/SOURCE-OF-TRUTH.md#20-bắt-đầu-từ-đâu).
+Xem [`docs/SOURCE-OF-TRUTH.md` §18](docs/SOURCE-OF-TRUTH.md#18-bắt-đầu-từ-đâu).
 
-1. Cài **Rust**
-2. Scaffold Tauri 2 + React + TS + Vite + Tailwind, pnpm workspace
-3. Sinh **khoá updater** — cửa một chiều, xem §10.3
-4. **Spike Meta 1 ngày** (§3.2) → `docs/adr/ADR-003-meta-feasibility.md`
-5. Vẽ lại **asset SVG** (§9.3) — hạng mục riêng 1–2 ngày
+1. ~~Cài Rust~~ ✅
+2. ~~Tạo Supabase project~~ ✅
+3. Scaffold Tauri 2 + React + TS + Vite + Tailwind, pnpm workspace
+4. Sinh **khoá updater** — cửa một chiều, xem §9.3
+5. Vẽ lại **asset SVG** (§8.2) — hạng mục riêng 1–2 ngày
 
 ## Stack
 
-Tauri 2 · React · TypeScript · Vite · Tailwind CSS + Radix/shadcn · TanStack Query + Zustand · React Hook Form + Zod · Supabase (Auth/Postgres/Realtime/Edge/Cron) · Argon2id + XChaCha20-Poly1305 trong Rust *(không dùng Tauri Stronghold — xem §10.1)*
+Tauri 2 · React · TypeScript · Vite · Tailwind CSS + Radix/shadcn · TanStack Query + Zustand · React Hook Form + Zod · Supabase (Auth/Postgres/Realtime — không có Edge Functions/Cron, không cần) · Argon2id + XChaCha20-Poly1305 trong Rust *(không dùng Tauri Stronghold — xem §9.1)*
 
 ## Nguyên tắc không thương lượng
 
 - Không lưu mật khẩu plaintext ở bất kỳ đâu: DB, log, crash report, file cấu hình.
 - Không scraping, không cookie harvesting, không tự động đăng nhập.
-- Follower lỗi **≠ 0** — giữ giá trị cũ kèm badge lỗi.
+- Follower **luôn nhập tay** — không có đồng bộ tự động qua API nào.
 - Không hardcode màu. Thiếu giá trị → thêm vào `tokens.css` trước, dùng sau.
