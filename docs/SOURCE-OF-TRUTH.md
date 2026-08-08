@@ -598,7 +598,7 @@ Có acceptance criteria và test tương ứng · loading/empty/error/permission
 
 ### 12.3 Backlog theo sprint
 
-**Sprint 0** — ADR-001 (Tauri 2 thay Electron) · ADR-002 (XChaCha20-Poly1305 + tham số Argon2id, thay Stronghold) · pnpm workspace, lint, format, commit hooks, CI · Supabase dev project + migration workflow · **sinh khoá updater** · chuẩn hoá logo/Tully asset manifest (chưa cần SVG thật).
+**Sprint 0** — ADR-001 (Tauri 2 thay Electron) · ADR-002 (XChaCha20-Poly1305 + tham số Argon2id, thay Stronghold) · pnpm workspace, lint, format, commit hooks, CI · `supabase link` project đã tạo + migration workflow (§13.1 — một project duy nhất) · **sinh khoá updater** · chuẩn hoá logo/Tully asset manifest (chưa cần SVG thật).
 
 **Sprint 1** — Sidebar/topbar/window state · AccountCard đủ states · Add/Edit form theo platform + Zod · Detail page không có secret thật.
 
@@ -616,7 +616,7 @@ Có acceptance criteria và test tương ứng · loading/empty/error/permission
 
 ### 13.1 Environments và packaging
 
-- Local: Supabase local stack, test accounts, debug build. Production: project riêng, secrets riêng, backups.
+- **Một project Supabase duy nhất, dùng chung dev và production** *(quyết định 09/08/2026 — app cá nhân một người dùng, không cần tách local/staging/production; đơn giản hơn không phải chạy Docker/`supabase start` nền liên tục)*. Project ref `nzcnojcnnfiqeujfhccx`. Migration chạy trực tiếp lên project này qua Supabase CLI (`supabase link` + `supabase db push`), không có bước "test trên local trước".
 - Tạo NSIS hoặc MSI installer x64; app icon đúng chuẩn multi-resolution.
 - Version theo Semantic Versioning; migration chạy có kiểm soát.
 - Build qua GitHub Actions Windows runner; lưu checksum và release notes.
