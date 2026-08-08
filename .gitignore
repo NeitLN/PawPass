@@ -1,0 +1,37 @@
+# --- build ---
+node_modules/
+dist/
+dist-ssr/
+coverage/
+*.local
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
+
+# --- Tauri / Rust ---
+src-tauri/target/
+src-tauri/gen/
+
+# --- DỮ LIỆU NHẠY CẢM ---
+# SOURCE-OF-TRUTH.md §11.9: commit không được kèm file .db, .enc, .env.
+# Đây là kho mật khẩu — một lần lỡ tay là lộ vĩnh viễn trong lịch sử git.
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+*.enc
+.env
+.env.*
+!.env.example
+browser-profiles/
+backups/
+
+# --- editor / OS ---
+.DS_Store
+Thumbs.db
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
