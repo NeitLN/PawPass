@@ -15,18 +15,11 @@ Thay thế file Excel chứa 50–200 tài khoản bằng một app desktop: tì
 
 | File | Vai trò |
 |---|---|
-| [`docs/SOURCE-OF-TRUTH.md`](docs/SOURCE-OF-TRUTH.md) | **Tài liệu triển khai.** Bắt đầu từ đây |
-| [`docs/DECISIONS.md`](docs/DECISIONS.md) | Nhật ký quyết định QĐ-01…QĐ-20, kèm lý do |
-| [`docs/REVIEW-2026-08-08.md`](docs/REVIEW-2026-08-08.md) | Biên bản review 6 vai — tra khi muốn biết "tại sao lại chốt thế" |
-| [`docs/BRAND.md`](docs/BRAND.md) | Nhận diện: màu, font, mascot |
-| [`docs/UI.md`](docs/UI.md) | Bố cục, spacing, component |
-| [`docs/brand-reference/`](docs/brand-reference/) | 22 ảnh tham chiếu thị giác. **Chưa phải asset production** — xem SOURCE-OF-TRUTH §8.8 |
+| [`docs/SOURCE-OF-TRUTH.md`](docs/SOURCE-OF-TRUTH.md) | **Tài liệu duy nhất.** Bắt đầu từ đây — tự chứa, không phụ thuộc file nào khác |
+| [`docs/REVIEW-2026-08-08.md`](docs/REVIEW-2026-08-08.md) | Biên bản review 6 vai — tra khi muốn biết "tại sao lại chốt thế" (đọc ghi chú ở đầu file trước) |
+| [`docs/brand-reference/`](docs/brand-reference/) | 22 ảnh tham chiếu thị giác. **Chưa phải asset production** — xem SOURCE-OF-TRUTH §9.3 |
 
-**Thứ tự ưu tiên khi tài liệu mâu thuẫn:**
-
-```
-SOURCE-OF-TRUTH.md → DECISIONS.md → BRAND.md (màu/font/mascot) → UI.md (bố cục/component)
-```
+Không còn `DECISIONS.md`/`BRAND.md`/`UI.md` — nội dung còn hiệu lực đã nằm trong `SOURCE-OF-TRUTH.md`, dựa trực tiếp trên `Turtly_Master_Roadmap_Design_Specification.md` gốc.
 
 ---
 
@@ -34,29 +27,21 @@ SOURCE-OF-TRUTH.md → DECISIONS.md → BRAND.md (màu/font/mascot) → UI.md (b
 
 **Sprint 0 — chưa bắt đầu.** Repo mới, chưa có code.
 
-Ba bản phát hành *(QĐ-01)*:
-
-| Bản | Nội dung |
-|---|---|
-| **v1.0** | Local-only: UI, CRUD, vault mã hoá, tìm kiếm, mở tài khoản, CSV import, recovery key |
-| **v1.1** | Supabase: Auth, RLS, Realtime, đồng bộ đa máy |
-| **v1.2** | Meta OAuth, follower sync tự động |
-
-Schema và tầng repository **cloud-ready từ ngày đầu** — lên v1.1 chỉ thay implementation của `AccountRepository`, không sửa UI.
+Một roadmap 8 tuần duy nhất (không tách bản phát hành) — Supabase và đồng bộ đa máy là **P0 ngay từ Sprint 3**, Meta OAuth ở Sprint 4–5. Xem [`docs/SOURCE-OF-TRUTH.md` §14](docs/SOURCE-OF-TRUTH.md#14-roadmap-8-tuần).
 
 ## Việc tiếp theo
 
-Xem [`docs/SOURCE-OF-TRUTH.md` §19](docs/SOURCE-OF-TRUTH.md#19-bắt-đầu-từ-đâu).
+Xem [`docs/SOURCE-OF-TRUTH.md` §20](docs/SOURCE-OF-TRUTH.md#20-bắt-đầu-từ-đâu).
 
-1. Cài **Rust** — cổng chặn của QĐ-11
-2. Scaffold Tauri 2 + React 19 + TS + Vite 7 + Tailwind v4
-3. Sinh **khoá updater** *(QĐ-19 — cửa một chiều)*
-4. **Spike Meta 1 ngày** *(QĐ-20)* → `docs/adr/ADR-003-meta-feasibility.md`
-5. Vẽ lại **asset SVG** (§8.8) — hạng mục riêng 1–2 ngày
+1. Cài **Rust**
+2. Scaffold Tauri 2 + React + TS + Vite + Tailwind, pnpm workspace
+3. Sinh **khoá updater** — cửa một chiều, xem §10.3
+4. **Spike Meta 1 ngày** (§3.2) → `docs/adr/ADR-003-meta-feasibility.md`
+5. Vẽ lại **asset SVG** (§9.3) — hạng mục riêng 1–2 ngày
 
 ## Stack
 
-Tauri 2 · React 19 · TypeScript · Vite 7 · Tailwind v4 *(token trong `@theme`, **không có `tailwind.config.ts`** — QĐ-12)* · SQLite (v1.0) · Supabase (v1.1+) · Argon2id + XChaCha20-Poly1305 *(QĐ-16)*
+Tauri 2 · React · TypeScript · Vite · Tailwind CSS + Radix/shadcn · TanStack Query + Zustand · React Hook Form + Zod · Supabase (Auth/Postgres/Realtime/Edge/Cron) · Argon2id + XChaCha20-Poly1305 trong Rust *(không dùng Tauri Stronghold — xem §10.1)*
 
 ## Nguyên tắc không thương lượng
 
