@@ -1,4 +1,4 @@
-import { defineConfig } from "vitest/config";
+import { configDefaults, defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
@@ -42,5 +42,12 @@ export default defineConfig(async () => ({
   test: {
     environment: "jsdom",
     setupFiles: ["./src/test/setup.ts"],
+    // Vitest's own defaults only exclude node_modules/.git. This repo keeps
+    // other git worktrees under .claude/worktrees/ (each a full checkout with
+    // its own src/ tree) — without this, Vitest discovers and runs their test
+    // files too, and two copies of the same test rendering into what turns
+    // out to be shared jsdom state produces flaky "multiple elements found"
+    // failures that have nothing to do with the code under test.
+    exclude: [...configDefaults.exclude, "**/.claude/**"],
   },
 }));
