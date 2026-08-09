@@ -7,3 +7,4 @@ supabase/.temp/
 supabase/.branches/
 docs/SOURCE-OF-TRUTH.md
 docs/REVIEW-2026-08-08.md
+.claude/

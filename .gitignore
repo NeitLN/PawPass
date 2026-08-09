@@ -57,3 +57,6 @@ lerna-debug.log*
 # --- VS Code local settings (keep only the shared extension recommendations) ---
 .vscode/*
 !.vscode/extensions.json
+
+# --- Claude Code session state (worktrees, plans dir) — never project source ---
+.claude/
