@@ -1,5 +1,11 @@
 import { describe, expect, it, vi } from "vitest";
-import { formatDate, formatFollowerCount, formatNumber, formatRelativeDays } from "./format";
+import {
+  avatarInitial,
+  formatDate,
+  formatFollowerCount,
+  formatNumber,
+  formatRelativeDays,
+} from "./format";
 
 describe("formatFollowerCount", () => {
   it("shows 'Chưa nhập' for null, never '0' — BR-04", () => {
@@ -49,5 +55,33 @@ describe("formatRelativeDays", () => {
 describe("formatDate", () => {
   it("formats as dd/MM/yyyy", () => {
     expect(formatDate(new Date(2026, 7, 9))).toBe("09/08/2026");
+  });
+});
+
+describe("avatarInitial", () => {
+  it("takes the last token's initial for a Vietnamese name", () => {
+    expect(avatarInitial("Nguyễn Văn A")).toBe("A");
+  });
+
+  it("gives the same result for NFD-normalized input as NFC", () => {
+    const nfc = "Trần Thị Ánh";
+    expect(avatarInitial(nfc.normalize("NFD"))).toBe(avatarInitial(nfc));
+  });
+
+  it("skips a leading/trailing emoji token and uses the last real word", () => {
+    expect(avatarInitial("✨ Mochi Shop ✨")).toBe("S");
+  });
+
+  it("handles a single-token brand name", () => {
+    expect(avatarInitial("PawPass")).toBe("P");
+  });
+
+  it('handles "Đ" correctly — a letter naive ASCII-folding gets wrong', () => {
+    expect(avatarInitial("Đặng Đình Đức")).toBe("Đ");
+  });
+
+  it("returns a placeholder for empty or whitespace-only input", () => {
+    expect(avatarInitial("")).toBe("?");
+    expect(avatarInitial("   ")).toBe("?");
   });
 });

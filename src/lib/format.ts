@@ -24,3 +24,19 @@ export function formatDate(date: Date): string {
     year: "numeric",
   }).format(date);
 }
+
+const GRAPHEMES = new Intl.Segmenter("vi", { granularity: "grapheme" });
+
+/**
+ * Chữ cái đại diện cho avatar khi không có ảnh, lấy tên gọi (token cuối), §5.3.
+ * Dùng Intl.Segmenter để tách theo grapheme cluster — xử lý đúng cả input dạng
+ * NFD (dấu tách rời, ví dụ từ macOS): Segmenter gộp base+dấu thành một cụm,
+ * không cắt giữa chừng như string indexing thường ([0]) sẽ làm.
+ */
+export function avatarInitial(displayName: string): string {
+  const tokens = displayName.normalize("NFC").trim().split(/\s+/).filter(Boolean);
+  const named = tokens.filter((t) => /^[\p{L}\p{N}]/u.test(t));
+  const source = named.at(-1) ?? tokens.at(-1) ?? "";
+  const first = [...GRAPHEMES.segment(source)][0];
+  return first ? first.segment.toUpperCase() : "?";
+}
