@@ -5,3 +5,5 @@ src-tauri/gen/
 pnpm-lock.yaml
 supabase/.temp/
 supabase/.branches/
+docs/SOURCE-OF-TRUTH.md
+docs/REVIEW-2026-08-08.md

@@ -25,7 +25,7 @@ Không còn `DECISIONS.md`/`BRAND.md`/`UI.md` — nội dung còn hiệu lực �
 
 ## Trạng thái
 
-**Sprint 0 — chưa bắt đầu.** Repo mới, chưa có code. Rust đã cài, Supabase project đã tạo (09/08/2026).
+**Sprint 0 — xong (09/08/2026).** Scaffold Tauri 2 + React + TS + Vite + Tailwind đã chạy được trên Windows; lint/format/CI/Supabase link/khoá updater đã xong. Sprint 1 bắt đầu từ design system.
 
 Một roadmap **6 tuần** duy nhất (không tách bản phát hành) — Supabase và đồng bộ đa máy là **P0 ngay từ Sprint 3**. **Không có Meta OAuth/follower tự động** — đã bỏ khỏi scope 09/08/2026, follower chỉ nhập tay. Xem [`docs/SOURCE-OF-TRUTH.md` §12](docs/SOURCE-OF-TRUTH.md#12-roadmap-6-tuần).
 

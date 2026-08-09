@@ -203,10 +203,9 @@ tách pha).
 
 ## Decision
 
-Bỏ Stronghold. Tự triển khai bằng các crate Rust `argon2` + `chacha20poly1305`
-
-- `zeroize` + `rand`, đúng theo sơ đồ đã mô tả ở §12.2 gốc (nay là
-  SOURCE-OF-TRUTH §11.2).
+Bỏ Stronghold. Tự triển khai bằng các crate Rust `argon2`, `chacha20poly1305`,
+`zeroize` và `rand`, đúng theo sơ đồ đã mô tả ở §12.2 gốc (nay là
+SOURCE-OF-TRUTH §11.2).
 
 Lý do quyết định:
 
