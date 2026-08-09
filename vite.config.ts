@@ -1,12 +1,21 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
 
 // @ts-expect-error process is a nodejs global
 const host = process.env.TAURI_DEV_HOST;
 
 // https://vite.dev/config/
 export default defineConfig(async () => ({
-  plugins: [react()],
+  plugins: [react(), tailwindcss()],
+
+  // Vite's PostCSS loader searches upward through parent directories for a
+  // postcss.config.* file. This project doesn't use PostCSS directly (Tailwind
+  // is wired through the Vite plugin above), so an inline empty config stops
+  // that upward search — otherwise an unrelated project higher up the
+  // directory tree could shadow this one's build with a config file that
+  // references dependencies this project doesn't install.
+  css: { postcss: {} },
 
   // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
   //
