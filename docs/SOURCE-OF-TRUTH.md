@@ -253,6 +253,37 @@ Token màu ở **§7.2.2** — mỗi trạng thái có bộ `-bg` / `-text` / `-
 >
 > **ĐÁNG CÂN NHẮC, không phải mặc định (UX-01 — quan sát, để lại làm ghi chú).** Container 340–380px + avatar 88px + 2 nút ngang hàng đẩy card khá cao; với mục tiêu 500+ account (§1.2) đó là nhiều lần cuộn hơn. Nếu muốn thử nghiệm, có thể rút avatar xuống 40–48px và gộp "Cập nhật follower" vào menu `⋯`, chỉ giữ "Mở tài khoản" làm nút chính. **Đây là gợi ý, không phải yêu cầu — giữ đặc tả gốc ở trên làm mặc định** trừ khi có ý kiến khác.
 
+#### §5.4.1 `opacity 60%` của dòng Archived — CHƯA CHỐT, cần quyết định _(mới 10/08/2026, phát hiện ở review toàn nhánh AccountCard)_
+
+Dòng `Archived` ở bảng trên ghi "opacity 60%". Đã đo thật: **con số đó không cài được nếu vẫn giữ AA.** Đây là lỗ hổng giữa spec và plan (bản plan chưa bao giờ yêu cầu opacity, nên code đã làm là đúng brief của nó) — không phải lỗi code.
+
+Áp `opacity: 60%` lên cả card tạo **một lớp compositing duy nhất**: mọi màu bên trong bị pha với nền trang `Surface #F8F6F2` theo `hiệu_dụng = 0.6 × màu + 0.4 × Surface`, **cả chữ lẫn nền trắng của card**. Vì nền card `#FFFFFF` gần như trùng `Surface` (tỷ lệ chỉ 1.08), nền đứng gần như yên trong khi chữ bị kéo sáng mạnh — tương phản **sụt thẳng đứng**, hoàn toàn không phải "giảm 60%". Nền compositing đúng là `Surface`, xác nhận ở `src/app/AppShell.tsx` (`bg-surface`).
+
+Đo bằng công thức luminance tương đối WCAG 2.x thật (cùng script tái lập đúng 7 số đã công bố ở §7.2/§7.2.1/§7.2.2: 18.05 · 3.12 · 3.02 · 4.98 · 6.66 · 5.37 · 3.26 — nên công thức tin được):
+
+| Cặp màu bên trong card Archived                                | Ngưỡng | 100%  | @60%    | alpha tối thiểu để đạt |
+| -------------------------------------------------------------- | ------ | ----- | ------- | ---------------------- |
+| Tên hiển thị 16px/700 `Shield Navy` trên nền card trắng        | 4.5    | 19.48 | 5.30 ✅ | 60%                    |
+| Username 13px `Shield Navy` trên nền card trắng                | 4.5    | 19.48 | 5.30 ✅ | 60%                    |
+| Email 13px `status-neutral-text` trên nền card trắng           | 4.5    | 7.74  | 2.95 ❌ | **78.6%**              |
+| Pill Neutral — `#4A5364` trên `#ECEEF2`                        | 4.5    | 6.66  | 2.69 ❌ | **83.8%**              |
+| Follower 14px `Shield Navy` trên nền card trắng                | 4.5    | 19.48 | 5.30 ✅ | 60%                    |
+| Dòng cập nhật 12px `status-neutral-text` trên nền card trắng   | 4.5    | 7.74  | 2.95 ❌ | **78.6%**              |
+| Nhãn nút "Cập nhật follower" `Shield Navy` trên nền card trắng | 4.5    | 19.48 | 5.30 ✅ | 60%                    |
+| Viền nút "Cập nhật follower" `Border Strong` _(§1.4.11)_       | 3.0    | 3.36  | 1.96 ❌ | **92.1%**              |
+| Nhãn nút "Mở tài khoản" `Fur Orange Text` trên nền card trắng  | 4.5    | 5.37  | 2.59 ❌ | **90.3%**              |
+| Viền nút "Mở tài khoản" `Fur Orange` _(§1.4.11)_               | 3.0    | 3.26  | 2.04 ❌ | **92.6%**              |
+
+> **Kết luận số học: phải `opacity ≥ 92.6%` thì cả 10 cặp mới đạt AA.** Ở 92.6% thì card Archived gần như không phân biệt được với card 100% — mất sạch ý nghĩa "de-emphasized". Hai yêu cầu "mờ đi thấy rõ" và "đạt AA" **không cùng tồn tại được** với cách đọc chữ nghĩa của "opacity 60%" áp lên cả card. Kể cả nếu bỏ hết nút khỏi card Archived thì riêng pill Neutral vẫn cần `alpha ≥ 83.8%`.
+>
+> WCAG có miễn trừ tương phản cho "inactive user interface component", nhưng card Archived hiện vẫn đọc được và hai nút vẫn bấm được, nên **không** thuộc diện miễn trừ. Nếu sau này Archived đổi thành card chỉ-đọc chỉ còn nút "Restore" thì phải đo lại từ đầu.
+>
+> **Chưa cài gì vào `AccountCard.tsx`; dòng "opacity 60%" ở bảng trên giữ nguyên chữ cũ cho tới khi chốt.** Ba hướng đã đo sẵn:
+>
+> 1. **Đổi nền card Archived sang `Surface #F8F6F2` + bỏ shadow, giữ mọi màu chữ ở 100%** — card "chìm" vào nền trang thay vì nổi lên như thẻ trắng. Không cần token mới. Đo: `Shield Navy` **18.05 ✅** · `status-neutral-text` **7.17 ✅** · `Fur Orange Text` **4.98 ✅** · `Border Strong` **3.12 ✅** · viền `Fur Orange` **3.02 ✅** · pill Neutral **6.66 ✅** — **đạt hết**. Rẻ và an toàn nhất. _(Nền `#ECEEF2` thì fail: `Border Strong` 2.90 ❌, viền `Fur Orange` 2.81 ❌.)_
+> 2. Chỉ làm mờ 60% phần **trang trí** (avatar + platform badge), giữ chữ và nút ở 100% — logo/ảnh được WCAG miễn trừ tương phản.
+> 3. Giữ đúng chữ "opacity 60%" và **chấp nhận fail AA** — mâu thuẫn trực tiếp với §7.6, không khuyến nghị.
+
 ---
 
 ## 6. Trang chi tiết tài khoản
