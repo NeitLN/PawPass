@@ -478,7 +478,7 @@ Mochi có 8 trạng thái: Neutral, Wave, Search, Security, Sync, Offline, Succe
 | **Offline** | —                               | ❌ **còn thiếu**          |
 | Import      | —                               | post-MVP (§8.1), chưa cần |
 
-Dư ra `05-notification-genz.png` và `07-support-genz.png` — chưa state nào trong §8.1 dùng tới. Không ép gán; để dành cho toast nhắc cập nhật follower và màn hình trợ giúp nếu sau này cần.
+Dư ra `05-notification-genz.png` và `07-support-genz.png` lúc §8.3 này được viết — nay đã dùng tạm cho Sync/Offline (xem bên dưới), triển khai ở Sprint 1 sub-project 3 (docs/superpowers/specs/2026-08-10-sprint1-mochi-illustration-design.md).
 
 **Bốn lưu ý kỹ thuật, đều là thứ đo được:**
 
@@ -493,6 +493,7 @@ Dư ra `05-notification-genz.png` và `07-support-genz.png` — chưa state nào
 2. **Wordmark dạng vector/text thật** — dựng bằng Nunito Sans ExtraBold (§7.3), tách khỏi ảnh mascot.
 3. **App icon multi-resolution** — xuất `.ico` các cỡ 16/24/32/48/64/128/256, kiểm riêng bản 16px xem còn nhận ra không (mắt/mũi Mochi khá chi tiết, có thể vỡ ở cỡ rất nhỏ — chưa kiểm tra).
 4. **Không có bản outline/mono** — cần cho system tray hoặc chỗ chỉ nhận icon đơn sắc.
+5. **Ảnh chưa tối ưu dung lượng.** 7 file trong `src/assets/brand/mochi/` là PNG 1254×1254 gốc, tổng 5,9 MB, import tĩnh nên bất kỳ component nào dùng `MochiIllustration` đều kéo theo cả 7 file dù chỉ cần 1 state — cỡ hiển thị lớn nhất đang dùng (`xl`=240px) chỉ cần khoảng 1/5 độ phân giải hiện có. Downscale xuống ~512px sẽ cắt khoảng 85% dung lượng mà không mất chi tiết ở bất kỳ size nào đã định nghĩa. Chưa làm trong Sprint 1 sub-project 3 (MochiIllustration) — làm khi asset thật ổn định hơn, tránh downscale rồi lại phải làm lại.
 
 **Cho tới khi có Sync và Offline:** dùng tạm `05-notification` cho Sync và `07-support` cho Offline — cùng phong cách, cùng nhân vật, tốt hơn hẳn placeholder hình học. Không trộn phong cách rùa cũ vào bất kỳ đâu.
 

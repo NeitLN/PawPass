@@ -63,3 +63,10 @@ describe("MochiIllustration sizing", () => {
     expect(img!.getAttribute("height")).toBe("48");
   });
 });
+
+describe("MochiIllustration drag behavior", () => {
+  it("is not draggable", () => {
+    const { container } = render(<MochiIllustration state="neutral" />);
+    expect(container.querySelector("img")).toHaveAttribute("draggable", "false");
+  });
+});
