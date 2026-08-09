@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --color-fur-orange: #e46c00;
+  --color-fur-orange-hover: #cd6100;
+  --color-fur-orange-text: #ab5100;
+  --color-shield-navy: #000c24;
+  --color-muzzle-cream: #fce4c0;
+  --color-surface: #f8f6f2;
+  --color-border: #e8dfd0;
+  --color-border-strong: #9a8a70;
+  --color-danger: #b3271a;
+
+  --color-status-active-bg: #dff3e7;
+  --color-status-active-text: #116039;
+  --color-status-active-solid: #1f9254;
+  --color-status-warning-bg: #fdf0d2;
+  --color-status-warning-text: #7a5200;
+  --color-status-warning-solid: #f2a81e;
+  --color-status-neutral-bg: #eceef2;
+  --color-status-neutral-text: #4a5364;
+  --color-status-neutral-solid: #8a93a3;
+  --color-status-danger-bg: #fbe2e0;
+  --color-status-danger-text: #b3271a;
+  --color-status-danger-solid: #b3271a;
+  --color-status-info-bg: #deeafb;
+  --color-status-info-text: #1c56b6;
+  --color-status-info-solid: #246ce4;
+
+  --color-account-blue: #246ce4;
+  --color-account-pink: #d8186c;
+  --color-account-coral: #f05448;
+
+  --radius-control: 0.625rem;
+  --radius-card: 1.125rem;
+  --radius-modal: 1.375rem;
+
+  --shadow-elevation-1: 0 2px 8px rgb(0 12 36 / 0.06);
+  --shadow-elevation-2: 0 8px 24px rgb(0 12 36 / 0.1);
+
+  --font-brand: "Nunito Sans", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+.focus-ring {
+  box-shadow: 0 0 0 3px rgb(228 108 0 / 0.45);
+}
+.focus-ring-on-solid {
+  box-shadow: 0 0 0 3px rgb(0 12 36 / 0.55);
+}

@@ -17,6 +17,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit",
+    "test": "vitest run",
     "prepare": "husky"
   },
   "dependencies": {
@@ -37,6 +38,7 @@
     "prettier": "^3.9.6",
     "tailwindcss": "^4.3.3",
     "typescript": "~5.8.3",
-    "vite": "^7.0.4"
+    "vite": "^7.0.4",
+    "vitest": "^4.1.10"
   }
 }
