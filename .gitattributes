@@ -1,0 +1,12 @@
+# Force LF for all text files regardless of platform/core.autocrlf.
+# Without this, Windows checkouts (including GitHub Actions windows-latest
+# runners) materialize CRLF line endings for freshly-checked-out files, which
+# then fail `prettier --check .` (Prettier defaults to expecting LF) even
+# though the exact same content passed the check before it went through a
+# git checkout/merge round-trip.
+* text=auto eol=lf
+
+# Binary assets — never touch line endings.
+*.png binary
+*.ico binary
+*.icns binary
