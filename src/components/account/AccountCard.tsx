@@ -18,6 +18,13 @@ export interface AccountCardProps {
 const BUTTON_BASE =
   "focus-ring flex min-h-[42px] flex-1 items-center justify-center rounded-control px-3 text-sm font-semibold";
 
+const CARD_BASE = "w-[340px] rounded-card border border-border p-[18px]";
+
+/** §5.4: card Archived "chìm" vào nền trang (nền Surface, không shadow) thay vì
+ * nổi lên như thẻ trắng. Không dùng opacity — xem §5.4.1 vì sao opacity fail AA. */
+const CARD_NORMAL_SURFACE = "bg-white shadow-elevation-2";
+const CARD_ARCHIVED_SURFACE = "bg-surface";
+
 export function AccountCard({
   account,
   canOpen = true,
@@ -25,10 +32,10 @@ export function AccountCard({
   onUpdateFollower,
   className = "",
 }: AccountCardProps) {
+  const cardSurface = account.status === "archived" ? CARD_ARCHIVED_SURFACE : CARD_NORMAL_SURFACE;
+
   return (
-    <div
-      className={`w-[340px] rounded-card border border-border bg-white p-[18px] shadow-elevation-2 ${className}`}
-    >
+    <div data-testid="account-card" className={`${CARD_BASE} ${cardSurface} ${className}`}>
       <div className="mb-3 flex items-start gap-3">
         <div className="relative shrink-0">
           <AccountAvatar avatarUrl={account.avatarUrl} displayName={account.displayName} />

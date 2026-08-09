@@ -247,15 +247,17 @@ Token màu ở **§7.2.2** — mỗi trạng thái có bộ `-bg` / `-text` / `-
 | Review     | Review / Warning                | cờ          | Cần người dùng xem lại thông tin tài khoản              |
 | Inactive   | Inactive / Neutral              | chấm rỗng   | Tài khoản không dùng thường xuyên, vẫn đầy đủ chức năng |
 | Locked     | Locked / Danger                 | ổ khoá      | Người dùng tự khoá tài khoản này khỏi thao tác nhanh    |
-| Archived   | Inactive / Neutral, opacity 60% | hộp lưu trữ | Ẩn mặc định khỏi Dashboard; có Restore                  |
+| Archived   | Inactive / Neutral (cùng token pill với Inactive); **nền card đổi từ trắng sang `Surface` + bỏ shadow**, mọi màu giữ 100% — **không dùng opacity** | hộp lưu trữ | Ẩn mặc định khỏi Dashboard; có Restore                  |
 
 > **Đã bỏ (09/08/2026):** trạng thái "Manual" (mọi tài khoản giờ đều là nhập tay, không còn gì để phân biệt), "Syncing" và "Needs re-auth" (chỉ tồn tại vì OAuth).
 >
 > **ĐÁNG CÂN NHẮC, không phải mặc định (UX-01 — quan sát, để lại làm ghi chú).** Container 340–380px + avatar 88px + 2 nút ngang hàng đẩy card khá cao; với mục tiêu 500+ account (§1.2) đó là nhiều lần cuộn hơn. Nếu muốn thử nghiệm, có thể rút avatar xuống 40–48px và gộp "Cập nhật follower" vào menu `⋯`, chỉ giữ "Mở tài khoản" làm nút chính. **Đây là gợi ý, không phải yêu cầu — giữ đặc tả gốc ở trên làm mặc định** trừ khi có ý kiến khác.
 
-#### §5.4.1 `opacity 60%` của dòng Archived — CHƯA CHỐT, cần quyết định _(mới 10/08/2026, phát hiện ở review toàn nhánh AccountCard)_
+#### §5.4.1 `opacity 60%` của dòng Archived — ĐÃ CHỐT: chọn **hướng 1**, bỏ opacity _(đo 10/08/2026 ở review toàn nhánh AccountCard; chốt 10/08/2026)_
 
-Dòng `Archived` ở bảng trên ghi "opacity 60%". Đã đo thật: **con số đó không cài được nếu vẫn giữ AA.** Đây là lỗ hổng giữa spec và plan (bản plan chưa bao giờ yêu cầu opacity, nên code đã làm là đúng brief của nó) — không phải lỗi code.
+> **Kết quả cuối:** giữ nguyên phần đo dưới đây làm hồ sơ lịch sử, nhưng **`opacity 60%` đã bị loại**. Hướng 1 được chọn và **đã cài**: card Archived dùng nền `Surface` + bỏ `shadow-elevation-2`, mọi màu chữ/pill/viền/nút ở 100%, không có utility `opacity-*` nào. Bảng §5.4 ở trên đã được sửa theo đúng hành vi này và là nguồn sự thật hiện hành.
+
+Bản gốc của dòng `Archived` ở bảng trên từng ghi "opacity 60%". Đã đo thật: **con số đó không cài được nếu vẫn giữ AA.** Đây là lỗ hổng giữa spec và plan (bản plan chưa bao giờ yêu cầu opacity, nên code đã làm là đúng brief của nó) — không phải lỗi code.
 
 Áp `opacity: 60%` lên cả card tạo **một lớp compositing duy nhất**: mọi màu bên trong bị pha với nền trang `Surface #F8F6F2` theo `hiệu_dụng = 0.6 × màu + 0.4 × Surface`, **cả chữ lẫn nền trắng của card**. Vì nền card `#FFFFFF` gần như trùng `Surface` (tỷ lệ chỉ 1.08), nền đứng gần như yên trong khi chữ bị kéo sáng mạnh — tương phản **sụt thẳng đứng**, hoàn toàn không phải "giảm 60%". Nền compositing đúng là `Surface`, xác nhận ở `src/app/AppShell.tsx` (`bg-surface`).
 
@@ -278,11 +280,13 @@ Dòng `Archived` ở bảng trên ghi "opacity 60%". Đã đo thật: **con số
 >
 > WCAG có miễn trừ tương phản cho "inactive user interface component", nhưng card Archived hiện vẫn đọc được và hai nút vẫn bấm được, nên **không** thuộc diện miễn trừ. Nếu sau này Archived đổi thành card chỉ-đọc chỉ còn nút "Restore" thì phải đo lại từ đầu.
 >
-> **Chưa cài gì vào `AccountCard.tsx`; dòng "opacity 60%" ở bảng trên giữ nguyên chữ cũ cho tới khi chốt.** Ba hướng đã đo sẵn:
+> Ba hướng đã đo sẵn khi trình quyết định:
 >
-> 1. **Đổi nền card Archived sang `Surface #F8F6F2` + bỏ shadow, giữ mọi màu chữ ở 100%** — card "chìm" vào nền trang thay vì nổi lên như thẻ trắng. Không cần token mới. Đo: `Shield Navy` **18.05 ✅** · `status-neutral-text` **7.17 ✅** · `Fur Orange Text` **4.98 ✅** · `Border Strong` **3.12 ✅** · viền `Fur Orange` **3.02 ✅** · pill Neutral **6.66 ✅** — **đạt hết**. Rẻ và an toàn nhất. _(Nền `#ECEEF2` thì fail: `Border Strong` 2.90 ❌, viền `Fur Orange` 2.81 ❌.)_
-> 2. Chỉ làm mờ 60% phần **trang trí** (avatar + platform badge), giữ chữ và nút ở 100% — logo/ảnh được WCAG miễn trừ tương phản.
-> 3. Giữ đúng chữ "opacity 60%" và **chấp nhận fail AA** — mâu thuẫn trực tiếp với §7.6, không khuyến nghị.
+> 1. ✅ **ĐÃ CHỌN VÀ ĐÃ CÀI** — **đổi nền card Archived sang `Surface #F8F6F2` + bỏ shadow, giữ mọi màu chữ ở 100%**: card "chìm" vào nền trang thay vì nổi lên như thẻ trắng. Không cần token mới. Đo: `Shield Navy` **18.05 ✅** · `status-neutral-text` **7.17 ✅** · `Fur Orange Text` **4.98 ✅** · `Border Strong` **3.12 ✅** · viền `Fur Orange` **3.02 ✅** · pill Neutral **6.66 ✅** — **đạt hết**, xấu nhất 3.02 vẫn trên ngưỡng 3.0. Rẻ và an toàn nhất. _(Nền `#ECEEF2` thì fail: `Border Strong` 2.90 ❌, viền `Fur Orange` 2.81 ❌.)_
+> 2. ❌ Không chọn — chỉ làm mờ 60% phần **trang trí** (avatar + platform badge), giữ chữ và nút ở 100%; logo/ảnh được WCAG miễn trừ tương phản, nhưng mức de-emphasis quá yếu.
+> 3. ❌ Không chọn — giữ đúng chữ "opacity 60%" và **chấp nhận fail AA**; mâu thuẫn trực tiếp với §7.6.
+>
+> **Cài đặt (10/08/2026):** `src/components/account/AccountCard.tsx` — nhánh `account.status === "archived"` dùng `bg-surface` (không `shadow-elevation-2`), mọi trạng thái khác giữ nguyên `bg-white shadow-elevation-2`. Viền `border-border` giữ nguyên cho **mọi** trạng thái: cặp viền card vs `Surface` (1.13) là trang trí thuần, không có ngưỡng — đúng phân biệt `Border` vs `Border Strong` mà §7.2 đã đặt ra. `StatusPill.tsx` **không đổi**: Archived vẫn dùng đúng bộ token Neutral như Inactive.
 
 ---
 

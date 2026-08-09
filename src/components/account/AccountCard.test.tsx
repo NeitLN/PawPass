@@ -79,6 +79,71 @@ describe("AccountCard status", () => {
   });
 });
 
+describe("AccountCard archived de-emphasis (§5.4)", () => {
+  it('takes the archived branch for status "archived": Surface background, no elevation shadow', () => {
+    render(
+      <AccountCard
+        account={{ ...BASE_ACCOUNT, status: "archived" }}
+        onOpenAccount={vi.fn()}
+        onUpdateFollower={vi.fn()}
+      />,
+    );
+    const card = screen.getByTestId("account-card");
+    expect(card).toHaveClass("bg-surface");
+    expect(card).not.toHaveClass("bg-white");
+    expect(card).not.toHaveClass("shadow-elevation-2");
+  });
+
+  it.each(ACCOUNT_STATUSES.filter((status) => status !== "archived"))(
+    'takes the normal branch for status "%s": white background, keeps the elevation shadow',
+    (status) => {
+      render(
+        <AccountCard
+          account={{ ...BASE_ACCOUNT, status }}
+          onOpenAccount={vi.fn()}
+          onUpdateFollower={vi.fn()}
+        />,
+      );
+      const card = screen.getByTestId("account-card");
+      expect(card).toHaveClass("bg-white");
+      expect(card).toHaveClass("shadow-elevation-2");
+      expect(card).not.toHaveClass("bg-surface");
+    },
+  );
+
+  it("keeps the card border on every status, archived included", () => {
+    const { rerender } = render(
+      <AccountCard
+        account={{ ...BASE_ACCOUNT, status: "active" }}
+        onOpenAccount={vi.fn()}
+        onUpdateFollower={vi.fn()}
+      />,
+    );
+    expect(screen.getByTestId("account-card")).toHaveClass("border-border");
+
+    rerender(
+      <AccountCard
+        account={{ ...BASE_ACCOUNT, status: "archived" }}
+        onOpenAccount={vi.fn()}
+        onUpdateFollower={vi.fn()}
+      />,
+    );
+    expect(screen.getByTestId("account-card")).toHaveClass("border-border");
+  });
+
+  it("never applies an opacity utility to the archived card — §5.4.1", () => {
+    render(
+      <AccountCard
+        account={{ ...BASE_ACCOUNT, status: "archived" }}
+        onOpenAccount={vi.fn()}
+        onUpdateFollower={vi.fn()}
+      />,
+    );
+    const card = screen.getByTestId("account-card");
+    expect(card.className).not.toMatch(/(^|\s)opacity-/);
+  });
+});
+
 describe("AccountCard avatar", () => {
   it("shows initials when avatarUrl is null", () => {
     render(
