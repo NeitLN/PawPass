@@ -25,6 +25,7 @@
 **Files:** none — this task only runs commands and records their output; no files are created or modified.
 
 **Interfaces:**
+
 - Consumes: nothing.
 - Produces: a working shell environment (`pnpm` on `PATH`) that every later task depends on.
 
@@ -83,9 +84,11 @@ Nothing to commit — this task only verifies environment state. Proceed to Task
 ### Task 2: Write ADR-001 (Tauri 2 over Electron)
 
 **Files:**
+
 - Create: `docs/adr/0001-tauri-2-over-electron.md`
 
 **Interfaces:**
+
 - Consumes: nothing.
 - Produces: a permanent architecture-decision record other ADRs and future contributors can link to.
 
@@ -164,9 +167,11 @@ git commit -m "docs: thêm ADR-001 (Tauri 2 thay Electron)"
 ### Task 3: Write ADR-002 (Argon2id + XChaCha20-Poly1305 over Stronghold)
 
 **Files:**
+
 - Create: `docs/adr/0002-argon2id-xchacha20-over-stronghold.md`
 
 **Interfaces:**
+
 - Consumes: nothing.
 - Produces: a permanent architecture-decision record Sprint 2's crypto implementation task will cite directly.
 
@@ -199,8 +204,9 @@ tách pha).
 ## Decision
 
 Bỏ Stronghold. Tự triển khai bằng các crate Rust `argon2` + `chacha20poly1305`
-+ `zeroize` + `rand`, đúng theo sơ đồ đã mô tả ở §12.2 gốc (nay là
-SOURCE-OF-TRUTH §11.2).
+
+- `zeroize` + `rand`, đúng theo sơ đồ đã mô tả ở §12.2 gốc (nay là
+  SOURCE-OF-TRUTH §11.2).
 
 Lý do quyết định:
 
@@ -250,11 +256,13 @@ git commit -m "docs: thêm ADR-002 (Argon2id + XChaCha20-Poly1305 thay Stronghol
 ### Task 4: Scaffold Tauri 2 + React + TS + Vite
 
 **Files:**
+
 - Create (via `create-tauri-app`, then moved into repo root): `package.json`, `index.html`, `tsconfig.json`, `tsconfig.node.json`, `vite.config.ts`, `src/main.tsx`, `src/App.tsx`, `src/App.css`, `src/vite-env.d.ts`, `src/assets/react.svg`, `public/tauri.svg`, `public/vite.svg`, `.vscode/extensions.json`, `src-tauri/**` (Cargo.toml, build.rs, src/main.rs, src/lib.rs, tauri.conf.json, capabilities/default.json, icons/*).
 - Modify: `.gitignore` (append four missing rules — see Step 5).
 - Do NOT touch: `README.md`, `docs/`, `.env.example` — `create-tauri-app` generates its own generic `README.md` and would silently overwrite ours if scaffolded directly into the repo root. This task scaffolds into a throwaway subfolder first and moves only the new files up.
 
 **Interfaces:**
+
 - Consumes: pnpm from Task 1.
 - Produces: a `pnpm tauri dev`-able Tauri app. Later tasks (5, 6, 7, 8) all add to this `package.json` and this `src/` tree.
 
@@ -292,27 +300,37 @@ Expected: every line is `??` (untracked, new) for the files moved in Step 2 — 
 The scaffold used `pawpass-scaffold-tmp` as the folder name, which `create-tauri-app` also wrote into `package.json`'s `"name"` and `src-tauri/tauri.conf.json`'s `"productName"` / window `"title"`. Fix both:
 
 In `package.json`, change:
+
 ```json
   "name": "pawpass-scaffold-tmp",
 ```
+
 to:
+
 ```json
   "name": "pawpass",
 ```
 
 In `src-tauri/tauri.conf.json`, change:
+
 ```json
   "productName": "pawpass-scaffold-tmp",
 ```
+
 to:
+
 ```json
   "productName": "PawPass",
 ```
+
 and change:
+
 ```json
         "title": "pawpass-scaffold-tmp",
 ```
+
 to:
+
 ```json
         "title": "PawPass",
 ```
@@ -371,7 +389,7 @@ Then re-run `pnpm install`.
 pnpm build
 ```
 
-Expected: exits 0, produces a `dist/` folder. (This step will keep failing until Task 5 fixes a real, already-confirmed environment issue — see the note below — if the build error mentions `Cannot find module '@tailwindcss/postcss'` or references a `postcss.config.mjs` path outside this repo, that is Task 5's fix, not a bug in this task. If you see a *different* build error, stop and diagnose before continuing.)
+Expected: exits 0, produces a `dist/` folder. (This step will keep failing until Task 5 fixes a real, already-confirmed environment issue — see the note below — if the build error mentions `Cannot find module '@tailwindcss/postcss'` or references a `postcss.config.mjs` path outside this repo, that is Task 5's fix, not a bug in this task. If you see a _different_ build error, stop and diagnose before continuing.)
 
 - [ ] **Step 9: Verify the full Tauri app actually boots on this machine**
 
@@ -393,11 +411,13 @@ git commit -m "chore: scaffold Tauri 2 + React + TS + Vite qua create-tauri-app"
 ### Task 5: Wire up Tailwind CSS v4
 
 **Files:**
+
 - Modify: `vite.config.ts`, `src/main.tsx`, `package.json` (via `pnpm add`)
 - Create: `src/index.css`
 - Delete: `src/App.css`, `src/assets/react.svg` (only referenced by the demo counter page this task replaces)
 
 **Interfaces:**
+
 - Consumes: the scaffold from Task 4.
 - Produces: a working Tailwind v4 pipeline. Sprint 1's `tokens.css` work (SOURCE-OF-TRUTH §7.2) will `@import` into `src/index.css` alongside the Tailwind import added here.
 
@@ -520,10 +540,12 @@ git commit -m "chore: wire up Tailwind CSS v4 qua @tailwindcss/vite"
 ### Task 6: Add oxlint + Prettier
 
 **Files:**
+
 - Create: `.oxlintrc.json`, `.prettierrc.json`, `.prettierignore`
 - Modify: `package.json` (add `lint`, `lint:fix`, `format`, `format:check`, `typecheck` scripts)
 
 **Interfaces:**
+
 - Consumes: the scaffold from Task 4.
 - Produces: `pnpm lint`, `pnpm format:check`, `pnpm typecheck` — Task 7 (pre-commit hook) and Task 8 (CI) both call these by name.
 
@@ -614,10 +636,12 @@ git commit -m "chore: thêm oxlint + Prettier"
 ### Task 7: Add Husky + lint-staged pre-commit hook
 
 **Files:**
+
 - Create: `.husky/pre-commit`, `.lintstagedrc.json`
 - Modify: `package.json` (add `"prepare": "husky"` script, add `husky`/`lint-staged` devDependencies)
 
 **Interfaces:**
+
 - Consumes: `pnpm lint:fix` and `pnpm format` from Task 6 (referenced by name inside `.lintstagedrc.json`).
 - Produces: a `git commit` gate that auto-fixes and blocks on lint/format/rustfmt issues in staged files.
 
@@ -665,9 +689,11 @@ Expected: the commit output shows `lint-staged` running (its own progress output
 ### Task 8: Add GitHub Actions CI workflow
 
 **Files:**
+
 - Create: `.github/workflows/ci.yml`
 
 **Interfaces:**
+
 - Consumes: `pnpm lint`, `pnpm format:check`, `pnpm typecheck`, `pnpm build` (Task 6), `cargo fmt`/`cargo clippy` (Rust toolchain from Task 1).
 - Produces: a CI gate for future pull requests. No later task depends on this one.
 
@@ -740,10 +766,12 @@ git commit -m "ci: thêm GitHub Actions CI (lint, format, typecheck, build) trê
 ### Task 9: Link the Supabase project and document the migration workflow
 
 **Files:**
+
 - Create: `supabase/config.toml`, `supabase/.gitignore` (via `supabase init`)
 - Modify: `README.md` (add a short "Supabase workflow" note)
 
 **Interfaces:**
+
 - Consumes: the authenticated Supabase CLI session from Task 1 Step 6.
 - Produces: `supabase/` scaffold that Sprint 3's migrations (SOURCE-OF-TRUTH §10, §12.3) will populate.
 
@@ -773,7 +801,7 @@ Stack
 
 Insert a new section immediately before it:
 
-```markdown
+````markdown
 ## Quy trình Supabase
 
 Migration nằm ở `supabase/migrations/` (chưa có file nào — schema thật bắt đầu ở Sprint 3, xem `docs/SOURCE-OF-TRUTH.md` §10). Một project Supabase duy nhất cho cả dev và production (project ref `nzcnojcnnfiqeujfhccx`) — không có bước "test trên local trước". Khi có migration:
@@ -783,28 +811,31 @@ supabase migration new <ten_migration>
 # ... viết SQL vào file vừa tạo ...
 supabase db push
 ```
+````
 
 Không dùng `supabase start` (Docker) cho vòng lặp phát triển thường ngày — xem lý do ở SOURCE-OF-TRUTH §13.1.
 
 ---
 
-```
+````
 
 - [ ] **Step 4: Commit**
 
 ```bash
 git add supabase/ README.md
 git commit -m "chore: supabase link project nzcnojcnnfiqeujfhccx + ghi lại quy trình migration"
-```
+````
 
 ---
 
 ### Task 10: Generate the Tauri updater signing keypair
 
 **Files:**
+
 - Modify: `src-tauri/tauri.conf.json` (add `plugins.updater.pubkey`)
 
 **Interfaces:**
+
 - Consumes: `@tauri-apps/cli` from Task 4 (provides the `pnpm tauri signer generate` command).
 - Produces: a public key embedded in the very first build. No later Sprint-0 task depends on this; Sprint 5 wires up the actual updater plugin and endpoint.
 
@@ -858,10 +889,12 @@ Do **not** `git add` anything under `~/.tauri/` — it is outside the repo and m
 ### Task 11: Create the brand asset manifest and close out Sprint 0
 
 **Files:**
+
 - Create: `docs/brand-reference/manifest.json`
 - Modify: `README.md` (check off the Sprint 0 items in "Việc tiếp theo")
 
 **Interfaces:**
+
 - Consumes: the asset inventory already documented in `docs/SOURCE-OF-TRUTH.md` §8.3.
 - Produces: a machine-readable catalog Sprint 1's `MochiIllustration` component can eventually read from, instead of the prose table in §8.3 (which stays as the human-readable source; this file is the same information in a form code can consume).
 
@@ -1050,6 +1083,7 @@ git commit -m "docs: brand asset manifest + chốt Sprint 0"
 ## Self-Review Notes
 
 **Spec coverage against SOURCE-OF-TRUTH §12.3 Sprint 0 backlog:**
+
 - ADR-001, ADR-002 → Tasks 2, 3.
 - pnpm workspace, lint, format, commit hooks, CI → Tasks 4, 6, 7, 8.
 - `supabase link` + migration workflow → Task 9.
@@ -1058,5 +1092,6 @@ git commit -m "docs: brand asset manifest + chốt Sprint 0"
 - Sprint 0 quality gate ("Build dev chạy Windows; không commit secret") → Task 4 Step 9 (human-observed boot) and Task 11 Step 3 (full re-verification).
 
 **Deviations from the literal spec text, and why:**
+
 - §9.3 ARCH-05 says embed the pubkey "ngay cả khi chưa bật updater (`active: false`)" — Tauri v2's actual updater plugin config schema has no `active` boolean (that was Tauri v1 semantics). Task 10 achieves the same intent — pubkey shipped in the first build, updater not functionally live — by adding the config block without registering the Rust plugin, rather than by setting a field that doesn't exist in v2.
 - "pnpm workspace" is implemented as a single-package pnpm project, not a `pnpm-workspace.yaml` multi-package workspace — the repo structure in §9.2 is one app, and no second package exists that would justify one. Documented in this plan's Architecture section.

@@ -11,7 +11,7 @@ based_on: "Turtly_Master_Roadmap_Design_Specification.md v1.0 (08/08/2026)"
 # PAWPASS — SOURCE OF TRUTH
 
 **Desktop Account Manager • Windows • Facebook · Instagram · Google/Gmail**
-Sản phẩm **PawPass** • Mascot **Mochi** • *One Paw, Endless Access.*
+Sản phẩm **PawPass** • Mascot **Mochi** • _One Paw, Endless Access._
 
 > **CHO AI CODING AGENT**
 > Đọc hết file này trước khi code. Đây là tài liệu quyết định duy nhất.
@@ -38,17 +38,17 @@ File này là **`Turtly_Master_Roadmap_Design_Specification.md`** (bản gốc d
 
 ## 1. Quyết định sản phẩm
 
-| Hạng mục | Quyết định |
-|---|---|
-| Người dùng | Một chủ sở hữu; có thể dùng nhiều máy Windows |
-| Nền tảng MVP | Facebook, Instagram, Google/Gmail |
+| Hạng mục      | Quyết định                                                                                                  |
+| ------------- | ----------------------------------------------------------------------------------------------------------- |
+| Người dùng    | Một chủ sở hữu; có thể dùng nhiều máy Windows                                                               |
+| Nền tảng MVP  | Facebook, Instagram, Google/Gmail                                                                           |
 | Dữ liệu chính | Tên, username, email, mật khẩu tài khoản, mật khẩu email, follower, location, URL, trạng thái, ghi chú, tag |
-| Follower | **Nhập tay.** Hiển thị số đã ghi và ngày cập nhật gần nhất — không có đồng bộ tự động qua API |
-| Mở tài khoản | Mở URL trong trình duyệt mặc định; không lưu cookie, không tự điền form đăng nhập |
-| Cloud | Supabase Auth + Postgres + Realtime — **từ ngày đầu**, không tách pha |
-| Desktop | Tauri 2 + React + TypeScript; gói cài đặt Windows |
-| Mã hoá | Secret payload mã hoá trên máy; master password riêng với mật khẩu đăng nhập PawPass |
-| Thời gian | 6 tuần full-time hoặc 8–10 tuần bán thời gian |
+| Follower      | **Nhập tay.** Hiển thị số đã ghi và ngày cập nhật gần nhất — không có đồng bộ tự động qua API               |
+| Mở tài khoản  | Mở URL trong trình duyệt mặc định; không lưu cookie, không tự điền form đăng nhập                           |
+| Cloud         | Supabase Auth + Postgres + Realtime — **từ ngày đầu**, không tách pha                                       |
+| Desktop       | Tauri 2 + React + TypeScript; gói cài đặt Windows                                                           |
+| Mã hoá        | Secret payload mã hoá trên máy; master password riêng với mật khẩu đăng nhập PawPass                        |
+| Thời gian     | 6 tuần full-time hoặc 8–10 tuần bán thời gian                                                               |
 
 ### 1.1 Nguyên tắc không thương lượng
 
@@ -66,7 +66,7 @@ File này là **`Turtly_Master_Roadmap_Design_Specification.md`** (bản gốc d
 - Installer chạy trên Windows 10/11 x64; app giữ trạng thái đăng nhập và có auto-lock.
 - **Bổ sung (SEC-03/QA-05 — điều kiện có thật, Master Roadmap gốc chỉ ghi trong checklist):** diễn tập khôi phục bằng recovery key pass trên máy sạch. Xem §11.2 và §15.2 AT-12.
 
-### 1.3 Ưu tiên nếu thiếu thời gian *(dựa trên Master Roadmap §15.1, đã bỏ mục Meta)*
+### 1.3 Ưu tiên nếu thiếu thời gian _(dựa trên Master Roadmap §15.1, đã bỏ mục Meta)_
 
 1. Giữ vault encryption + RLS + CRUD + search + open account.
 2. Giữ follower nhập tay và hiển thị ngày cập nhật rõ ràng.
@@ -96,13 +96,13 @@ Follower tự động qua Meta API/OAuth · tự động đăng nhập, tự đi
 
 ### 2.4 Persona và tình huống chính
 
-| Tình huống | Nhu cầu | Kết quả mong muốn |
-|---|---|---|
-| Tìm tài khoản | Nhớ một phần tên/email | Search ra card đúng trong ≤1 giây |
-| Kiểm tra follower | Xem số đã ghi gần nhất | Card hiển thị số và ngày mình cập nhật lần cuối — không giả vờ real-time |
-| Đổi máy | Đăng nhập PawPass trên PC khác | Metadata tải về; nhập master password để mở secrets |
-| Mở tài khoản | Đi đến profile hoặc Gmail | Trình duyệt mở đúng URL; app không giả lập đăng nhập |
-| Cập nhật credential | Đổi mật khẩu tài khoản/email | Lưu phiên bản mới, không rò vào history/log |
+| Tình huống          | Nhu cầu                        | Kết quả mong muốn                                                        |
+| ------------------- | ------------------------------ | ------------------------------------------------------------------------ |
+| Tìm tài khoản       | Nhớ một phần tên/email         | Search ra card đúng trong ≤1 giây                                        |
+| Kiểm tra follower   | Xem số đã ghi gần nhất         | Card hiển thị số và ngày mình cập nhật lần cuối — không giả vờ real-time |
+| Đổi máy             | Đăng nhập PawPass trên PC khác | Metadata tải về; nhập master password để mở secrets                      |
+| Mở tài khoản        | Đi đến profile hoặc Gmail      | Trình duyệt mở đúng URL; app không giả lập đăng nhập                     |
+| Cập nhật credential | Đổi mật khẩu tài khoản/email   | Lưu phiên bản mới, không rò vào history/log                              |
 
 ---
 
@@ -110,20 +110,20 @@ Follower tự động qua Meta API/OAuth · tự động đăng nhập, tự đi
 
 ### 3.1 Functional requirements P0
 
-| ID | Yêu cầu | Tiêu chí chấp nhận | Nghiệm thu bởi |
-|---|---|---|---|
-| FR-01 | Đăng nhập PawPass | Email/password hoặc magic link; session khôi phục sau khi mở lại app | AT-24 |
-| FR-02 | Mở kho bí mật | Nhập master password; sai không làm lộ thông tin hoặc log plaintext | AT-01, AT-02 |
-| FR-03 | Danh sách tài khoản | Grid card có avatar, platform, tên, username/email, follower, status, last update | AT-10, AT-21 |
-| FR-04 | CRUD tài khoản | Tạo, xem, sửa, archive; validation theo platform | AT-01, AT-15 |
-| FR-05 | Xem/copy secrets | Mặc định che; reveal tạm thời; copy có thông báo và dọn clipboard | AT-09, AT-18 |
-| FR-06 | Tìm kiếm/lọc | Theo tên, username, email, platform, status và tag | AT-16 |
-| FR-07 | Mở tài khoản | Chỉ mở URL http/https hợp lệ bằng trình duyệt mặc định | AT-08 |
-| FR-08 | Đồng bộ nhiều máy | Thay đổi metadata và ciphertext đồng bộ qua Supabase | AT-03, AT-14, AT-23, AT-26 |
-| FR-09 | Follower nhập tay | Cho phép nhập tay, cập nhật, hoặc để trống; ghi rõ ngày cập nhật | AT-17 |
-| FR-10 | Auto-lock | Khóa kho sau thời gian không hoạt động hoặc khi người dùng khóa thủ công | AT-13, AT-22 |
-| **FR-17** | **Recovery key** *(mới — lấp khoảng trống của §11.5 checklist, xem §11.2)* | Sinh khi tạo vault, hiện đúng một lần, bắt buộc xác nhận đã lưu, tải `.txt` được | AT-12 |
-| **FR-18** | **Đổi master password** *(mới, cùng lý do)* | Cần master hiện tại hoặc recovery key; không mã hoá lại toàn bộ secrets | AT-12, AT-20 |
+| ID        | Yêu cầu                                                                    | Tiêu chí chấp nhận                                                                | Nghiệm thu bởi             |
+| --------- | -------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | -------------------------- |
+| FR-01     | Đăng nhập PawPass                                                          | Email/password hoặc magic link; session khôi phục sau khi mở lại app              | AT-24                      |
+| FR-02     | Mở kho bí mật                                                              | Nhập master password; sai không làm lộ thông tin hoặc log plaintext               | AT-01, AT-02               |
+| FR-03     | Danh sách tài khoản                                                        | Grid card có avatar, platform, tên, username/email, follower, status, last update | AT-10, AT-21               |
+| FR-04     | CRUD tài khoản                                                             | Tạo, xem, sửa, archive; validation theo platform                                  | AT-01, AT-15               |
+| FR-05     | Xem/copy secrets                                                           | Mặc định che; reveal tạm thời; copy có thông báo và dọn clipboard                 | AT-09, AT-18               |
+| FR-06     | Tìm kiếm/lọc                                                               | Theo tên, username, email, platform, status và tag                                | AT-16                      |
+| FR-07     | Mở tài khoản                                                               | Chỉ mở URL http/https hợp lệ bằng trình duyệt mặc định                            | AT-08                      |
+| FR-08     | Đồng bộ nhiều máy                                                          | Thay đổi metadata và ciphertext đồng bộ qua Supabase                              | AT-03, AT-14, AT-23, AT-26 |
+| FR-09     | Follower nhập tay                                                          | Cho phép nhập tay, cập nhật, hoặc để trống; ghi rõ ngày cập nhật                  | AT-17                      |
+| FR-10     | Auto-lock                                                                  | Khóa kho sau thời gian không hoạt động hoặc khi người dùng khóa thủ công          | AT-13, AT-22               |
+| **FR-17** | **Recovery key** _(mới — lấp khoảng trống của §11.5 checklist, xem §11.2)_ | Sinh khi tạo vault, hiện đúng một lần, bắt buộc xác nhận đã lưu, tải `.txt` được  | AT-12                      |
+| **FR-18** | **Đổi master password** _(mới, cùng lý do)_                                | Cần master hiện tại hoặc recovery key; không mã hoá lại toàn bộ secrets           | AT-12, AT-20               |
 
 ### 3.2 Functional requirements P1
 
@@ -134,7 +134,7 @@ Follower tự động qua Meta API/OAuth · tự động đăng nhập, tự đi
 
 > **Nghiệm thu bởi (QA-01 — Master Roadmap gốc có 16 FR và 10 AT nhưng không ánh xạ; đối chiếu tay lộ ra 8 FR không AT nào phủ).** FR-13: (chưa có AT — chart để post-MVP nên chấp nhận được) · FR-14: AT-19 · FR-15: (không có AT — trạng thái mascot phủ bởi AT-11 a11y và review thị giác) · FR-16: AT-25. Luật áp cho mọi FR mới thêm sau này: **một FR không có AT thì không được đánh dấu hoàn thành.**
 >
-> *v4.1: AT-15…AT-25 giờ đã được đánh số và mô tả riêng từng cái ở §15.2 — trước đó 11 ID chỉ có 6 mô tả gộp một dòng, nên luật trên không thể áp được.*
+> _v4.1: AT-15…AT-25 giờ đã được đánh số và mô tả riêng từng cái ở §15.2 — trước đó 11 ID chỉ có 6 mô tả gộp một dòng, nên luật trên không thể áp được._
 >
 > **Đã bỏ (09/08/2026):** FR-11 (OAuth Meta và follower sync tự động), FR-12 (nút "Đồng bộ ngay"/"Sync all" có cooldown) — xem §0. Số ID không tái sử dụng để lịch sử quyết định còn tra được.
 
@@ -146,7 +146,7 @@ Follower tự động qua Meta API/OAuth · tự động đăng nhập, tự đi
 - **BR-04** — Follower count phải là số nguyên ≥0 hoặc null; không dùng 0 để biểu diễn "chưa nhập".
 - **BR-05** — Trường secrets được ghi trong một encrypted payload có version để hỗ trợ đổi thuật toán/migration.
 - **BR-06** — Nút mở tài khoản bị vô hiệu hóa nếu URL không hợp lệ; URL do platform template sinh ra được ưu tiên.
-- **BR-07** *(trước là BR-09 — DATA-03, cần một quy tắc chuẩn hoá rõ ràng vì §10.2 chỉ ghi chú "normalized_username để unique mềm" mà không định nghĩa)* — Chuẩn hoá username = bỏ ký tự `@` đầu, `lower()`, `trim()`. Áp dụng ở đúng một tầng (repository), không lặp lại logic ở nhiều nơi.
+- **BR-07** _(trước là BR-09 — DATA-03, cần một quy tắc chuẩn hoá rõ ràng vì §10.2 chỉ ghi chú "normalized_username để unique mềm" mà không định nghĩa)_ — Chuẩn hoá username = bỏ ký tự `@` đầu, `lower()`, `trim()`. Áp dụng ở đúng một tầng (repository), không lặp lại logic ở nhiều nơi.
 
 > **Đã bỏ (09/08/2026):** BR-07 cũ (không chạy song song sync job — gắn với `sync_jobs`), BR-08 cũ (token hết hạn chuyển `reauth_required`) — cả hai chỉ tồn tại vì Meta OAuth. Xem §0.
 
@@ -156,20 +156,20 @@ Follower tự động qua Meta API/OAuth · tự động đăng nhập, tự đi
 
 ### 4.1 Information architecture
 
-| Khu vực | Màn hình | Chức năng |
-|---|---|---|
-| Workspace | Dashboard | Tổng quan, quick filters, account grid |
-| Accounts | All Accounts | Tìm kiếm, lọc, sort, grid/list view |
-| Accounts | Account Detail | Thông tin, secrets, follower history, notes |
-| Actions | Add / Edit Account | Form theo platform; validation và preview card |
-| System | Settings | Profile, security, auto-lock, devices, appearance |
+| Khu vực   | Màn hình           | Chức năng                                         |
+| --------- | ------------------ | ------------------------------------------------- |
+| Workspace | Dashboard          | Tổng quan, quick filters, account grid            |
+| Accounts  | All Accounts       | Tìm kiếm, lọc, sort, grid/list view               |
+| Accounts  | Account Detail     | Thông tin, secrets, follower history, notes       |
+| Actions   | Add / Edit Account | Form theo platform; validation và preview card    |
+| System    | Settings           | Profile, security, auto-lock, devices, appearance |
 
 > **Đã bỏ:** màn hình "Sync Center" (job gần đây, kết nối lại OAuth) — không còn job hay OAuth nào để theo dõi.
 
 ### 4.2 Luồng onboarding lần đầu
 
 1. Mở app → màn hình Mochi Wave → đăng nhập hoặc tạo tài khoản PawPass.
-2. Tạo master password → hệ thống tạo recovery key một lần → yêu cầu lưu ra nơi an toàn *(cơ chế cụ thể ở §11.2)*.
+2. Tạo master password → hệ thống tạo recovery key một lần → yêu cầu lưu ra nơi an toàn _(cơ chế cụ thể ở §11.2)_.
 3. Khởi tạo kho rỗng → chọn "Thêm tài khoản đầu tiên".
 4. Điền thông tin cơ bản và secrets → xem preview Account Card → lưu.
 5. Tuỳ chọn nhập follower ngay hoặc bỏ qua, cập nhật sau.
@@ -202,17 +202,17 @@ Follower tự động qua Meta API/OAuth · tự động đăng nhập, tự đi
 
 ### 5.1 Layout Desktop
 
-| Vùng | Kích thước/Quy tắc | Nội dung |
-|---|---|---|
-| App window | Min 1180×720; mặc định 1440×900 | Không ép full-screen; ghi nhớ kích thước/cửa sổ |
-| Sidebar | 240 px; có collapsed 76 px | Logo, Dashboard, Accounts, Settings |
-| Topbar | 72 px | Tiêu đề, search toàn cục, Add account, avatar |
-| Content | Padding 28–32 px | Summary cards → filter bar → account grid |
-| Account grid | Min card 340 px; gap 20 px | 3 cột ở 1440 px, 2 cột khi cửa sổ hẹp |
+| Vùng         | Kích thước/Quy tắc              | Nội dung                                        |
+| ------------ | ------------------------------- | ----------------------------------------------- |
+| App window   | Min 1180×720; mặc định 1440×900 | Không ép full-screen; ghi nhớ kích thước/cửa sổ |
+| Sidebar      | 240 px; có collapsed 76 px      | Logo, Dashboard, Accounts, Settings             |
+| Topbar       | 72 px                           | Tiêu đề, search toàn cục, Add account, avatar   |
+| Content      | Padding 28–32 px                | Summary cards → filter bar → account grid       |
+| Account grid | Min card 340 px; gap 20 px      | 3 cột ở 1440 px, 2 cột khi cửa sổ hẹp           |
 
 ### 5.2 Dashboard composition
 
-- Header: "Chào buổi tối, Tiến" + Mochi **Neutral** nhỏ, không chiếm quá 88 px chiều cao *(tiếng Việt — xem §7.7)*.
+- Header: "Chào buổi tối, Tiến" + Mochi **Neutral** nhỏ, không chiếm quá 88 px chiều cao _(tiếng Việt — xem §7.7)_.
 - Summary: Total Accounts, Active, Needs Attention; card số liệu cao 104–116 px.
 - Search/filter: search 360 px, platform segmented control, status dropdown, sort dropdown.
 - Account grid: ưu tiên card có mật độ vừa; không đưa password ra Dashboard.
@@ -224,16 +224,16 @@ Follower tự động qua Meta API/OAuth · tự động đăng nhập, tự đi
 
 ### 5.3 Account Card — mẫu tham chiếu
 
-| Thành phần | Đặc tả đề xuất |
-|---|---|
-| Container | 340–380 px; padding 18 px; radius 18 px; border 1 px `Border`; shadow Elevation 2 (§7.4) |
-| Platform badge | 32 px, chồng góc avatar; icon chính thức, có accessible label |
-| Avatar | 88×88 px; radius 18 px; object-fit cover; fallback initials |
-| Identity | Display name 16 px/700; username 13 px; email 13 px muted; ellipsis + tooltip |
-| Status | Pill Active/Review/Inactive/Locked; không chỉ dùng màu để truyền đạt |
-| Follower | Icon 16 px + compact number; kèm ngày cập nhật trong tooltip/detail |
-| Update row | Divider; "Đã cập nhật 8 ngày trước" hoặc "Chưa cập nhật follower" |
-| Actions | Secondary "Cập nhật follower"; Primary-outline "Mở tài khoản"; min height 42 px |
+| Thành phần     | Đặc tả đề xuất                                                                           |
+| -------------- | ---------------------------------------------------------------------------------------- |
+| Container      | 340–380 px; padding 18 px; radius 18 px; border 1 px `Border`; shadow Elevation 2 (§7.4) |
+| Platform badge | 32 px, chồng góc avatar; icon chính thức, có accessible label                            |
+| Avatar         | 88×88 px; radius 18 px; object-fit cover; fallback initials                              |
+| Identity       | Display name 16 px/700; username 13 px; email 13 px muted; ellipsis + tooltip            |
+| Status         | Pill Active/Review/Inactive/Locked; không chỉ dùng màu để truyền đạt                     |
+| Follower       | Icon 16 px + compact number; kèm ngày cập nhật trong tooltip/detail                      |
+| Update row     | Divider; "Đã cập nhật 8 ngày trước" hoặc "Chưa cập nhật follower"                        |
+| Actions        | Secondary "Cập nhật follower"; Primary-outline "Mở tài khoản"; min height 42 px          |
 
 > **Đã bỏ (09/08/2026):** nút "Đồng bộ" (đã đổi thành "Cập nhật follower" — mở form nhập tay tại chỗ, không gọi API nào).
 
@@ -241,13 +241,13 @@ Follower tự động qua Meta API/OAuth · tự động đăng nhập, tự đi
 
 Token màu ở **§7.2.2** — mỗi trạng thái có bộ `-bg` / `-text` / `-solid` đã đo AA. Không tự chọn hex ở đây.
 
-| Trạng thái | Token (§7.2.2) | Icon | Hành vi |
-|---|---|---|---|
-| Active | Active / Success | check | Mọi hành động khả dụng |
-| Review | Review / Warning | cờ | Cần người dùng xem lại thông tin tài khoản |
-| Inactive | Inactive / Neutral | chấm rỗng | Tài khoản không dùng thường xuyên, vẫn đầy đủ chức năng |
-| Locked | Locked / Danger | ổ khoá | Người dùng tự khoá tài khoản này khỏi thao tác nhanh |
-| Archived | Inactive / Neutral, opacity 60% | hộp lưu trữ | Ẩn mặc định khỏi Dashboard; có Restore |
+| Trạng thái | Token (§7.2.2)                  | Icon        | Hành vi                                                 |
+| ---------- | ------------------------------- | ----------- | ------------------------------------------------------- |
+| Active     | Active / Success                | check       | Mọi hành động khả dụng                                  |
+| Review     | Review / Warning                | cờ          | Cần người dùng xem lại thông tin tài khoản              |
+| Inactive   | Inactive / Neutral              | chấm rỗng   | Tài khoản không dùng thường xuyên, vẫn đầy đủ chức năng |
+| Locked     | Locked / Danger                 | ổ khoá      | Người dùng tự khoá tài khoản này khỏi thao tác nhanh    |
+| Archived   | Inactive / Neutral, opacity 60% | hộp lưu trữ | Ẩn mặc định khỏi Dashboard; có Restore                  |
 
 > **Đã bỏ (09/08/2026):** trạng thái "Manual" (mọi tài khoản giờ đều là nhập tay, không còn gì để phân biệt), "Syncing" và "Needs re-auth" (chỉ tồn tại vì OAuth).
 >
@@ -263,17 +263,17 @@ Trang chi tiết dùng layout 2 cột: cột chính 65% cho identity, follower v
 
 ### 6.2 Nhóm dữ liệu hiển thị
 
-| Nhóm | Trường | Bảo vệ/hiển thị |
-|---|---|---|
-| Identity | Display name, username, avatar, platform, profile URL | Hiển thị bình thường |
-| Contact | Login email, recovery email, phone, location | Email copy được; phone tùy chọn |
-| Secrets | Account password, email password, recovery codes, 2FA note | Che mặc định; reveal/copy có timeout |
-| Metrics | Follower hiện tại, ngày cập nhật, lịch sử | Không dùng 0 thay null |
-| Metadata | Tags, status, notes, created/updated, device cuối sửa | Notes hỗ trợ plain text; không HTML tùy ý |
+| Nhóm     | Trường                                                     | Bảo vệ/hiển thị                           |
+| -------- | ---------------------------------------------------------- | ----------------------------------------- |
+| Identity | Display name, username, avatar, platform, profile URL      | Hiển thị bình thường                      |
+| Contact  | Login email, recovery email, phone, location               | Email copy được; phone tùy chọn           |
+| Secrets  | Account password, email password, recovery codes, 2FA note | Che mặc định; reveal/copy có timeout      |
+| Metrics  | Follower hiện tại, ngày cập nhật, lịch sử                  | Không dùng 0 thay null                    |
+| Metadata | Tags, status, notes, created/updated, device cuối sửa      | Notes hỗ trợ plain text; không HTML tùy ý |
 
 > **Đã bỏ (09/08/2026):** nhóm "Connection" (OAuth status, scopes, token expiry) — không còn OAuth nào để hiển thị trạng thái.
 >
-> **LƯU Ý RIÊNG TƯ, không phải cấm (SEC-02 — mềm hơn bản trước vì lý lẽ mạnh nhất từng dùng lấy từ một tài liệu khác đã bị bỏ).** `notes` là cột text thường trên Supabase (§10.2) — plaintext trên cloud, không mã hoá. Đây là lựa chọn hợp lý cho ghi chú thông thường (tag, ngữ cảnh). Nhưng vì đây là field tự do, người dùng có thể vô tình gõ vào đó thông tin nhạy (số điện thoại khôi phục, gợi ý bảo mật). **Khuyến nghị:** thêm một dòng gợi ý nhỏ dưới ô notes trong UI — *"Không nên ghi số điện thoại khôi phục hay câu hỏi bảo mật vào đây — trường này không mã hoá."* Không cần đổi schema.
+> **LƯU Ý RIÊNG TƯ, không phải cấm (SEC-02 — mềm hơn bản trước vì lý lẽ mạnh nhất từng dùng lấy từ một tài liệu khác đã bị bỏ).** `notes` là cột text thường trên Supabase (§10.2) — plaintext trên cloud, không mã hoá. Đây là lựa chọn hợp lý cho ghi chú thông thường (tag, ngữ cảnh). Nhưng vì đây là field tự do, người dùng có thể vô tình gõ vào đó thông tin nhạy (số điện thoại khôi phục, gợi ý bảo mật). **Khuyến nghị:** thêm một dòng gợi ý nhỏ dưới ô notes trong UI — _"Không nên ghi số điện thoại khôi phục hay câu hỏi bảo mật vào đây — trường này không mã hoá."_ Không cần đổi schema.
 
 ### 6.3 Credential Vault interaction
 
@@ -284,7 +284,7 @@ Trang chi tiết dùng layout 2 cột: cột chính 65% cho identity, follower v
 - Edit secret tạo `updated_at` và audit event nhưng không lưu plaintext cũ.
 - Auto-lock mặc định 10 phút; tùy chọn 1/5/10/30 phút hoặc khi app minimize.
 
-> **SỬA — lời hứa clipboard không giữ được nguyên văn trên Windows (SEC-04, sự thật về Windows, không phụ thuộc tài liệu nào).** Windows Clipboard History (`Win+V`) giữ một bản sao riêng mà việc xoá clipboard của app **không** động tới. Toast không nên hứa "clipboard sẽ được xóa" như một đảm bảo tuyệt đối — đổi thành *"Đã sao chép — PawPass sẽ xoá sau 30 giây"*. Trước khi xoá, **so sánh nội dung hiện tại**: chỉ xoá nếu vẫn đúng là thứ PawPass đã ghi, để không xoá mất thứ người dùng vừa copy sau đó. Nếu phát hiện Clipboard History đang bật (đọc registry `HKCU\Software\Microsoft\Clipboard\EnableClipboardHistory`), hiện một banner cảnh báo **đúng một lần** trong Settings.
+> **SỬA — lời hứa clipboard không giữ được nguyên văn trên Windows (SEC-04, sự thật về Windows, không phụ thuộc tài liệu nào).** Windows Clipboard History (`Win+V`) giữ một bản sao riêng mà việc xoá clipboard của app **không** động tới. Toast không nên hứa "clipboard sẽ được xóa" như một đảm bảo tuyệt đối — đổi thành _"Đã sao chép — PawPass sẽ xoá sau 30 giây"_. Trước khi xoá, **so sánh nội dung hiện tại**: chỉ xoá nếu vẫn đúng là thứ PawPass đã ghi, để không xoá mất thứ người dùng vừa copy sau đó. Nếu phát hiện Clipboard History đang bật (đọc registry `HKCU\Software\Microsoft\Clipboard\EnableClipboardHistory`), hiện một banner cảnh báo **đúng một lần** trong Settings.
 >
 > **SỬA — bổ sung tác nhân khoá còn thiếu (SEC-05).** "Không hoạt động" và "minimize" không đủ. Bắt buộc khoá thêm khi: khoá màn hình Windows (`WTS_SESSION_LOCK`), sleep/hibernate, thoát app, đăng xuất PawPass — các tác nhân này không tuỳ chọn. Xem AT-13.
 
@@ -310,45 +310,45 @@ PawPass nên tạo cảm giác thân thiện, bình tĩnh và đáng tin: mềm 
 >
 > **ĐÃ ĐO TƯƠNG PHẢN (v4.1) — TODO cũ đã đóng.** Mọi số ở cột "Tỷ lệ" là kết quả tính WCAG 2.x thật (công thức luminance tương đối), không ước lượng bằng mắt. **Bảng 4.0 fail AA ở 5 chỗ** — đáng chú ý nhất: chữ trắng trên nút `Fur Orange` chỉ đạt **3.26** (cần 4.5), tức nút chính của app không dùng được chữ trắng. Cách sửa nằm ở §7.2.1.
 
-#### Token nền tảng *(sample từ ảnh, không đổi giá trị)*
+#### Token nền tảng _(sample từ ảnh, không đổi giá trị)_
 
-| Token | Hex | Vai trò | Tỷ lệ trên Surface |
-|---|---|---|---|
-| Fur Orange | `#E46C00` | Brand primary — **chỉ dùng làm nền/mảng lớn**, không làm chữ | 3.02 ❌ chữ |
-| Shield Navy | `#000C24` | Text chính, app icon background, dark mode surface, viền khiên | 18.05 ✅ |
-| Muzzle Cream | `#FCE4C0` | Tint, nền nhạt, illustration | — (nền) |
-| Outline Black | `#000000` | Viền nét vẽ mascot/logomark — **không** dùng cho text | — |
-| Surface | `#F8F6F2` | Nền app | — (nền gốc) |
-| Border | `#E8DFD0` | Divider và viền **trang trí** (card, section) | 1.22 — hợp lệ, xem ghi chú |
-| **Border Strong** | **`#9A8A70`** | Viền **điều khiển** (input, select, checkbox, combobox) | **3.12 ✅** |
+| Token             | Hex           | Vai trò                                                        | Tỷ lệ trên Surface         |
+| ----------------- | ------------- | -------------------------------------------------------------- | -------------------------- |
+| Fur Orange        | `#E46C00`     | Brand primary — **chỉ dùng làm nền/mảng lớn**, không làm chữ   | 3.02 ❌ chữ                |
+| Shield Navy       | `#000C24`     | Text chính, app icon background, dark mode surface, viền khiên | 18.05 ✅                   |
+| Muzzle Cream      | `#FCE4C0`     | Tint, nền nhạt, illustration                                   | — (nền)                    |
+| Outline Black     | `#000000`     | Viền nét vẽ mascot/logomark — **không** dùng cho text          | —                          |
+| Surface           | `#F8F6F2`     | Nền app                                                        | — (nền gốc)                |
+| Border            | `#E8DFD0`     | Divider và viền **trang trí** (card, section)                  | 1.22 — hợp lệ, xem ghi chú |
+| **Border Strong** | **`#9A8A70`** | Viền **điều khiển** (input, select, checkbox, combobox)        | **3.12 ✅**                |
 
-> **Vì sao có hai token border.** WCAG 2.2 §1.4.11 (Non-text Contrast) yêu cầu **≥3:1** cho ranh giới nào *cần thiết để nhận ra một điều khiển*. `#E8DFD0` chỉ đạt **1.22** — dùng cho viền input thì người thị lực kém không thấy ô nhập ở đâu. Nhưng viền card/divider là **trang trí thuần** (card đã tự phân tách bằng nền + shadow), nên 1.22 ở đó không vi phạm gì. Quy tắc: **thứ gì bấm/gõ được thì dùng `Border Strong`; thứ gì chỉ để chia vùng thì dùng `Border`.**
+> **Vì sao có hai token border.** WCAG 2.2 §1.4.11 (Non-text Contrast) yêu cầu **≥3:1** cho ranh giới nào _cần thiết để nhận ra một điều khiển_. `#E8DFD0` chỉ đạt **1.22** — dùng cho viền input thì người thị lực kém không thấy ô nhập ở đâu. Nhưng viền card/divider là **trang trí thuần** (card đã tự phân tách bằng nền + shadow), nên 1.22 ở đó không vi phạm gì. Quy tắc: **thứ gì bấm/gõ được thì dùng `Border Strong`; thứ gì chỉ để chia vùng thì dùng `Border`.**
 
-#### §7.2.1 Token dẫn xuất cho chữ *(mới — bắt buộc)*
+#### §7.2.1 Token dẫn xuất cho chữ _(mới — bắt buộc)_
 
 Fur Orange và các accent **không đạt AA khi làm chữ**. Mỗi màu có một biến thể `-text` đậm hơn, đo sẵn:
 
-| Token | Hex | Dùng cho | Trên Surface | Chữ trắng trên nó |
-|---|---|---|---|---|
-| `--fur-orange` | `#E46C00` | Nền nút chính, sidebar, mảng brand | 3.02 | 3.26 ❌ |
-| `--fur-orange-hover` | `#CD6100` | Hover nút chính | 3.67 | 3.96 ❌ |
-| `--fur-orange-text` | `#AB5100` | Link, chữ nhấn màu brand trên nền sáng | **4.98 ✅** | 5.37 ✅ |
+| Token                | Hex       | Dùng cho                               | Trên Surface | Chữ trắng trên nó |
+| -------------------- | --------- | -------------------------------------- | ------------ | ----------------- |
+| `--fur-orange`       | `#E46C00` | Nền nút chính, sidebar, mảng brand     | 3.02         | 3.26 ❌           |
+| `--fur-orange-hover` | `#CD6100` | Hover nút chính                        | 3.67         | 3.96 ❌           |
+| `--fur-orange-text`  | `#AB5100` | Link, chữ nhấn màu brand trên nền sáng | **4.98 ✅**  | 5.37 ✅           |
 
 > **CHỐT — nút chính dùng chữ Shield Navy, không dùng chữ trắng.**
 > `Shield Navy #000C24` trên `Fur Orange #E46C00` = **5.98 ✅**; trên hover `#CD6100` = **4.92 ✅**. Đây cũng là cặp màu đúng brand nhất (khiên navy trên lông cam của Mochi).
 > Trạng thái pressed **không** làm nền tối thêm (xuống `#AB5100` thì navy chỉ còn 3.63 ❌) — thay bằng bỏ shadow + dịch 1px.
 
-#### §7.2.2 Status color *(mới — bản 4.0 hoàn toàn không có bảng này)*
+#### §7.2.2 Status color _(mới — bản 4.0 hoàn toàn không có bảng này)_
 
 §5.4 yêu cầu Active/Review/Inactive/Locked nhưng bản 4.0 chỉ ghi tên màu ("Green", "Amber") mà không có hex nào. Bảng dưới lấp chỗ đó. Mỗi trạng thái có **3 giá trị**: nền pill, chữ trên pill, và màu icon/viền đặc.
 
-| Trạng thái | `-bg` (nền pill) | `-text` (chữ + icon) | Tỷ lệ text/bg | `-solid` (chấm, viền) | Solid trên Surface |
-|---|---|---|---|---|---|
-| Active / Success | `#DFF3E7` | `#116039` | **6.57 ✅** | `#1F9254` | 3.67 ✅ (non-text) |
-| Review / Warning | `#FDF0D2` | `#7A5200` | **6.12 ✅** | `#F2A81E` | 1.87 — chỉ dùng kèm viền |
-| Inactive / Neutral | `#ECEEF2` | `#4A5364` | **6.66 ✅** | `#8A93A3` | 2.87 ✅ (non-text) |
-| Locked / Danger | `#FBE2E0` | `#B3271A` | **5.29 ✅** | `#B3271A` | 6.04 ✅ |
-| Info | `#DEEAFB` | `#1C56B6` | **5.65 ✅** | `#246CE4` | 4.48 ✅ |
+| Trạng thái         | `-bg` (nền pill) | `-text` (chữ + icon) | Tỷ lệ text/bg | `-solid` (chấm, viền) | Solid trên Surface       |
+| ------------------ | ---------------- | -------------------- | ------------- | --------------------- | ------------------------ |
+| Active / Success   | `#DFF3E7`        | `#116039`            | **6.57 ✅**   | `#1F9254`             | 3.67 ✅ (non-text)       |
+| Review / Warning   | `#FDF0D2`        | `#7A5200`            | **6.12 ✅**   | `#F2A81E`             | 1.87 — chỉ dùng kèm viền |
+| Inactive / Neutral | `#ECEEF2`        | `#4A5364`            | **6.66 ✅**   | `#8A93A3`             | 2.87 ✅ (non-text)       |
+| Locked / Danger    | `#FBE2E0`        | `#B3271A`            | **5.29 ✅**   | `#B3271A`             | 6.04 ✅                  |
+| Info               | `#DEEAFB`        | `#1C56B6`            | **5.65 ✅**   | `#246CE4`             | 4.48 ✅                  |
 
 **`Danger` đổi từ `#F05448` sang `#B3271A`.** Hai lý do cùng lúc: (1) `#F05448` làm chữ chỉ đạt **3.21 ❌**, không dùng được cho thông báo lỗi mà §7.6 bắt buộc phải là icon **+ chữ**; (2) nó trùng đúng giá trị `Account Coral`. Đổi Danger giải quyết cả hai — `Account Coral` là màu sample thật từ logo nên giữ nguyên, còn Danger vốn là màu chức năng, đổi tự do.
 
@@ -358,10 +358,10 @@ Fur Orange và các accent **không đạt AA khi làm chữ**. Mỗi màu có m
 
 **Ba màu thẻ tài khoản** (từ 3 card phía sau đầu Mochi trong ảnh gốc) — accent phân loại nền tảng. Dùng làm **nền badge/viền trái card**, không dùng làm chữ:
 
-| Token | Hex | Nền tảng | Ghi chú |
-|---|---|---|---|
-| Account Blue | `#246CE4` | **Facebook** | Trùng hệ màu thương hiệu Facebook, dễ nhận |
-| Account Pink | `#D8186C` | **Instagram** | Gần dải hồng/tím của Instagram |
+| Token         | Hex       | Nền tảng         | Ghi chú                                    |
+| ------------- | --------- | ---------------- | ------------------------------------------ |
+| Account Blue  | `#246CE4` | **Facebook**     | Trùng hệ màu thương hiệu Facebook, dễ nhận |
+| Account Pink  | `#D8186C` | **Instagram**    | Gần dải hồng/tím của Instagram             |
 | Account Coral | `#F05448` | **Google/Gmail** | Gmail có sắc đỏ; coral là biến thể mềm hơn |
 
 Badge nền tảng **luôn có icon chính thức của nền tảng** (§5.3), nên màu chỉ là lớp nhận diện phụ — không phải thứ duy nhất phân biệt Facebook với Instagram.
@@ -372,19 +372,19 @@ Trạng thái luôn là **icon + chữ**, không chỉ dựa vào màu (§7.6) �
 
 ### 7.3 Typography
 
-| Vai trò | Font | Style |
-|---|---|---|
-| Logo/brand headline | Nunito Sans | Bold / ExtraBold, tròn và thân thiện |
-| UI/body/data | Inter | Regular / Medium / Semibold |
-| Fallback | Arial / system-ui | Khi font chưa tải hoặc trên renderer hệ thống |
-| Numeric metrics | Inter | Tabular numbers để follower không nhảy chiều rộng |
+| Vai trò             | Font              | Style                                             |
+| ------------------- | ----------------- | ------------------------------------------------- |
+| Logo/brand headline | Nunito Sans       | Bold / ExtraBold, tròn và thân thiện              |
+| UI/body/data        | Inter             | Regular / Medium / Semibold                       |
+| Fallback            | Arial / system-ui | Khi font chưa tải hoặc trên renderer hệ thống     |
+| Numeric metrics     | Inter             | Tabular numbers để follower không nhảy chiều rộng |
 
 ### 7.4 Spacing, radius và elevation
 
 - Spacing scale: 4, 8, 12, 16, 20, 24, 32, 40 px.
 - Radius: input/button 10–12 px; card 16–18 px; modal 20–24 px; pill 999 px.
 - Border: 1 px — `Border` cho divider/card, `Border Strong` cho input/điều khiển (§7.2).
-- Focus ring: 3 px `rgba(228,108,0,.45)` *(dẫn xuất Fur Orange)*, offset 2 px. Trên nền cam đặc thì đổi sang `rgba(0,12,36,.55)` để còn thấy.
+- Focus ring: 3 px `rgba(228,108,0,.45)` _(dẫn xuất Fur Orange)_, offset 2 px. Trên nền cam đặc thì đổi sang `rgba(0,12,36,.55)` để còn thấy.
 - Elevation 1: `0 2 8 rgba(0,12,36,.06)`; Elevation 2: `0 8 24 rgba(0,12,36,.10)`.
 - Motion: 160–220 ms ease-out; tôn trọng `prefers-reduced-motion`.
 
@@ -402,18 +402,18 @@ Button: primary, secondary, outline, ghost, danger; icon-only luôn có tooltip 
 
 > **BỔ SUNG (UX-09 — mục tiêu này không có test nào phủ trong Master Roadmap gốc).** Thêm **AT-11**: đi hết luồng `mở app → unlock vault → tìm kiếm → mở chi tiết → reveal → copy → mở tài khoản` chỉ bằng bàn phím; axe-core trên Dashboard và Detail phải 0 lỗi `serious`/`critical`.
 
-### 7.7 Ngôn ngữ giao diện *(mới v4.1 — bản 4.0 lẫn hai thứ tiếng)*
+### 7.7 Ngôn ngữ giao diện _(mới v4.1 — bản 4.0 lẫn hai thứ tiếng)_
 
 **Toàn bộ UI là tiếng Việt.** Bản 4.0 tự mâu thuẫn: §5.2 ghi header `"Good evening, Tiến"` (tiếng Anh) trong khi §5.3 ghi `"Đã cập nhật 8 ngày trước"` (tiếng Việt). PawPass là app một người dùng, người dùng đó nói tiếng Việt — chọn tiếng Việt, không làm i18n trong MVP.
 
-| Hạng mục | Quy tắc |
-|---|---|
-| Chuỗi UI | Tiếng Việt, có dấu đầy đủ |
-| Tên riêng kỹ thuật | Giữ nguyên: Facebook, Instagram, Gmail, Supabase, master password, recovery key |
-| Ngày/giờ | `dd/MM/yyyy`, giờ 24h; định dạng tương đối tiếng Việt ("8 ngày trước", "vừa xong") |
-| Số | Dấu chấm ngăn nghìn (`1.234.567`); follower rút gọn `1,2K` / `3,4M` |
-| Chuỗi trong code | Không hardcode rải rác — gom vào `src/lib/strings.ts` để sau này bật i18n không phải đi tìm |
-| Log/lỗi kỹ thuật | Tiếng Anh (dành cho dev), **không** hiện nguyên văn cho người dùng |
+| Hạng mục           | Quy tắc                                                                                     |
+| ------------------ | ------------------------------------------------------------------------------------------- |
+| Chuỗi UI           | Tiếng Việt, có dấu đầy đủ                                                                   |
+| Tên riêng kỹ thuật | Giữ nguyên: Facebook, Instagram, Gmail, Supabase, master password, recovery key             |
+| Ngày/giờ           | `dd/MM/yyyy`, giờ 24h; định dạng tương đối tiếng Việt ("8 ngày trước", "vừa xong")          |
+| Số                 | Dấu chấm ngăn nghìn (`1.234.567`); follower rút gọn `1,2K` / `3,4M`                         |
+| Chuỗi trong code   | Không hardcode rải rác — gom vào `src/lib/strings.ts` để sau này bật i18n không phải đi tìm |
+| Log/lỗi kỹ thuật   | Tiếng Anh (dành cho dev), **không** hiện nguyên văn cho người dùng                          |
 
 Không dùng thư viện i18n trong MVP — gom chuỗi một chỗ là đủ để sau này thêm mà không phải viết lại.
 
@@ -429,54 +429,54 @@ Các hình trong `docs/brand-reference/` là tài sản định hướng, **chư
 
 Mochi có 8 trạng thái: Neutral, Wave, Search, Security, Sync, Offline, Success, Import.
 
-| State | Dùng tại | Không dùng |
-|---|---|---|
-| Neutral | Dashboard greeting, About | Lặp lại trên mọi card |
-| Wave | Onboarding, welcome back | Error hoặc security warning |
-| Search | Empty search, no result | Loading |
-| Security | Create master password, vault locked | Success toast nhỏ |
-| Sync | Đồng bộ dữ liệu giữa các máy, background job | Khi mất kết nối hoàn toàn |
-| Offline | No network, paused sync | Lỗi credentials |
-| Success | Create/import/sync thành công | Hiển thị liên tục sau action |
-| Import | Post-MVP CSV/Excel import | MVP nếu chưa có import |
+| State    | Dùng tại                                     | Không dùng                   |
+| -------- | -------------------------------------------- | ---------------------------- |
+| Neutral  | Dashboard greeting, About                    | Lặp lại trên mọi card        |
+| Wave     | Onboarding, welcome back                     | Error hoặc security warning  |
+| Search   | Empty search, no result                      | Loading                      |
+| Security | Create master password, vault locked         | Success toast nhỏ            |
+| Sync     | Đồng bộ dữ liệu giữa các máy, background job | Khi mất kết nối hoàn toàn    |
+| Offline  | No network, paused sync                      | Lỗi credentials              |
+| Success  | Create/import/sync thành công                | Hiển thị liên tục sau action |
+| Import   | Post-MVP CSV/Excel import                    | MVP nếu chưa có import       |
 
-### 8.2 Asset — trạng thái thật *(đo trực tiếp trên file ảnh, độc lập với mọi tài liệu)*
+### 8.2 Asset — trạng thái thật _(đo trực tiếp trên file ảnh, độc lập với mọi tài liệu)_
 
 `mochi-logo.png` đã giải nén và đọc pixel trực tiếp — **khác hẳn kết quả của 22 file rùa cũ**, phần lớn đạt chuẩn kỹ thuật:
 
-| Chỉ số | Kết quả | Đạt chuẩn production? |
-|---|---|---|
-| Kích thước | 1254×1254 px | ✅ đủ cho app icon 256×256 và hero display |
-| Kênh alpha | Có (RGBA, colortype 6) | ✅ |
-| Pixel trong suốt hoàn toàn | 48,4% | ✅ |
-| Pixel viền lưng chừng (khử răng cưa) | chỉ 0,3% — rất sạch | ✅ không có viền rác |
-| Định dạng | **Raster PNG**, không phải vector | ⚠️ đủ dùng cho icon/hero tĩnh, **không co giãn vô hạn được** như SVG |
-| Số tư thế có sẵn | **1** (tư thế chào/neutral) | ⚠️ **đã lỗi thời — xem §8.3** |
-| Wordmark "PawPass" | Không có trong ảnh | ⚠️ **đã lỗi thời — xem §8.3** |
+| Chỉ số                               | Kết quả                           | Đạt chuẩn production?                                                |
+| ------------------------------------ | --------------------------------- | -------------------------------------------------------------------- |
+| Kích thước                           | 1254×1254 px                      | ✅ đủ cho app icon 256×256 và hero display                           |
+| Kênh alpha                           | Có (RGBA, colortype 6)            | ✅                                                                   |
+| Pixel trong suốt hoàn toàn           | 48,4%                             | ✅                                                                   |
+| Pixel viền lưng chừng (khử răng cưa) | chỉ 0,3% — rất sạch               | ✅ không có viền rác                                                 |
+| Định dạng                            | **Raster PNG**, không phải vector | ⚠️ đủ dùng cho icon/hero tĩnh, **không co giãn vô hạn được** như SVG |
+| Số tư thế có sẵn                     | **1** (tư thế chào/neutral)       | ⚠️ **đã lỗi thời — xem §8.3**                                        |
+| Wordmark "PawPass"                   | Không có trong ảnh                | ⚠️ **đã lỗi thời — xem §8.3**                                        |
 
-### 8.3 Asset đã bổ sung 09/08/2026 *(mới v4.1 — bảng §8.2 đo trước khi có bộ ảnh này)*
+### 8.3 Asset đã bổ sung 09/08/2026 _(mới v4.1 — bảng §8.2 đo trước khi có bộ ảnh này)_
 
 Đã thêm 4 nhóm file vào `docs/brand-reference/`. Số liệu dưới đây **đo trực tiếp trên file**, cùng phương pháp §8.2:
 
-| File | Kích thước | Alpha | Trong suốt | Ghi chú |
-|---|---|---|---|---|
-| `pawpass-app-logo.png` | 1254² | **KHÔNG** (colortype 2) | — | Nền navy đặc, bo góc squircle |
-| `pawpass-logo-with-name.png` | 1254² | ✅ RGBA | 60,0% | Logomark **+ wordmark** dựng sẵn |
-| `pawpass.png` | 1254² | ✅ RGBA | 48,4% | **Trùng byte với `mochi-logo.png`** (cùng MD5) — xoá một cái được |
-| `pawpass-shiba-genz-cute-pack/` | 1254² × 7 | ✅ RGBA | 55–62% | 7 tư thế toàn thân, phong cách sticker |
+| File                            | Kích thước | Alpha                   | Trong suốt | Ghi chú                                                           |
+| ------------------------------- | ---------- | ----------------------- | ---------- | ----------------------------------------------------------------- |
+| `pawpass-app-logo.png`          | 1254²      | **KHÔNG** (colortype 2) | —          | Nền navy đặc, bo góc squircle                                     |
+| `pawpass-logo-with-name.png`    | 1254²      | ✅ RGBA                 | 60,0%      | Logomark **+ wordmark** dựng sẵn                                  |
+| `pawpass.png`                   | 1254²      | ✅ RGBA                 | 48,4%      | **Trùng byte với `mochi-logo.png`** (cùng MD5) — xoá một cái được |
+| `pawpass-shiba-genz-cute-pack/` | 1254² × 7  | ✅ RGBA                 | 55–62%     | 7 tư thế toàn thân, phong cách sticker                            |
 
 **Ánh xạ 8 trạng thái §8.1 — còn thiếu 2, không phải 7:**
 
-| State | Asset | |
-|---|---|---|
-| Neutral | `03-organize-accounts-genz.png` | ✅ |
-| Wave | `01-wave-genz.png` | ✅ |
-| Search | `04-search-genz.png` | ✅ |
-| Security | `02-security-genz.png` | ✅ |
-| Success | `06-success-genz.png` | ✅ |
-| **Sync** | — | ❌ **còn thiếu** |
-| **Offline** | — | ❌ **còn thiếu** |
-| Import | — | post-MVP (§8.1), chưa cần |
+| State       | Asset                           |                           |
+| ----------- | ------------------------------- | ------------------------- |
+| Neutral     | `03-organize-accounts-genz.png` | ✅                        |
+| Wave        | `01-wave-genz.png`              | ✅                        |
+| Search      | `04-search-genz.png`            | ✅                        |
+| Security    | `02-security-genz.png`          | ✅                        |
+| Success     | `06-success-genz.png`           | ✅                        |
+| **Sync**    | —                               | ❌ **còn thiếu**          |
+| **Offline** | —                               | ❌ **còn thiếu**          |
+| Import      | —                               | post-MVP (§8.1), chưa cần |
 
 Dư ra `05-notification-genz.png` và `07-support-genz.png` — chưa state nào trong §8.1 dùng tới. Không ép gán; để dành cho toast nhắc cập nhật follower và màn hình trợ giúp nếu sau này cần.
 
@@ -502,16 +502,16 @@ Dư ra `05-notification-genz.png` và `07-support-genz.png` — chưa state nào
 
 ### 9.1 Technology stack
 
-| Layer | Công nghệ | Lý do |
-|---|---|---|
-| Desktop shell | Tauri 2 + Rust stable | Bundle nhẹ; permission allowlist; gọi native command rõ ràng |
-| Frontend | React + TypeScript + Vite | Hệ sinh thái mạnh, component hóa |
-| UI | Tailwind CSS + Radix/shadcn primitives tùy biến | Nhanh nhưng vẫn giữ brand PawPass |
-| State/data | TanStack Query + Zustand | Tách server cache và local UI state |
-| Forms | React Hook Form + Zod | Validation type-safe |
-| Cloud | Supabase Auth/Postgres/Realtime | Đủ cho một người dùng nhiều máy |
-| **Local secrets** | **Argon2id + XChaCha20-Poly1305 + zeroize (Rust)** *(sửa — xem dưới)* | Kho khóa cục bộ tự triển khai |
-| Testing | Vitest, Testing Library, Playwright + tauri-driver | Unit, component, desktop smoke test |
+| Layer             | Công nghệ                                                             | Lý do                                                        |
+| ----------------- | --------------------------------------------------------------------- | ------------------------------------------------------------ |
+| Desktop shell     | Tauri 2 + Rust stable                                                 | Bundle nhẹ; permission allowlist; gọi native command rõ ràng |
+| Frontend          | React + TypeScript + Vite                                             | Hệ sinh thái mạnh, component hóa                             |
+| UI                | Tailwind CSS + Radix/shadcn primitives tùy biến                       | Nhanh nhưng vẫn giữ brand PawPass                            |
+| State/data        | TanStack Query + Zustand                                              | Tách server cache và local UI state                          |
+| Forms             | React Hook Form + Zod                                                 | Validation type-safe                                         |
+| Cloud             | Supabase Auth/Postgres/Realtime                                       | Đủ cho một người dùng nhiều máy                              |
+| **Local secrets** | **Argon2id + XChaCha20-Poly1305 + zeroize (Rust)** _(sửa — xem dưới)_ | Kho khóa cục bộ tự triển khai                                |
+| Testing           | Vitest, Testing Library, Playwright + tauri-driver                    | Unit, component, desktop smoke test                          |
 
 > **SỬA (ARCH-02 — Master Roadmap tự mâu thuẫn với chính mình, không cần tài liệu ngoài để thấy).** §10.1 gốc chỉ định **Tauri Stronghold** cho local secrets. Nhưng §12.2 (cùng file) mô tả đầy đủ một sơ đồ khoá khác: DEK 32 byte → Argon2id sinh KEK từ master password → KEK bọc DEK → nonce riêng mỗi payload + XChaCha20-Poly1305/AES-256-GCM. Đây là **hai cơ chế khác nhau cho cùng một việc**. Sơ đồ §12.2 bắt buộc phải là cái thật vì nó tương thích đa thiết bị (wrapped_dek đồng bộ qua Supabase được); Stronghold là snapshot file cục bộ, không đồng bộ được, nên máy B không mở được secrets bằng Stronghold của máy A. **Bỏ Stronghold**, dùng trực tiếp `argon2` + `chacha20poly1305` + `zeroize` + `rand` trong Rust, đúng như §12.2 đã mô tả.
 >
@@ -552,13 +552,13 @@ pawpass/
 >
 > **BỔ SUNG (ARCH-08 — danh sách capability cụ thể, Master Roadmap gốc chỉ nói nguyên tắc mà không liệt kê).**
 
-| Permission | Lý do |
-|---|---|
-| `core:default` | Tối thiểu để chạy |
+| Permission                                                                                                            | Lý do                                                            |
+| --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `core:default`                                                                                                        | Tối thiểu để chạy                                                |
 | `opener:allow-open-url` có scope `https://*.facebook.com/*`, `https://*.instagram.com/*`, `https://mail.google.com/*` | FR-07, scope ở tầng capability chứ không chỉ validate trong Rust |
-| `clipboard-manager:allow-write-text` | FR-05 copy. **Không** cấp `read-text` |
-| `updater:default` | Xem §13.2 |
-| `shell:*`, `fs:*` rộng, `http:*` | **Không cấp** — không tính năng nào cần |
+| `clipboard-manager:allow-write-text`                                                                                  | FR-05 copy. **Không** cấp `read-text`                            |
+| `updater:default`                                                                                                     | Xem §13.2                                                        |
+| `shell:*`, `fs:*` rộng, `http:*`                                                                                      | **Không cấp** — không tính năng nào cần                          |
 
 > **BỔ SUNG (ARCH-05 — cửa một chiều của Tauri updater, sự thật kỹ thuật).** Tauri updater xác thực bản cập nhật bằng cặp khoá ký riêng; public key phải nằm **trong bản build đã phát hành**. Nếu bản đầu tiên ship không có public key, không bản nào sau này tự cập nhật được cho máy đang chạy bản đó — phải gỡ cài lại tay. Chi phí sinh khoá bây giờ (~30 phút) rẻ hơn rất nhiều so với sửa sau. **Sinh khoá updater ở Sprint 0**, nhúng public key vào `tauri.conf.json` ngay cả khi chưa bật updater (`active: false`).
 
@@ -568,19 +568,19 @@ pawpass/
 
 ### 10.1 Các bảng chính
 
-| Bảng | Vai trò | Trường cốt lõi |
-|---|---|---|
-| profiles | Hồ sơ chủ PawPass | id, display_name, avatar_url, timezone, settings_json |
-| accounts | Metadata tài khoản | id, owner_id, platform, name, username, emails, location, profile_url, status, tags, timestamps |
-| account_secrets | Payload đã mã hóa | **owner_id**, account_id, ciphertext, nonce, algorithm, key_version, payload_version, updated_at |
-| user_keyrings | DEK đã được master password bọc | owner_id, wrapped_dek_by_master, wrapped_dek_by_recovery, salt, kdf_params, version |
-| account_metrics | Lịch sử cập nhật follower thủ công | **owner_id**, account_id, value, recorded_at |
-| devices | Thiết bị/session | owner_id, device_name, platform, last_seen_at, revoked_at |
-| audit_events | Sự kiện bảo mật không chứa secret | owner_id, action, entity_id, device_id, created_at |
+| Bảng            | Vai trò                            | Trường cốt lõi                                                                                   |
+| --------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------ |
+| profiles        | Hồ sơ chủ PawPass                  | id, display_name, avatar_url, timezone, settings_json                                            |
+| accounts        | Metadata tài khoản                 | id, owner_id, platform, name, username, emails, location, profile_url, status, tags, timestamps  |
+| account_secrets | Payload đã mã hóa                  | **owner_id**, account_id, ciphertext, nonce, algorithm, key_version, payload_version, updated_at |
+| user_keyrings   | DEK đã được master password bọc    | owner_id, wrapped_dek_by_master, wrapped_dek_by_recovery, salt, kdf_params, version              |
+| account_metrics | Lịch sử cập nhật follower thủ công | **owner_id**, account_id, value, recorded_at                                                     |
+| devices         | Thiết bị/session                   | owner_id, device_name, platform, last_seen_at, revoked_at                                        |
+| audit_events    | Sự kiện bảo mật không chứa secret  | owner_id, action, entity_id, device_id, created_at                                               |
 
 > **Đã bỏ (09/08/2026):** `platform_connections`, `platform_connection_secrets` (OAuth server-only), `sync_jobs` (theo dõi job đồng bộ follower) — toàn bộ ba bảng này chỉ tồn tại để phục vụ Meta OAuth và cron sync, xem §0. Cùng với đó, mọi RLS pattern/khuôn mẫu IDOR viết riêng cho Edge Function gọi Meta cũng đã bỏ — không còn Edge Function nào trong scope.
 >
-> **THÊM `owner_id` VÀO `account_secrets` VÀ `account_metrics` (mới v4.1).** §11.3 tuyên bố RLS pattern là `owner_id = auth.uid()` cho *"tất cả bảng thuộc người dùng"*, nhưng bản 4.0 chỉ cho hai bảng này cột `account_id`. Không có `owner_id` thì policy buộc phải viết `exists (select 1 from accounts a where a.id = account_id and a.owner_id = auth.uid())` — chạy đúng, nhưng là **một khuôn mẫu policy thứ hai** phải nhớ và kiểm riêng, và Postgres phải join thêm cho mọi hàng ở mọi truy vấn.
+> **THÊM `owner_id` VÀO `account_secrets` VÀ `account_metrics` (mới v4.1).** §11.3 tuyên bố RLS pattern là `owner_id = auth.uid()` cho _"tất cả bảng thuộc người dùng"_, nhưng bản 4.0 chỉ cho hai bảng này cột `account_id`. Không có `owner_id` thì policy buộc phải viết `exists (select 1 from accounts a where a.id = account_id and a.owner_id = auth.uid())` — chạy đúng, nhưng là **một khuôn mẫu policy thứ hai** phải nhớ và kiểm riêng, và Postgres phải join thêm cho mọi hàng ở mọi truy vấn.
 >
 > Chốt: **denormalize `owner_id` vào cả hai bảng.** Mọi bảng dùng đúng một câu policy giống hệt nhau, và mọi index đều bắt đầu bằng `owner_id`. Giữ đồng nhất bằng foreign key ghép — `foreign key (account_id, owner_id) references accounts (id, owner_id)` (cần `unique (id, owner_id)` trên `accounts`). Postgres tự bảo đảm `owner_id` không bao giờ lệch với account cha; không phải tin vào code app.
 
@@ -588,29 +588,29 @@ pawpass/
 
 ### 10.2 accounts — field specification
 
-| Field | Type | Rule |
-|---|---|---|
-| id | uuid | PK, `gen_random_uuid()` |
-| owner_id | uuid | FK `auth.users`; RLS boundary |
-| platform | enum/text | facebook \| instagram \| google |
-| account_type | text | page/profile/business/creator/personal/gmail |
-| display_name | text | Bắt buộc, 1–120 ký tự |
-| username | text | Nullable |
-| **normalized_username** | text | **Cột thật** *(sửa — DATA-03, xem dưới)*, `generated always as (lower(trim(leading '@' from username))) stored` |
-| login_email | text | Lưu đã `lower()` sẵn *(sửa — không dùng `citext`, xem dưới)* |
-| recovery_email | text | Nullable, cùng quy tắc |
-| location | text | Nullable, ≤120 ký tự |
-| profile_url | text | URL đã validate |
-| avatar_path | text | Supabase Storage path hoặc remote URL được kiểm soát |
-| status | text | active \| review \| inactive \| locked \| archived |
-| follower_current | bigint | Nullable; số người dùng nhập tay lần gần nhất |
-| **follower_updated_at** | timestamptz | Nullable *(đổi tên từ `follower_synced_at` — không còn "sync", chỉ có "update" thủ công)* |
-| tags | text[] | Mặc định empty array |
-| notes | text | Plain text; nullable — xem lưu ý §6.2 |
-| created_at/updated_at | timestamptz | Server timestamps — **luôn ghi bằng `now()` trong trigger**, không nhận từ client (§11.4 DATA-04a) |
-| **row_version** | integer | **Mới v4.1.** `not null default 1`; trigger `+1` mỗi UPDATE. Cột dùng để phát hiện stale write (§11.4) |
-| archived_at | timestamptz | **Ẩn khỏi Dashboard, khôi phục được.** Dữ liệu còn nguyên (§11.7) |
-| **deleted_at** | timestamptz | **Mới v4.1 — tombstone.** Xoá vĩnh viễn: mọi cột dữ liệu bị NULL, hàng ở lại để máy khác biết mà xoá theo (§11.7) |
+| Field                   | Type        | Rule                                                                                                              |
+| ----------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------- |
+| id                      | uuid        | PK, `gen_random_uuid()`                                                                                           |
+| owner_id                | uuid        | FK `auth.users`; RLS boundary                                                                                     |
+| platform                | enum/text   | facebook \| instagram \| google                                                                                   |
+| account_type            | text        | page/profile/business/creator/personal/gmail                                                                      |
+| display_name            | text        | Bắt buộc, 1–120 ký tự                                                                                             |
+| username                | text        | Nullable                                                                                                          |
+| **normalized_username** | text        | **Cột thật** _(sửa — DATA-03, xem dưới)_, `generated always as (lower(trim(leading '@' from username))) stored`   |
+| login_email             | text        | Lưu đã `lower()` sẵn _(sửa — không dùng `citext`, xem dưới)_                                                      |
+| recovery_email          | text        | Nullable, cùng quy tắc                                                                                            |
+| location                | text        | Nullable, ≤120 ký tự                                                                                              |
+| profile_url             | text        | URL đã validate                                                                                                   |
+| avatar_path             | text        | Supabase Storage path hoặc remote URL được kiểm soát                                                              |
+| status                  | text        | active \| review \| inactive \| locked \| archived                                                                |
+| follower_current        | bigint      | Nullable; số người dùng nhập tay lần gần nhất                                                                     |
+| **follower_updated_at** | timestamptz | Nullable _(đổi tên từ `follower_synced_at` — không còn "sync", chỉ có "update" thủ công)_                         |
+| tags                    | text[]      | Mặc định empty array                                                                                              |
+| notes                   | text        | Plain text; nullable — xem lưu ý §6.2                                                                             |
+| created_at/updated_at   | timestamptz | Server timestamps — **luôn ghi bằng `now()` trong trigger**, không nhận từ client (§11.4 DATA-04a)                |
+| **row_version**         | integer     | **Mới v4.1.** `not null default 1`; trigger `+1` mỗi UPDATE. Cột dùng để phát hiện stale write (§11.4)            |
+| archived_at             | timestamptz | **Ẩn khỏi Dashboard, khôi phục được.** Dữ liệu còn nguyên (§11.7)                                                 |
+| **deleted_at**          | timestamptz | **Mới v4.1 — tombstone.** Xoá vĩnh viễn: mọi cột dữ liệu bị NULL, hàng ở lại để máy khác biết mà xoá theo (§11.7) |
 
 > **Đã bỏ (09/08/2026):** cột `follower_mode` (`api \| manual \| none`) — không còn `api` để phân biệt, follower luôn là nhập tay hoặc trống.
 
@@ -619,6 +619,7 @@ pawpass/
 > Mọi lệnh UPDATE từ app đều mang dạng `... where id = $1 and row_version = $2`. Trả về 0 hàng = có máy khác đã sửa trước → mở conflict dialog (§11.4). Không bao giờ UPDATE mà không kèm điều kiện này.
 
 > **SỬA (DATA-03 — hai khoảng trống schema, tự lộ ra khi đọc kỹ §10.2/§10.3, không cần đối chiếu tài liệu khác):**
+>
 > 1. `normalized_username` được nhắc như một khái niệm ("để unique mềm") nhưng **không phải cột thật** trong bảng — mà §10.3 lại đặt unique index trên chính nó. Migration sẽ fail vì tham chiếu cột không tồn tại. → thêm thành generated column, công thức ở bảng trên.
 > 2. `citext` (kiểu chuẩn hoá không phân biệt hoa-thường của Postgres) cần `create extension citext` — không được nhắc tới, và **không tồn tại trên SQLite** nếu sau này có bản offline-first. Dùng `text` thường + luôn lưu giá trị đã `lower()` ở tầng ghi (repository), một quy tắc áp một chỗ.
 
@@ -650,7 +651,7 @@ pawpass/
 1. Sinh DEK ngẫu nhiên 32 byte trên thiết bị.
 2. Từ master password + salt, dùng Argon2id sinh KEK với tham số được version hóa: `m=64 MiB, t=3, p=1`.
 3. Dùng KEK bọc DEK; upload `wrapped_dek` + salt + kdf_params, không upload KEK/master password.
-4. Mỗi secret payload dùng nonce riêng và **XChaCha20-Poly1305** *(chốt một thuật toán duy nhất, không để ngỏ "hoặc AES-GCM" — nonce 192-bit cho phép sinh ngẫu nhiên mà không lo trùng, tránh lớp lỗi nguy hiểm nhất của AES-GCM khi tự quản nonce)*.
+4. Mỗi secret payload dùng nonce riêng và **XChaCha20-Poly1305** _(chốt một thuật toán duy nhất, không để ngỏ "hoặc AES-GCM" — nonce 192-bit cho phép sinh ngẫu nhiên mà không lo trùng, tránh lớp lỗi nguy hiểm nhất của AES-GCM khi tự quản nonce)_.
 5. DEK đã mở chỉ sống trong vùng bảo vệ cục bộ (`Zeroizing<[u8; 32]>` ở Rust) và bị xóa khi auto-lock/logout.
 
 > **LẤP KHOẢNG TRỐNG (SEC-03/FR-17/FR-18 — Master Roadmap gốc chỉ có một ô tick "Recovery key hiển thị một lần; có luồng rotate master password" trong checklist §11.5, không mô tả cơ chế. Đây là luồng hậu quả cao nhất trong sản phẩm — mất master password không có recovery hợp lệ = mất vĩnh viễn mật khẩu của mọi tài khoản.)**
@@ -661,23 +662,23 @@ pawpass/
 >
 > Onboarding (§4.2 bước 2): hiện recovery key **đúng một lần**, bắt buộc người dùng gõ lại một phần để xác nhận đã lưu (không cho bấm "Tôi đã lưu" suông), có nút tải `.txt`.
 
-#### 11.2.1 Format recovery key *(mới v4.1 — bản 4.0 chỉ ghi "Base32 chia nhóm có ký tự kiểm tra")*
+#### 11.2.1 Format recovery key _(mới v4.1 — bản 4.0 chỉ ghi "Base32 chia nhóm có ký tự kiểm tra")_
 
 Đây là **quyết định vĩnh viễn**: key sinh hôm nay phải đọc lại được sau nhiều năm, nên format phải cố định trước khi có key đầu tiên tồn tại.
 
-| Hạng mục | Chốt |
-|---|---|
-| Entropy | 32 byte từ CSPRNG (`rand::rngs::OsRng`) — **cùng độ dài DEK**, không rút gọn |
-| Bảng mã | **Crockford Base32** — `0123456789ABCDEFGHJKMNPQRSTVWXYZ` (bỏ `I`, `L`, `O`, `U` để không nhầm khi chép tay) |
-| Độ dài thân | 256 bit ÷ 5 = **52 ký tự** |
-| Checksum | **2 ký tự** = 10 bit đầu của `SHA-256(32 byte gốc)`, mã hoá cùng bảng Crockford |
-| Tổng | **54 ký tự**, chia **9 nhóm × 6**, ngăn bằng `-` |
-| Ví dụ hình thức | `H4KZ0P-9WQ2NM-3TVXBR-…-7YJ5CD` (9 nhóm) |
-| Chuẩn hoá khi nhập | Bỏ `-` và mọi khoảng trắng → `upper()` → map `I`,`L`→`1`, `O`→`0` (đúng chuẩn Crockford). Người dùng chép nhầm chữ/số vẫn mở được |
-| Xác nhận ở onboarding | App chọn **ngẫu nhiên 2 trong 9 nhóm**, bắt gõ lại đúng cả hai. Sai thì hiện lại key và cho thử lại — **không** cho bỏ qua |
-| File `.txt` tải về | Chứa key + ngày tạo + một dòng cảnh báo. **Không** chứa email, không chứa tên tài khoản nào |
+| Hạng mục              | Chốt                                                                                                                              |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Entropy               | 32 byte từ CSPRNG (`rand::rngs::OsRng`) — **cùng độ dài DEK**, không rút gọn                                                      |
+| Bảng mã               | **Crockford Base32** — `0123456789ABCDEFGHJKMNPQRSTVWXYZ` (bỏ `I`, `L`, `O`, `U` để không nhầm khi chép tay)                      |
+| Độ dài thân           | 256 bit ÷ 5 = **52 ký tự**                                                                                                        |
+| Checksum              | **2 ký tự** = 10 bit đầu của `SHA-256(32 byte gốc)`, mã hoá cùng bảng Crockford                                                   |
+| Tổng                  | **54 ký tự**, chia **9 nhóm × 6**, ngăn bằng `-`                                                                                  |
+| Ví dụ hình thức       | `H4KZ0P-9WQ2NM-3TVXBR-…-7YJ5CD` (9 nhóm)                                                                                          |
+| Chuẩn hoá khi nhập    | Bỏ `-` và mọi khoảng trắng → `upper()` → map `I`,`L`→`1`, `O`→`0` (đúng chuẩn Crockford). Người dùng chép nhầm chữ/số vẫn mở được |
+| Xác nhận ở onboarding | App chọn **ngẫu nhiên 2 trong 9 nhóm**, bắt gõ lại đúng cả hai. Sai thì hiện lại key và cho thử lại — **không** cho bỏ qua        |
+| File `.txt` tải về    | Chứa key + ngày tạo + một dòng cảnh báo. **Không** chứa email, không chứa tên tài khoản nào                                       |
 
-**Checksum để làm gì:** phân biệt "gõ sai" với "sai key". Nếu checksum không khớp → báo *"Recovery key nhập chưa đúng, kiểm tra lại"* ngay lập tức, không cần chạy Argon2id. Nếu checksum khớp nhưng giải DEK thất bại → đây là một key **hợp lệ về hình thức nhưng của vault khác**, thông báo khác hẳn. Không có checksum thì hai ca này trông giống nhau và người dùng không biết mình gõ nhầm hay mất key.
+**Checksum để làm gì:** phân biệt "gõ sai" với "sai key". Nếu checksum không khớp → báo _"Recovery key nhập chưa đúng, kiểm tra lại"_ ngay lập tức, không cần chạy Argon2id. Nếu checksum khớp nhưng giải DEK thất bại → đây là một key **hợp lệ về hình thức nhưng của vault khác**, thông báo khác hẳn. Không có checksum thì hai ca này trông giống nhau và người dùng không biết mình gõ nhầm hay mất key.
 
 ### 11.3 RLS policy pattern
 
@@ -694,6 +695,7 @@ Tất cả bảng thuộc người dùng có `owner_id = auth.uid()` cho SELECT/
 > ```
 >
 > Hai chi tiết bắt buộc, không phải tuỳ chọn:
+>
 > - **`(select auth.uid())` chứ không phải `auth.uid()`.** Bọc trong subquery cho phép Postgres tính một lần rồi cache (InitPlan) thay vì gọi lại cho từng hàng. Ở mức 500–2.000 bản ghi (§1.2) khác biệt này đo được.
 > - **Phải có `with check`, không chỉ `using`.** `using` lọc hàng đọc/sửa được; `with check` mới chặn việc **ghi vào** một `owner_id` không phải của mình. Thiếu nó thì user A INSERT được hàng mang `owner_id` của user B.
 >
@@ -711,21 +713,21 @@ Tất cả bảng thuộc người dùng có `owner_id = auth.uid()` cho SELECT/
 
 > **SỬA (SEC-07 — conflict dialog không nên phơi giá trị bí mật).** Payload secrets là khối nguyên chứa 5 trường. Nếu conflict dialog hiện "cả hai phiên bản để chọn" theo nghĩa đen, nó phải giải mã và hiện cả 5 trường của cả hai máy cùng lúc — vi phạm nguyên tắc che mặc định (FR-05). Dialog chỉ nên hiện: thời điểm sửa, tên thiết bị, **danh sách tên trường đã đổi** (so sau khi giải mã cục bộ, chỉ so bằng không hiện giá trị). Ba lựa chọn: `Giữ bản máy này` · `Lấy bản máy kia` · `Xem chi tiết` (reveal có timeout, từng trường).
 >
-> **BỔ SUNG (DATA-04 — 3 chi tiết khiến "delta fetch theo updated_at" không hoạt động như mô tả nếu bỏ qua).** (a) `updated_at` dùng để so sánh phải là **giờ server** (trigger Postgres ghi bằng `now()`), không phải đồng hồ máy client — lệch giờ giữa hai máy sẽ làm bỏ sót bản ghi. (b) Delta fetch reconnect **không được lọc `deleted_at is null`** — nó cần nhận cả bản ghi đã xoá để áp việc xoá vào cache cục bộ, nếu không xoá trên máy A sẽ không bao giờ tới máy B. *(v4.1: cột `deleted_at` và cơ chế tombstone giờ đã được định nghĩa thật ở §10.2 và §11.7 — bản 4.0 nhắc tới cột này nhưng chưa từng tạo ra nó.)* (c) Thứ tự: delta fetch xong rồi mới bật lại Realtime subscription, để không bỏ sót sự kiện phát ra trong lúc offline (Realtime không tự bù khoảng mất kết nối).
+> **BỔ SUNG (DATA-04 — 3 chi tiết khiến "delta fetch theo updated_at" không hoạt động như mô tả nếu bỏ qua).** (a) `updated_at` dùng để so sánh phải là **giờ server** (trigger Postgres ghi bằng `now()`), không phải đồng hồ máy client — lệch giờ giữa hai máy sẽ làm bỏ sót bản ghi. (b) Delta fetch reconnect **không được lọc `deleted_at is null`** — nó cần nhận cả bản ghi đã xoá để áp việc xoá vào cache cục bộ, nếu không xoá trên máy A sẽ không bao giờ tới máy B. _(v4.1: cột `deleted_at` và cơ chế tombstone giờ đã được định nghĩa thật ở §10.2 và §11.7 — bản 4.0 nhắc tới cột này nhưng chưa từng tạo ra nó.)_ (c) Thứ tự: delta fetch xong rồi mới bật lại Realtime subscription, để không bỏ sót sự kiện phát ra trong lúc offline (Realtime không tự bù khoảng mất kết nối).
 
 ### 11.5 Security checklist
 
 - [ ] Không commit `.env`, Supabase secret/service key.
 - [ ] Ẩn secrets khỏi logs, telemetry, error messages và DevTools production.
 - [ ] Disable remote navigation và CSP chỉ cho origin cần thiết.
-- [ ] Validate URL ở Rust trước khi opener thực thi *(mở rộng ở §4.4)*.
-- [ ] Rate limit unlock attempts; tăng delay sau nhiều lần sai — **biện pháp chính vẫn là tham số Argon2id** (~0,3–0,5s mỗi lần thử), rate limit UI chỉ chống dò thủ công tại chỗ *(SEC-06)*.
-- [ ] Recovery key hiển thị một lần; có luồng rotate master password *(cơ chế: §11.2)*.
+- [ ] Validate URL ở Rust trước khi opener thực thi _(mở rộng ở §4.4)_.
+- [ ] Rate limit unlock attempts; tăng delay sau nhiều lần sai — **biện pháp chính vẫn là tham số Argon2id** (~0,3–0,5s mỗi lần thử), rate limit UI chỉ chống dò thủ công tại chỗ _(SEC-06)_.
+- [ ] Recovery key hiển thị một lần; có luồng rotate master password _(cơ chế: §11.2)_.
 - [ ] Backup database không đủ để giải mã secret nếu thiếu master/recovery key.
 - [ ] Dependency audit cho npm/cargo trước release.
-- [ ] Yêu cầu độ mạnh master password: tối thiểu 12 ký tự, chặn 100 mật khẩu phổ biến nhất *(SEC-06)*.
+- [ ] Yêu cầu độ mạnh master password: tối thiểu 12 ký tự, chặn 100 mật khẩu phổ biến nhất _(SEC-06)_.
 
-### 11.6 Schema payload bí mật *(mới v4.1 — BR-05 yêu cầu payload có version nhưng bản 4.0 chưa định nghĩa nội dung)*
+### 11.6 Schema payload bí mật _(mới v4.1 — BR-05 yêu cầu payload có version nhưng bản 4.0 chưa định nghĩa nội dung)_
 
 Không có bảng này thì `reveal_secret(field)` không có enum field hợp lệ, và conflict dialog §11.4 ("hiện danh sách **tên trường** đã đổi") không có tên nào để liệt kê.
 
@@ -742,29 +744,30 @@ Không có bảng này thì `reveal_secret(field)` không có enum field hợp l
 }
 ```
 
-| Quy tắc | Chi tiết |
-|---|---|
-| Trường nào **không** vào đây | `login_email`, `recovery_email` là **cột plaintext** trong `accounts` (§10.2) — cần để tìm kiếm và hiển thị nhanh, không mã hoá |
-| Thứ tự khoá | Serialize **sắp xếp theo alphabet** trước khi mã hoá, để hai máy sinh cùng đầu vào cho cùng nội dung |
-| Trường rỗng | Ghi `null` / `[]`, **không** bỏ khoá khỏi JSON — giữ hình dạng ổn định giữa các version |
-| Enum field cho `reveal_secret` | Đúng 5 tên trên. Rust từ chối mọi tên khác — không nhận string tuỳ ý từ JS |
-| Đổi version | Tăng `v`, viết hàm migrate `v(n) → v(n+1)` chạy lúc giải mã. Không bao giờ đọc payload mà không kiểm `v` |
+| Quy tắc                        | Chi tiết                                                                                                                        |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
+| Trường nào **không** vào đây   | `login_email`, `recovery_email` là **cột plaintext** trong `accounts` (§10.2) — cần để tìm kiếm và hiển thị nhanh, không mã hoá |
+| Thứ tự khoá                    | Serialize **sắp xếp theo alphabet** trước khi mã hoá, để hai máy sinh cùng đầu vào cho cùng nội dung                            |
+| Trường rỗng                    | Ghi `null` / `[]`, **không** bỏ khoá khỏi JSON — giữ hình dạng ổn định giữa các version                                         |
+| Enum field cho `reveal_secret` | Đúng 5 tên trên. Rust từ chối mọi tên khác — không nhận string tuỳ ý từ JS                                                      |
+| Đổi version                    | Tăng `v`, viết hàm migrate `v(n) → v(n+1)` chạy lúc giải mã. Không bao giờ đọc payload mà không kiểm `v`                        |
 
-> **`recovery_phone` nằm trong payload, không phải cột.** §6.2 bản 4.0 liệt kê "phone" ở nhóm Contact nhưng §10.2 **không có cột `phone` nào** — một khoảng trống chưa ai để ý. Đặt nó vào payload mã hoá là lựa chọn đúng: SĐT khôi phục chính là thứ mà ghi chú SEC-02 §6.2 dặn *đừng* gõ vào ô `notes` không mã hoá. Vậy thì phải có chỗ mã hoá cho nó — chính là đây.
+> **`recovery_phone` nằm trong payload, không phải cột.** §6.2 bản 4.0 liệt kê "phone" ở nhóm Contact nhưng §10.2 **không có cột `phone` nào** — một khoảng trống chưa ai để ý. Đặt nó vào payload mã hoá là lựa chọn đúng: SĐT khôi phục chính là thứ mà ghi chú SEC-02 §6.2 dặn _đừng_ gõ vào ô `notes` không mã hoá. Vậy thì phải có chỗ mã hoá cho nó — chính là đây.
 
-### 11.7 Xoá và tombstone *(mới v4.1 — bản 4.0 để hở một đường mất đồng bộ)*
+### 11.7 Xoá và tombstone _(mới v4.1 — bản 4.0 để hở một đường mất đồng bộ)_
 
-**Vấn đề của bản 4.0.** DATA-04(b) §11.4 dặn delta fetch *"không được lọc `deleted_at is null`"* — nhưng §10.2 **không có cột `deleted_at`**, chỉ có `archived_at`. Tệ hơn: BR-03 cho phép **xoá vĩnh viễn** có xác nhận. Nếu đó là `DELETE` thật, hàng biến mất khỏi bảng, và delta fetch theo `updated_at` **không có cách nào** báo cho máy B biết — máy B giữ bản ghi đó mãi mãi. Xoá trên máy A không bao giờ tới máy B.
+**Vấn đề của bản 4.0.** DATA-04(b) §11.4 dặn delta fetch _"không được lọc `deleted_at is null`"_ — nhưng §10.2 **không có cột `deleted_at`**, chỉ có `archived_at`. Tệ hơn: BR-03 cho phép **xoá vĩnh viễn** có xác nhận. Nếu đó là `DELETE` thật, hàng biến mất khỏi bảng, và delta fetch theo `updated_at` **không có cách nào** báo cho máy B biết — máy B giữ bản ghi đó mãi mãi. Xoá trên máy A không bao giờ tới máy B.
 
 **Chốt: `DELETE` cứng bị cấm ở tầng app. Ba trạng thái, không phải hai.**
 
-| Trạng thái | Cột | Người dùng thấy gì | Dữ liệu còn gì |
-|---|---|---|---|
-| Bình thường | cả hai `null` | Trong danh sách | Đủ |
-| **Archived** | `archived_at` có giá trị | Ẩn khỏi Dashboard, có nút Restore | **Đủ** — khôi phục được nguyên vẹn |
-| **Deleted (tombstone)** | `deleted_at` có giá trị | Không thấy ở đâu cả | **Chỉ còn `id`, `owner_id`, `deleted_at`** |
+| Trạng thái              | Cột                      | Người dùng thấy gì                | Dữ liệu còn gì                             |
+| ----------------------- | ------------------------ | --------------------------------- | ------------------------------------------ |
+| Bình thường             | cả hai `null`            | Trong danh sách                   | Đủ                                         |
+| **Archived**            | `archived_at` có giá trị | Ẩn khỏi Dashboard, có nút Restore | **Đủ** — khôi phục được nguyên vẹn         |
+| **Deleted (tombstone)** | `deleted_at` có giá trị  | Không thấy ở đâu cả               | **Chỉ còn `id`, `owner_id`, `deleted_at`** |
 
 Khi người dùng xác nhận xoá vĩnh viễn:
+
 1. `UPDATE accounts SET deleted_at = now(), display_name = NULL, username = NULL, login_email = NULL, … WHERE id = $1` — xoá sạch mọi cột dữ liệu, **giữ lại hàng**.
 2. `DELETE FROM account_secrets WHERE account_id = $1` — ciphertext đi luôn, không cần tombstone vì nó không bao giờ được truy vấn độc lập.
 3. `DELETE FROM account_metrics WHERE account_id = $1`.
@@ -780,14 +783,14 @@ Máy B nhận hàng tombstone qua delta fetch/Realtime → thấy `deleted_at` k
 
 ## 12. Roadmap 6 tuần
 
-| Giai đoạn | Thời gian | Deliverable | Quality gate |
-|---|---|---|---|
-| 0. Foundation | 2–3 ngày | Repo, ADR, env, Supabase project, asset manifest, **khoá updater** | Build dev chạy Windows; không commit secret |
-| 1. Design system | Tuần 1 | Tokens, components, Dashboard shell, Mochi mapping | Storybook/component states; keyboard focus |
-| 2. Local core | Tuần 2–3 | CRUD, Account Card/Detail, vault, search/filter, **recovery key** | Secrets không xuất hiện trong log; unit tests pass; **AT-12 pass** |
-| 3. Cloud sync | Tuần 4 | Auth, schema, RLS, Realtime, device sessions | Máy A/B sync; RLS negative tests pass |
-| 4. Hardening | Tuần 5 | E2E, conflict, offline/reconnect, performance, a11y | Không còn P0 bug; 500-account test đạt |
-| 5. Release | Tuần 6 | Installer, updater plan, docs, backup/recovery drill | Clean install Windows 10/11 **offline**; rollback có hướng dẫn |
+| Giai đoạn        | Thời gian | Deliverable                                                        | Quality gate                                                       |
+| ---------------- | --------- | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| 0. Foundation    | 2–3 ngày  | Repo, ADR, env, Supabase project, asset manifest, **khoá updater** | Build dev chạy Windows; không commit secret                        |
+| 1. Design system | Tuần 1    | Tokens, components, Dashboard shell, Mochi mapping                 | Storybook/component states; keyboard focus                         |
+| 2. Local core    | Tuần 2–3  | CRUD, Account Card/Detail, vault, search/filter, **recovery key**  | Secrets không xuất hiện trong log; unit tests pass; **AT-12 pass** |
+| 3. Cloud sync    | Tuần 4    | Auth, schema, RLS, Realtime, device sessions                       | Máy A/B sync; RLS negative tests pass                              |
+| 4. Hardening     | Tuần 5    | E2E, conflict, offline/reconnect, performance, a11y                | Không còn P0 bug; 500-account test đạt                             |
+| 5. Release       | Tuần 6    | Installer, updater plan, docs, backup/recovery drill               | Clean install Windows 10/11 **offline**; rollback có hướng dẫn     |
 
 > **Đã bỏ (09/08/2026):** giai đoạn "Meta integration" (2 tuần) và spike Meta ở Foundation — roadmap co từ 8 xuống 6 tuần vì đây là công việc thật sự cắt được, không phải hoãn.
 
@@ -819,15 +822,16 @@ Có acceptance criteria và test tương ứng · loading/empty/error/permission
 
 ### 13.1 Environments và packaging
 
-- **Một project Supabase duy nhất, dùng chung dev và production** *(quyết định 09/08/2026 — app cá nhân một người dùng, không cần tách local/staging/production; đơn giản hơn không phải chạy Docker/`supabase start` nền liên tục)*. Project ref `nzcnojcnnfiqeujfhccx`. Migration chạy trực tiếp lên project này qua Supabase CLI (`supabase link` + `supabase db push`), không có bước "test trên local trước".
+- **Một project Supabase duy nhất, dùng chung dev và production** _(quyết định 09/08/2026 — app cá nhân một người dùng, không cần tách local/staging/production; đơn giản hơn không phải chạy Docker/`supabase start` nền liên tục)_. Project ref `nzcnojcnnfiqeujfhccx`. Migration chạy trực tiếp lên project này qua Supabase CLI (`supabase link` + `supabase db push`), không có bước "test trên local trước".
 - **Biến môi trường (mới v4.1 — bản 4.0 cho project ref nhưng không nói biến tên gì).** Đúng hai biến, cả hai đều an toàn khi lộ vì đã có RLS chắn:
 
-| Biến | Giá trị | Ghi chú |
-|---|---|---|
-| `VITE_SUPABASE_URL` | `https://nzcnojcnnfiqeujfhccx.supabase.co` | |
-| `VITE_SUPABASE_PUBLISHABLE_KEY` | publishable/anon key | **Không bao giờ** là `service_role` key |
+| Biến                            | Giá trị                                    | Ghi chú                                 |
+| ------------------------------- | ------------------------------------------ | --------------------------------------- |
+| `VITE_SUPABASE_URL`             | `https://nzcnojcnnfiqeujfhccx.supabase.co` |                                         |
+| `VITE_SUPABASE_PUBLISHABLE_KEY` | publishable/anon key                       | **Không bao giờ** là `service_role` key |
 
-  `.env.example` commit vào repo với giá trị rỗng; `.env` thật đã bị `.gitignore` chặn. Nếu có lúc nào cần một biến thứ ba mà nó là **secret thật**, thì nó không thuộc về desktop bundle — dừng lại và thiết kế lại, đừng thêm vào đây.
+`.env.example` commit vào repo với giá trị rỗng; `.env` thật đã bị `.gitignore` chặn. Nếu có lúc nào cần một biến thứ ba mà nó là **secret thật**, thì nó không thuộc về desktop bundle — dừng lại và thiết kế lại, đừng thêm vào đây.
+
 - Tạo NSIS hoặc MSI installer x64; app icon đúng chuẩn multi-resolution — nguồn là `pawpass-app-logo.png` (nền navy squircle, §8.3), không phải logomark nền trong suốt.
 - Version theo Semantic Versioning; migration chạy có kiểm soát.
 - Build qua GitHub Actions Windows runner; lưu checksum và release notes.
@@ -841,12 +845,12 @@ Auto-updater để sau khi quy trình signing/versioning ổn định; MVP cho t
 
 ### 13.3 Chi phí dự kiến
 
-| Hạng mục | MVP cá nhân | Ghi chú |
-|---|---|---|
-| Tauri/React | Miễn phí | Open source |
-| Supabase | Có thể bắt đầu Free | Theo dõi quota database, storage |
-| Windows code signing | Có chi phí | Không bắt buộc cho prototype |
-| Monitoring | Free tier ban đầu | Không gửi secrets/PII vào error tracking |
+| Hạng mục             | MVP cá nhân         | Ghi chú                                  |
+| -------------------- | ------------------- | ---------------------------------------- |
+| Tauri/React          | Miễn phí            | Open source                              |
+| Supabase             | Có thể bắt đầu Free | Theo dõi quota database, storage         |
+| Windows code signing | Có chi phí          | Không bắt buộc cho prototype             |
+| Monitoring           | Free tier ban đầu   | Không gửi secrets/PII vào error tracking |
 
 > **Đã bỏ (09/08/2026):** dòng "Meta API" và "Domain/privacy page" — cả hai chỉ cần thiết cho Meta App Review.
 
@@ -861,14 +865,14 @@ Auto-updater để sau khi quy trình signing/versioning ổn định; MVP cho t
 
 ## 14. Rủi ro, giới hạn và hướng phát triển
 
-| Rủi ro | Tác động | Giảm thiểu |
-|---|---|---|
-| Mất master/recovery key | Không giải mã được secrets | Onboarding bắt buộc xác nhận đã lưu; **AT-12 là điều kiện thành công của bản 1.0** |
-| Conflict nhiều máy | Ghi đè dữ liệu | row_version; conflict dialog không phơi giá trị; audit event |
-| DB/RLS cấu hình sai | Rò dữ liệu | Migration review; negative tests; least privilege |
-| Scope phình to | Không ship được | Giữ P0; dời auto-login/import/chart/team sang post-MVP |
-| UI mascot quá nhiều | Mất tính chuyên nghiệp | Mochi chỉ ở onboarding/empty/status; không lặp trên từng card |
-| Asset chưa đủ bộ | Thiếu 2/8 tư thế Mochi (Sync, Offline); wordmark chỉ có bản raster; chưa xuất `.ico` | §8.3 — dùng tạm `05-notification`/`07-support` cho hai state thiếu, không chặn Sprint 1 |
+| Rủi ro                  | Tác động                                                                             | Giảm thiểu                                                                              |
+| ----------------------- | ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- |
+| Mất master/recovery key | Không giải mã được secrets                                                           | Onboarding bắt buộc xác nhận đã lưu; **AT-12 là điều kiện thành công của bản 1.0**      |
+| Conflict nhiều máy      | Ghi đè dữ liệu                                                                       | row_version; conflict dialog không phơi giá trị; audit event                            |
+| DB/RLS cấu hình sai     | Rò dữ liệu                                                                           | Migration review; negative tests; least privilege                                       |
+| Scope phình to          | Không ship được                                                                      | Giữ P0; dời auto-login/import/chart/team sang post-MVP                                  |
+| UI mascot quá nhiều     | Mất tính chuyên nghiệp                                                               | Mochi chỉ ở onboarding/empty/status; không lặp trên từng card                           |
+| Asset chưa đủ bộ        | Thiếu 2/8 tư thế Mochi (Sync, Offline); wordmark chỉ có bản raster; chưa xuất `.ico` | §8.3 — dùng tạm `05-notification`/`07-support` cho hai state thiếu, không chặn Sprint 1 |
 
 > **Đã bỏ (09/08/2026):** rủi ro "Meta API thay đổi/quyền bị từ chối", "Chi phí thiết lập Meta × N tài khoản", "Token provider bị lộ" — không còn Meta trong scope.
 
@@ -886,14 +890,14 @@ Auto-login lưu cookie/session thô · scraping follower · AI features trước
 
 ### 15.1 Test pyramid
 
-| Tầng | Phạm vi | Ví dụ |
-|---|---|---|
-| Unit | Validation, URL builder, crypto wrapper, formatter | Không trim password; Gmail URL; follower null vs 0 |
-| Component | Card, forms, vault UI | Keyboard, loading/error, long email/name |
-| Integration | Supabase + RLS | User A không đọc được row user B |
-| E2E desktop | Luồng thật | Sign in → unlock → create → sync máy B → open account |
-| Security | Secrets, logging, permissions | Không plaintext trong DB/log/bundle; opener reject `file://` |
-| Performance | Dữ liệu lớn | 500–2.000 accounts; search/filter/render |
+| Tầng        | Phạm vi                                            | Ví dụ                                                        |
+| ----------- | -------------------------------------------------- | ------------------------------------------------------------ |
+| Unit        | Validation, URL builder, crypto wrapper, formatter | Không trim password; Gmail URL; follower null vs 0           |
+| Component   | Card, forms, vault UI                              | Keyboard, loading/error, long email/name                     |
+| Integration | Supabase + RLS                                     | User A không đọc được row user B                             |
+| E2E desktop | Luồng thật                                         | Sign in → unlock → create → sync máy B → open account        |
+| Security    | Secrets, logging, permissions                      | Không plaintext trong DB/log/bundle; opener reject `file://` |
+| Performance | Dữ liệu lớn                                        | 500–2.000 accounts; search/filter/render                     |
 
 > **BỔ SUNG (QA-08 — ngưỡng cụ thể, Master Roadmap gốc không có).** Unit ≥90% coverage cho `src/lib/**` và `src-tauri/src/security/**` · Integration 100% policy RLS có test âm tính · Security (AT-02, AT-08, AT-09, AT-12, AT-13) bắt buộc trước mỗi release · toàn bộ tầng CI chạy dưới 5 phút.
 
@@ -901,32 +905,32 @@ Auto-login lưu cookie/session thô · scraping follower · AI features trước
 
 - **AT-01** — Tạo Facebook account với password chứa khoảng trắng/ký tự Unicode; đóng mở app; giải mã đúng 100%.
 - **AT-02** — Trên DB chỉ thấy ciphertext/nonce; tìm toàn workspace/log không thấy sample password.
-- **AT-03** — Tạo record trên PC A; PC B đang online nhận update trong ≤5 giây. *(QA-02: đo trung vị ≤2s, cao nhất ≤5s trên 10 lần chạy cho mỗi loại thao tác; kèm ca PC B đang mở Detail của đúng account đó.)*
+- **AT-03** — Tạo record trên PC A; PC B đang online nhận update trong ≤5 giây. _(QA-02: đo trung vị ≤2s, cao nhất ≤5s trên 10 lần chạy cho mỗi loại thao tác; kèm ca PC B đang mở Detail của đúng account đó.)_
 - **AT-04** — PC B chưa mở vault vẫn xem metadata nhưng không đọc secret.
 - **AT-08** — Nút Open account chỉ chấp nhận https/http đúng allowlist; `file://`, `javascript:`, `data:`, credential trong URL, host homograph đều bị chặn.
 - **AT-09** — Copy password → clipboard được xóa sau timeout **và không xoá nếu người dùng đã copy thứ khác trong lúc đó**; UI che lại sau reveal timeout; banner Clipboard History hiện đúng một lần nếu bật.
 - **AT-10** — 500 card không làm main interaction lag; dùng pagination/virtualization khi cần.
-- **AT-11** *(mới, §7.6)* — Luồng đầy đủ chỉ bằng bàn phím; axe-core 0 lỗi `serious`/`critical`.
-- **AT-12** *(mới, §11.2 — release blocker)* — Diễn tập khôi phục trên máy ảo sạch: tạo vault, lưu recovery key, tạo account có mật khẩu Unicode, xoá máy A, cài máy B, nhập recovery key, đặt master mới, giải mã đúng. Chạy lại trước mỗi release chạm crypto/schema.
-- **AT-13** *(mới, §6.3)* — Reveal mật khẩu → `Win+L` → mở khoá Windows → vault ở trạng thái khoá, ô mật khẩu đã che.
-- **AT-14** *(mới, §11.4)* — Máy B ngắt mạng; máy A tạo/sửa/xoá; máy B nối lại → khớp máy A trên cả ba thay đổi trong ≤10s.
-**AT-15…AT-25** *(QA-01 — lấp các FR không có AT trong bản gốc)*. Bản 4.0 gộp 11 ID này vào **một dòng chỉ có 6 mô tả**, và thứ tự không khớp với cột "Nghiệm thu bởi" ở §3.1 (§3.1 gán FR-14 → AT-19, nhưng đếm theo dòng đó lại ra AT-18; AT-20…AT-23 không thuộc về ai). Luật QA-01 *"FR không có AT thì không được đánh dấu hoàn thành"* vì thế tự vô hiệu. **v4.1 đánh số dứt điểm:**
+- **AT-11** _(mới, §7.6)_ — Luồng đầy đủ chỉ bằng bàn phím; axe-core 0 lỗi `serious`/`critical`.
+- **AT-12** _(mới, §11.2 — release blocker)_ — Diễn tập khôi phục trên máy ảo sạch: tạo vault, lưu recovery key, tạo account có mật khẩu Unicode, xoá máy A, cài máy B, nhập recovery key, đặt master mới, giải mã đúng. Chạy lại trước mỗi release chạm crypto/schema.
+- **AT-13** _(mới, §6.3)_ — Reveal mật khẩu → `Win+L` → mở khoá Windows → vault ở trạng thái khoá, ô mật khẩu đã che.
+- **AT-14** _(mới, §11.4)_ — Máy B ngắt mạng; máy A tạo/sửa/xoá; máy B nối lại → khớp máy A trên cả ba thay đổi trong ≤10s.
+  **AT-15…AT-25** _(QA-01 — lấp các FR không có AT trong bản gốc)_. Bản 4.0 gộp 11 ID này vào **một dòng chỉ có 6 mô tả**, và thứ tự không khớp với cột "Nghiệm thu bởi" ở §3.1 (§3.1 gán FR-14 → AT-19, nhưng đếm theo dòng đó lại ra AT-18; AT-20…AT-23 không thuộc về ai). Luật QA-01 _"FR không có AT thì không được đánh dấu hoàn thành"_ vì thế tự vô hiệu. **v4.1 đánh số dứt điểm:**
 
-| AT | FR | Nội dung |
-|---|---|---|
-| AT-15 | FR-04 | Sửa → archive → restore một account; dữ liệu và secrets nguyên vẹn sau vòng đó |
-| AT-16 | FR-06 | Tìm kiếm **không phân biệt dấu tiếng Việt** — gõ `tien` ra `Tiến`; và không phân biệt hoa/thường |
-| AT-17 | FR-09 | Follower nhập tay lưu đúng `follower_updated_at`; ô trống lưu `null`, **không** lưu `0` (BR-04) |
-| AT-18 | FR-05 | Round-trip **cả 5 trường** payload (§11.6): mã hoá → lưu → tải lại → giải mã, khớp từng ký tự kể cả Unicode và khoảng trắng đầu/cuối |
-| AT-19 | FR-14 | Stat card (Tổng/Active/Cần xem lại) khớp đúng số hàng mà filter đang áp trả về |
+| AT    | FR    | Nội dung                                                                                                                                    |
+| ----- | ----- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| AT-15 | FR-04 | Sửa → archive → restore một account; dữ liệu và secrets nguyên vẹn sau vòng đó                                                              |
+| AT-16 | FR-06 | Tìm kiếm **không phân biệt dấu tiếng Việt** — gõ `tien` ra `Tiến`; và không phân biệt hoa/thường                                            |
+| AT-17 | FR-09 | Follower nhập tay lưu đúng `follower_updated_at`; ô trống lưu `null`, **không** lưu `0` (BR-04)                                             |
+| AT-18 | FR-05 | Round-trip **cả 5 trường** payload (§11.6): mã hoá → lưu → tải lại → giải mã, khớp từng ký tự kể cả Unicode và khoảng trắng đầu/cuối        |
+| AT-19 | FR-14 | Stat card (Tổng/Active/Cần xem lại) khớp đúng số hàng mà filter đang áp trả về                                                              |
 | AT-20 | FR-18 | Đổi master password → **DEK không đổi**: mọi `account_secrets` cũ vẫn giải mã được mà không ghi lại hàng nào; recovery key cũ vẫn dùng được |
-| AT-21 | FR-03 | AccountCard render đủ 5 trạng thái (§5.4) với icon + chữ; tên/email dài bị ellipsis chứ không vỡ layout |
-| AT-22 | FR-10 | Auto-lock kích hoạt đủ **cả 5 tác nhân** (§6.3 SEC-05): hết giờ, minimize, khoá màn hình, sleep, thoát app |
-| AT-23 | FR-08 | Conflict dialog chỉ hiện **tên trường** đã đổi + thời điểm + tên thiết bị — không hiện giá trị nào (§11.4 SEC-07) |
-| AT-24 | FR-01 | Đóng app → mở lại → session Supabase khôi phục, **vault vẫn ở trạng thái khoá** |
-| AT-25 | FR-16 | Đăng xuất thiết bị khác từ máy này; máy kia mất quyền đọc ở lần gọi API kế tiếp |
+| AT-21 | FR-03 | AccountCard render đủ 5 trạng thái (§5.4) với icon + chữ; tên/email dài bị ellipsis chứ không vỡ layout                                     |
+| AT-22 | FR-10 | Auto-lock kích hoạt đủ **cả 5 tác nhân** (§6.3 SEC-05): hết giờ, minimize, khoá màn hình, sleep, thoát app                                  |
+| AT-23 | FR-08 | Conflict dialog chỉ hiện **tên trường** đã đổi + thời điểm + tên thiết bị — không hiện giá trị nào (§11.4 SEC-07)                           |
+| AT-24 | FR-01 | Đóng app → mở lại → session Supabase khôi phục, **vault vẫn ở trạng thái khoá**                                                             |
+| AT-25 | FR-16 | Đăng xuất thiết bị khác từ máy này; máy kia mất quyền đọc ở lần gọi API kế tiếp                                                             |
 
-**AT-26** *(mới v4.1, §11.7)* — Xoá vĩnh viễn trên máy A → máy B (đang online) không còn thấy account đó trong ≤5s; hàng tombstone còn lại trong DB **không chứa `display_name`, `username`, `login_email` hay bất kỳ dữ liệu nào**, và `account_secrets` tương ứng đã bị xoá hẳn.
+**AT-26** _(mới v4.1, §11.7)_ — Xoá vĩnh viễn trên máy A → máy B (đang online) không còn thấy account đó trong ≤5s; hàng tombstone còn lại trong DB **không chứa `display_name`, `username`, `login_email` hay bất kỳ dữ liệu nào**, và `account_secrets` tương ứng đã bị xoá hẳn.
 
 > **Đã bỏ (09/08/2026):** AT-05, AT-06, AT-07 (đều kiểm follower sync qua Meta).
 
@@ -936,11 +940,11 @@ Auto-login lưu cookie/session thô · scraping follower · AI features trước
 - RLS cho phép user khác đọc/sửa row không thuộc mình.
 - Mất dữ liệu khi hai máy sync hoặc khi migration chạy.
 - Open account có thể mở scheme nguy hiểm hoặc thực thi command.
-- Follower hiển thị 0 thay vì "chưa nhập" khi ô trống *(BR-04)*.
+- Follower hiển thị 0 thay vì "chưa nhập" khi ô trống _(BR-04)_.
 - Installer bị Windows Defender cảnh báo do packaging/cấu hình bất thường chưa điều tra.
-- **App không mở được sau khi cài offline trên Windows 10 sạch** *(mới, §13.1)*.
-- **AT-12 (diễn tập khôi phục) chưa pass** *(mới, §1.2)*.
-- **Vault không khoá khi khoá màn hình Windows** *(mới, §6.3)*.
+- **App không mở được sau khi cài offline trên Windows 10 sạch** _(mới, §13.1)_.
+- **AT-12 (diễn tập khôi phục) chưa pass** _(mới, §1.2)_.
+- **Vault không khoá khi khoá màn hình Windows** _(mới, §6.3)_.
 
 ---
 
@@ -996,4 +1000,4 @@ DELIVERABLE: code + migration/test + cập nhật docs nếu có quyết định
 ---
 
 **One Paw, Endless Access.**
-*PawPass • Mochi • Your accounts. Always within paw's reach.*
+_PawPass • Mochi • Your accounts. Always within paw's reach._

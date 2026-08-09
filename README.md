@@ -1,7 +1,7 @@
 # PawPass
 
 **Trình quản lý tài khoản mạng xã hội cho Windows.** Facebook · Instagram · Google/Gmail.
-Mascot **Mochi**. *One Paw, Endless Access.*
+Mascot **Mochi**. _One Paw, Endless Access._
 
 Thay thế file Excel chứa 50–200 tài khoản bằng một app desktop: tìm nhanh, mở đúng trang bằng một nút, và **mật khẩu được mã hoá trên máy trước khi rời thiết bị**.
 
@@ -13,11 +13,11 @@ Thay thế file Excel chứa 50–200 tài khoản bằng một app desktop: tì
 
 Đó là tài liệu quyết định duy nhất: phạm vi, yêu cầu chức năng, thiết kế, kiến trúc, mô hình dữ liệu, bảo mật, kế hoạch, và tiêu chí nghiệm thu.
 
-| File | Vai trò |
-|---|---|
-| [`docs/SOURCE-OF-TRUTH.md`](docs/SOURCE-OF-TRUTH.md) | **Tài liệu duy nhất.** Bắt đầu từ đây — tự chứa, không phụ thuộc file nào khác |
-| [`docs/REVIEW-2026-08-08.md`](docs/REVIEW-2026-08-08.md) | Biên bản review 6 vai — tra khi muốn biết "tại sao lại chốt thế" (đọc ghi chú ở đầu file trước) |
-| [`docs/brand-reference/`](docs/brand-reference/) | Logo, wordmark, app icon và 7 tư thế Mochi (`pawpass-shiba-genz-cute-pack/`) — **6/8 trạng thái đã có**. Xem SOURCE-OF-TRUTH §8.3 |
+| File                                                     | Vai trò                                                                                                                           |
+| -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| [`docs/SOURCE-OF-TRUTH.md`](docs/SOURCE-OF-TRUTH.md)     | **Tài liệu duy nhất.** Bắt đầu từ đây — tự chứa, không phụ thuộc file nào khác                                                    |
+| [`docs/REVIEW-2026-08-08.md`](docs/REVIEW-2026-08-08.md) | Biên bản review 6 vai — tra khi muốn biết "tại sao lại chốt thế" (đọc ghi chú ở đầu file trước)                                   |
+| [`docs/brand-reference/`](docs/brand-reference/)         | Logo, wordmark, app icon và 7 tư thế Mochi (`pawpass-shiba-genz-cute-pack/`) — **6/8 trạng thái đã có**. Xem SOURCE-OF-TRUTH §8.3 |
 
 Không còn `DECISIONS.md`/`BRAND.md`/`UI.md` — nội dung còn hiệu lực đã nằm trong `SOURCE-OF-TRUTH.md`, dựa trực tiếp trên `Turtly_Master_Roadmap_Design_Specification.md` gốc.
 
@@ -43,7 +43,7 @@ Xem [`docs/SOURCE-OF-TRUTH.md` §18](docs/SOURCE-OF-TRUTH.md#18-bắt-đầu-t�
 
 ## Stack
 
-Tauri 2 · React · TypeScript · Vite · Tailwind CSS + Radix/shadcn · TanStack Query + Zustand · React Hook Form + Zod · Supabase (Auth/Postgres/Realtime — không có Edge Functions/Cron, không cần) · Argon2id + XChaCha20-Poly1305 trong Rust *(không dùng Tauri Stronghold — xem §9.1)*
+Tauri 2 · React · TypeScript · Vite · Tailwind CSS + Radix/shadcn · TanStack Query + Zustand · React Hook Form + Zod · Supabase (Auth/Postgres/Realtime — không có Edge Functions/Cron, không cần) · Argon2id + XChaCha20-Poly1305 trong Rust _(không dùng Tauri Stronghold — xem §9.1)_
 
 ## Nguyên tắc không thương lượng
 
