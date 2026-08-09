@@ -41,6 +41,20 @@ Xem [`docs/SOURCE-OF-TRUTH.md` §18](docs/SOURCE-OF-TRUTH.md#18-bắt-đầu-t�
 6. Sinh **khoá updater** — cửa một chiều, xem §9.3
 7. Sinh nốt **2 tư thế Mochi còn thiếu** (Sync, Offline) + wordmark dạng font thật (§8.3) — hạng mục riêng, không chặn Sprint 1
 
+## Quy trình Supabase
+
+Migration nằm ở `supabase/migrations/` (chưa có file nào — schema thật bắt đầu ở Sprint 3, xem `docs/SOURCE-OF-TRUTH.md` §10). Một project Supabase duy nhất cho cả dev và production (project ref `nzcnojcnnfiqeujfhccx`) — không có bước "test trên local trước". Khi có migration:
+
+```bash
+supabase migration new <ten_migration>
+# ... viết SQL vào file vừa tạo ...
+supabase db push
+```
+
+Không dùng `supabase start` (Docker) cho vòng lặp phát triển thường ngày — xem lý do ở SOURCE-OF-TRUTH §13.1.
+
+---
+
 ## Stack
 
 Tauri 2 · React · TypeScript · Vite · Tailwind CSS + Radix/shadcn · TanStack Query + Zustand · React Hook Form + Zod · Supabase (Auth/Postgres/Realtime — không có Edge Functions/Cron, không cần) · Argon2id + XChaCha20-Poly1305 trong Rust _(không dùng Tauri Stronghold — xem §9.1)_
