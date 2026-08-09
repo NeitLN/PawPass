@@ -390,7 +390,7 @@ Trạng thái luôn là **icon + chữ**, không chỉ dựa vào màu (§7.6) �
 
 ### 7.5 Component inventory
 
-Button: primary, secondary, outline, ghost, danger; icon-only luôn có tooltip · Input: text, password, search, select, combobox, tag input; label không dùng placeholder thay thế · AccountCard, StatCard, PlatformBadge, StatusPill, SyncIndicator (trạng thái đồng bộ đa thiết bị, không phải follower) · SecretField, CopyButton, RevealButton, VaultLockBanner · EmptyState, ErrorState, Skeleton, Toast, ConfirmDialog, Drawer/Modal · MochiIllustration với enum state, kích thước và alt text cố định.
+Button: primary, secondary, outline, ghost, danger; icon-only luôn có tooltip · Input: text, password, search, select, combobox, tag input; label không dùng placeholder thay thế · AccountCard, StatCard, PlatformBadge, StatusPill, SyncIndicator (trạng thái đồng bộ đa thiết bị, không phải follower) · SecretField, CopyButton, RevealButton, VaultLockBanner · EmptyState, ErrorState, Skeleton, Toast, ConfirmDialog, Drawer/Modal · MochiIllustration với enum state, kích thước cố định; alt mặc định rỗng (ảnh trang trí, khớp §7.6), có prop ghi đè khi một chỗ dùng cụ thể cần mô tả.
 
 ### 7.6 Accessibility
 
