@@ -12,6 +12,11 @@ vite.config.d.ts
 src-tauri/target/
 src-tauri/gen/
 
+# --- Supabase CLI local state (nested supabase/.gitignore also lists these, but
+# tools like Prettier don't walk nested .gitignore files, so they're repeated here) ---
+supabase/.temp/
+supabase/.branches/
+
 # --- DỮ LIỆU NHẠY CẢM ---
 # SOURCE-OF-TRUTH.md §11.9: commit không được kèm file .db, .enc, .env.
 # Đây là kho mật khẩu — một lần lỡ tay là lộ vĩnh viễn trong lịch sử git.
