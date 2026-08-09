@@ -40,6 +40,7 @@ export default defineConfig(async () => ({
   },
 
   test: {
-    environment: "node",
+    environment: "jsdom",
+    setupFiles: ["./src/test/setup.ts"],
   },
 }));

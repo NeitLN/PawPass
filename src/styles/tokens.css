@@ -37,6 +37,7 @@
 
   --shadow-elevation-1: 0 2px 8px rgb(0 12 36 / 0.06);
   --shadow-elevation-2: 0 8px 24px rgb(0 12 36 / 0.1);
+  --drop-shadow-elevation-1: 0 2px 8px rgb(0 12 36 / 0.06);
 
   --font-brand: "Nunito Sans", system-ui, sans-serif;
   --font-body: "Inter", system-ui, sans-serif;
