@@ -7,6 +7,8 @@ export const strings = {
     updatedToday: "Đã cập nhật hôm nay",
     neverUpdatedFollower: "Chưa cập nhật follower",
     followerNotEntered: "Chưa nhập",
+    updateFollowerButton: "Cập nhật follower",
+    openAccountButton: "Mở tài khoản",
   },
   clipboard: {
     copiedWillClear: "Đã sao chép — PawPass sẽ xoá sau 30 giây",
