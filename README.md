@@ -37,8 +37,8 @@ Xem [`docs/SOURCE-OF-TRUTH.md` §18](docs/SOURCE-OF-TRUTH.md#18-bắt-đầu-t�
 2. ~~Tạo Supabase project~~ ✅
 3. ~~Đổi brand sang PawPass/Mochi~~ ✅ (09/08/2026)
 4. ~~Lấp 12 khoảng trống chặn Sprint 1–3~~ ✅ (SOURCE-OF-TRUTH v4.1)
-5. Scaffold Tauri 2 + React + TS + Vite + Tailwind, pnpm workspace
-6. Sinh **khoá updater** — cửa một chiều, xem §9.3
+5. ~~Scaffold Tauri 2 + React + TS + Vite + Tailwind, pnpm workspace~~ ✅ (Sprint 0)
+6. ~~Sinh **khoá updater**~~ ✅ (Sprint 0)
 7. Sinh nốt **2 tư thế Mochi còn thiếu** (Sync, Offline) + wordmark dạng font thật (§8.3) — hạng mục riêng, không chặn Sprint 1
 
 ## Quy trình Supabase

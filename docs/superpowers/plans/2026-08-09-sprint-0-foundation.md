@@ -817,14 +817,12 @@ Không dùng `supabase start` (Docker) cho vòng lặp phát triển thường n
 
 ---
 
-````
-
 - [ ] **Step 4: Commit**
 
 ```bash
 git add supabase/ README.md
 git commit -m "chore: supabase link project nzcnojcnnfiqeujfhccx + ghi lại quy trình migration"
-````
+```
 
 ---
 

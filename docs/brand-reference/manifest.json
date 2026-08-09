@@ -1,0 +1,135 @@
+{
+  "$comment": "Sinh từ docs/SOURCE-OF-TRUTH.md §8.3 (09/08/2026). Cập nhật cả hai chỗ khi thêm/đổi asset.",
+  "updated": "2026-08-09",
+  "assets": [
+    {
+      "id": "app-icon-source",
+      "file": "docs/brand-reference/pawpass-app-logo.png",
+      "role": "app-icon-source",
+      "mascotState": null,
+      "width": 1254,
+      "height": 1254,
+      "hasAlpha": false,
+      "background": "navy-squircle",
+      "productionReady": false,
+      "notes": "Nguồn duy nhất cho app icon multi-resolution (SOURCE-OF-TRUTH §13.1). Chưa xuất .ico các cỡ 16-256px — việc còn thiếu #3 ở §8.3."
+    },
+    {
+      "id": "wordmark-lockup",
+      "file": "docs/brand-reference/pawpass-logo-with-name.png",
+      "role": "wordmark-with-logomark",
+      "mascotState": null,
+      "width": 1254,
+      "height": 1254,
+      "hasAlpha": true,
+      "transparentPercent": 60.0,
+      "productionReady": false,
+      "notes": "Wordmark vẽ chung vào ảnh raster — dùng được cho splash/About/README ở cỡ lớn, không dùng cho sidebar hay dưới ~200px. Cần dựng lại bằng Nunito Sans ExtraBold (việc còn thiếu #2 ở §8.3)."
+    },
+    {
+      "id": "logomark-portrait",
+      "file": "docs/brand-reference/mochi-logo.png",
+      "role": "logomark-portrait-head",
+      "mascotState": null,
+      "width": 1254,
+      "height": 1254,
+      "hasAlpha": true,
+      "transparentPercent": 48.4,
+      "productionReady": true,
+      "notes": "Logomark chính thức (sidebar, app icon nguồn phụ, About). Trùng byte với pawpass.png (cùng MD5) — chỉ giữ file này, đừng dùng cả hai."
+    },
+    {
+      "id": "mascot-neutral",
+      "file": "docs/brand-reference/pawpass-shiba-genz-cute-pack/03-organize-accounts-genz.png",
+      "role": "mascot-illustration",
+      "mascotState": "neutral",
+      "width": 1254,
+      "height": 1254,
+      "hasAlpha": true,
+      "productionReady": true,
+      "notes": "Toàn thân, không dùng chung với mochi-logo.png (chân dung đầu) trong cùng MochiIllustration component."
+    },
+    {
+      "id": "mascot-wave",
+      "file": "docs/brand-reference/pawpass-shiba-genz-cute-pack/01-wave-genz.png",
+      "role": "mascot-illustration",
+      "mascotState": "wave",
+      "width": 1254,
+      "height": 1254,
+      "hasAlpha": true,
+      "productionReady": true,
+      "notes": null
+    },
+    {
+      "id": "mascot-security",
+      "file": "docs/brand-reference/pawpass-shiba-genz-cute-pack/02-security-genz.png",
+      "role": "mascot-illustration",
+      "mascotState": "security",
+      "width": 1254,
+      "height": 1254,
+      "hasAlpha": true,
+      "productionReady": true,
+      "notes": null
+    },
+    {
+      "id": "mascot-search",
+      "file": "docs/brand-reference/pawpass-shiba-genz-cute-pack/04-search-genz.png",
+      "role": "mascot-illustration",
+      "mascotState": "search",
+      "width": 1254,
+      "height": 1254,
+      "hasAlpha": true,
+      "productionReady": true,
+      "notes": null
+    },
+    {
+      "id": "mascot-success",
+      "file": "docs/brand-reference/pawpass-shiba-genz-cute-pack/06-success-genz.png",
+      "role": "mascot-illustration",
+      "mascotState": "success",
+      "width": 1254,
+      "height": 1254,
+      "hasAlpha": true,
+      "productionReady": true,
+      "notes": null
+    },
+    {
+      "id": "mascot-notification-unassigned",
+      "file": "docs/brand-reference/pawpass-shiba-genz-cute-pack/05-notification-genz.png",
+      "role": "mascot-illustration",
+      "mascotState": null,
+      "width": 1254,
+      "height": 1254,
+      "hasAlpha": true,
+      "productionReady": true,
+      "notes": "Chưa gán state nào trong §8.1. Dùng tạm cho Sync (§8.3) cho tới khi có asset thật."
+    },
+    {
+      "id": "mascot-support-unassigned",
+      "file": "docs/brand-reference/pawpass-shiba-genz-cute-pack/07-support-genz.png",
+      "role": "mascot-illustration",
+      "mascotState": null,
+      "width": 1254,
+      "height": 1254,
+      "hasAlpha": true,
+      "productionReady": true,
+      "notes": "Chưa gán state nào trong §8.1. Dùng tạm cho Offline (§8.3) cho tới khi có asset thật."
+    }
+  ],
+  "mascotStateCoverage": {
+    "neutral": "mascot-neutral",
+    "wave": "mascot-wave",
+    "search": "mascot-search",
+    "security": "mascot-security",
+    "success": "mascot-success",
+    "sync": null,
+    "offline": null,
+    "import": null
+  },
+  "openTasks": [
+    "Sinh 2 tư thế còn thiếu: Sync, Offline (dùng ảnh trong pack làm character reference)",
+    "Dựng wordmark dạng vector/text thật bằng Nunito Sans ExtraBold, tách khỏi ảnh mascot",
+    "Xuất app icon .ico các cỡ 16/24/32/48/64/128/256 từ pawpass-app-logo.png, kiểm riêng bản 16px",
+    "Xuất bản outline/mono cho system tray"
+  ]
+}
