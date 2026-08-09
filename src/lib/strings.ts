@@ -11,4 +11,11 @@ export const strings = {
   clipboard: {
     copiedWillClear: "Đã sao chép — PawPass sẽ xoá sau 30 giây",
   },
+  status: {
+    active: "Hoạt động",
+    review: "Cần xem lại",
+    inactive: "Không hoạt động",
+    locked: "Đã khoá",
+    archived: "Đã lưu trữ",
+  },
 } as const;
