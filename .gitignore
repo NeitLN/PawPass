@@ -35,3 +35,6 @@ Thumbs.db
 *.ntvs*
 *.njsproj
 *.sln
+
+# --- brainstorming visual companion ---
+.superpowers/

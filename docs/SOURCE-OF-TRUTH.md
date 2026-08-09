@@ -1,7 +1,7 @@
 ---
-title: "Turtly — Source of Truth"
-product_name: "Turtly"
-mascot_name: "Tully"
+title: "PawPass — Source of Truth"
+product_name: "PawPass"
+mascot_name: "Mochi"
 target_platform: "Windows desktop"
 version: "4.0"
 last_updated: "2026-08-09"
@@ -11,7 +11,7 @@ based_on: "Turtly_Master_Roadmap_Design_Specification.md v1.0 (08/08/2026)"
 # TURTLY — SOURCE OF TRUTH
 
 **Desktop Account Manager • Windows • Facebook · Instagram · Google/Gmail**
-Sản phẩm **Turtly** • Mascot **Tully** • *All your accounts, in one shell.*
+Sản phẩm **PawPass** • Mascot **Mochi** • *One Paw, Endless Access.*
 
 > **CHO AI CODING AGENT**
 > Đọc hết file này trước khi code. Đây là tài liệu quyết định duy nhất.
@@ -24,11 +24,11 @@ Sản phẩm **Turtly** • Mascot **Tully** • *All your accounts, in one shel
 
 File này là **`Turtly_Master_Roadmap_Design_Specification.md`** (bản gốc do người dùng cung cấp, còn ở `Downloads\`), đã sửa theo kết quả review 6 vai ngày 08/08/2026 (`docs/REVIEW-2026-08-08.md`).
 
-**Nguyên tắc sửa:** giữ nguyên mọi quyết định sản phẩm của Master Roadmap — phạm vi, độ ưu tiên P0/P1, cấu trúc màn hình, thiết kế thẻ, kiến trúc, mô hình dữ liệu. Chỉ sửa những chỗ **tự nó là lỗi**, không phụ thuộc vào việc so sánh với tài liệu nào khác: cơ chế bảo mật không làm được việc được giao (RLS không giấu được cột), Master Roadmap tự mâu thuẫn với chính mình (§10.1 chỉ định Stronghold trong khi §12.2 mô tả một sơ đồ khoá khác; §6.2 nói Tully Wave trong khi §9.2 của chính nó nói Neutral), khoảng trống buộc phải lấp (recovery key được nhắc tới nhưng chưa có cơ chế), hoặc sự thật vật lý (ảnh brand nền magenta không trong suốt — đo được bằng cách đọc pixel, không cần tài liệu nào xác nhận).
+**Nguyên tắc sửa:** giữ nguyên mọi quyết định sản phẩm của Master Roadmap — phạm vi, độ ưu tiên P0/P1, cấu trúc màn hình, thiết kế thẻ, kiến trúc, mô hình dữ liệu. Chỉ sửa những chỗ **tự nó là lỗi**, không phụ thuộc vào việc so sánh với tài liệu nào khác: cơ chế bảo mật không làm được việc được giao (RLS không giấu được cột), Master Roadmap tự mâu thuẫn với chính mình (§10.1 chỉ định Stronghold trong khi §12.2 mô tả một sơ đồ khoá khác; §6.2 nói Mochi Wave trong khi §9.2 của chính nó nói Neutral), khoảng trống buộc phải lấp (recovery key được nhắc tới nhưng chưa có cơ chế), hoặc sự thật vật lý (ảnh brand nền magenta không trong suốt — đo được bằng cách đọc pixel, không cần tài liệu nào xác nhận).
 
 **Đã bỏ khỏi repo:** `DECISIONS.md`, `BRAND.md`, `UI.md` của một bản nháp trước — những file đó áp một số quyết định khác mà **người dùng đã yêu cầu bỏ qua**. Tài liệu này không còn phụ thuộc vào chúng. `docs/REVIEW-2026-08-08.md` vẫn giữ lại làm biên bản lịch sử, nhưng phần "Phân xử" của nó (mục 7.2) **không còn hiệu lực** — xem ghi chú ở đầu file đó.
 
-> **QUYẾT ĐỊNH PHẠM VI 09/08/2026 — bỏ follower tự động qua Meta API.** Master Roadmap gốc coi follower tự động (OAuth Meta, Edge Function, Cron sync) là P1. Người dùng đã thử luồng thiết lập thật (tạo Meta App, Graph API Explorer, OAuth) và quyết định **không đáng công sức** so với giá trị mang lại cho một app cá nhân quản lý dưới 100 tài khoản. Follower trong Turtly **chỉ nhập tay**. Toàn bộ phần liên quan Meta OAuth, `platform_connections`, `platform_connection_secrets`, `sync_jobs`, Edge Functions, Cron, và error taxonomy của follower sync đã bị xoá khỏi tài liệu này — không phải hoãn, mà bỏ hẳn khỏi kiến trúc. Nếu muốn làm lại sau, đây là một tính năng mới cần thiết kế lại từ đầu, không phải "bật lại" một phần đã tắt.
+> **QUYẾT ĐỊNH PHẠM VI 09/08/2026 — bỏ follower tự động qua Meta API.** Master Roadmap gốc coi follower tự động (OAuth Meta, Edge Function, Cron sync) là P1. Người dùng đã thử luồng thiết lập thật (tạo Meta App, Graph API Explorer, OAuth) và quyết định **không đáng công sức** so với giá trị mang lại cho một app cá nhân quản lý dưới 100 tài khoản. Follower trong PawPass **chỉ nhập tay**. Toàn bộ phần liên quan Meta OAuth, `platform_connections`, `platform_connection_secrets`, `sync_jobs`, Edge Functions, Cron, và error taxonomy của follower sync đã bị xoá khỏi tài liệu này — không phải hoãn, mà bỏ hẳn khỏi kiến trúc. Nếu muốn làm lại sau, đây là một tính năng mới cần thiết kế lại từ đầu, không phải "bật lại" một phần đã tắt.
 
 **Thứ tự ưu tiên:** file này → `REVIEW-2026-08-08.md` (để tra lý do một quyết định, lưu ý các phần liên quan Meta trong đó đã lỗi thời) → `Turtly_Master_Roadmap_Design_Specification.md` gốc (để so sánh, không dùng để lấy giá trị vì file này đã cập nhật).
 
@@ -45,7 +45,7 @@ File này là **`Turtly_Master_Roadmap_Design_Specification.md`** (bản gốc d
 | Mở tài khoản | Mở URL trong trình duyệt mặc định; không lưu cookie, không tự điền form đăng nhập |
 | Cloud | Supabase Auth + Postgres + Realtime — **từ ngày đầu**, không tách pha |
 | Desktop | Tauri 2 + React + TypeScript; gói cài đặt Windows |
-| Mã hoá | Secret payload mã hoá trên máy; master password riêng với mật khẩu đăng nhập Turtly |
+| Mã hoá | Secret payload mã hoá trên máy; master password riêng với mật khẩu đăng nhập PawPass |
 | Thời gian | 6 tuần full-time hoặc 8–10 tuần bán thời gian |
 
 ### 1.1 Nguyên tắc không thương lượng
@@ -76,9 +76,9 @@ File này là **`Turtly_Master_Roadmap_Design_Specification.md`** (bản gốc d
 
 ### 2.1 Product vision
 
-Turtly biến danh sách tài khoản rời rạc trong Excel, ghi chú và trình duyệt thành một "vỏ rùa" duy nhất: dễ nhìn, dễ tìm, mở nhanh, đồng bộ giữa các máy và đủ an toàn để lưu thông tin đăng nhập.
+PawPass biến danh sách tài khoản rời rạc trong Excel, ghi chú và trình duyệt thành một nơi duy nhất: dễ nhìn, dễ tìm, mở nhanh, đồng bộ giữa các máy và đủ an toàn để lưu thông tin đăng nhập — như Mochi canh cửa, trung thành và đáng tin.
 
-> **TAGLINE CHÍNH** All your accounts, in one shell. • Tất cả tài khoản, trong một chiếc mai.
+> **TAGLINE CHÍNH** One Paw, Endless Access. • Một dấu chân, mọi tài khoản.
 
 ### 2.2 Mục tiêu
 
@@ -98,7 +98,7 @@ Follower tự động qua Meta API/OAuth · tự động đăng nhập, tự đi
 |---|---|---|
 | Tìm tài khoản | Nhớ một phần tên/email | Search ra card đúng trong ≤1 giây |
 | Kiểm tra follower | Xem số đã ghi gần nhất | Card hiển thị số và ngày mình cập nhật lần cuối — không giả vờ real-time |
-| Đổi máy | Đăng nhập Turtly trên PC khác | Metadata tải về; nhập master password để mở secrets |
+| Đổi máy | Đăng nhập PawPass trên PC khác | Metadata tải về; nhập master password để mở secrets |
 | Mở tài khoản | Đi đến profile hoặc Gmail | Trình duyệt mở đúng URL; app không giả lập đăng nhập |
 | Cập nhật credential | Đổi mật khẩu tài khoản/email | Lưu phiên bản mới, không rò vào history/log |
 
@@ -110,7 +110,7 @@ Follower tự động qua Meta API/OAuth · tự động đăng nhập, tự đi
 
 | ID | Yêu cầu | Tiêu chí chấp nhận | Nghiệm thu bởi |
 |---|---|---|---|
-| FR-01 | Đăng nhập Turtly | Email/password hoặc magic link; session khôi phục sau khi mở lại app | AT-24 |
+| FR-01 | Đăng nhập PawPass | Email/password hoặc magic link; session khôi phục sau khi mở lại app | AT-24 |
 | FR-02 | Mở kho bí mật | Nhập master password; sai không làm lộ thông tin hoặc log plaintext | AT-01, AT-02 |
 | FR-03 | Danh sách tài khoản | Grid card có avatar, platform, tên, username/email, follower, status, last update | AT-10, AT-19 |
 | FR-04 | CRUD tài khoản | Tạo, xem, sửa, archive; validation theo platform | AT-01, AT-15 |
@@ -127,7 +127,7 @@ Follower tự động qua Meta API/OAuth · tự động đăng nhập, tự đi
 
 - **FR-13** — Lịch sử các lần cập nhật follower (thủ công) dạng danh sách; chart để post-MVP nếu cần.
 - **FR-14** — Dashboard summary: tổng tài khoản, active, cần kiểm tra.
-- **FR-15** — Tully empty/error/success states theo mascot system.
+- **FR-15** — Mochi empty/error/success states theo mascot system.
 - **FR-16** — Device list và nút đăng xuất các session khác.
 
 > **Nghiệm thu bởi (QA-01 — Master Roadmap gốc có 16 FR và 10 AT nhưng không ánh xạ; đối chiếu tay lộ ra 8 FR không AT nào phủ).** FR-13: (chưa có AT — chart để post-MVP nên chấp nhận được) · FR-14: AT-19 · FR-16: AT-25. Luật áp cho mọi FR mới thêm sau này: **một FR không có AT thì không được đánh dấu hoàn thành.**
@@ -164,12 +164,12 @@ Follower tự động qua Meta API/OAuth · tự động đăng nhập, tự đi
 
 ### 4.2 Luồng onboarding lần đầu
 
-1. Mở app → màn hình Tully Wave → đăng nhập hoặc tạo tài khoản Turtly.
+1. Mở app → màn hình Mochi Wave → đăng nhập hoặc tạo tài khoản PawPass.
 2. Tạo master password → hệ thống tạo recovery key một lần → yêu cầu lưu ra nơi an toàn *(cơ chế cụ thể ở §11.2)*.
 3. Khởi tạo kho rỗng → chọn "Thêm tài khoản đầu tiên".
 4. Điền thông tin cơ bản và secrets → xem preview Account Card → lưu.
 5. Tuỳ chọn nhập follower ngay hoặc bỏ qua, cập nhật sau.
-6. Về Dashboard → Tully Success + gợi ý tạo thêm tài khoản.
+6. Về Dashboard → Mochi Success + gợi ý tạo thêm tài khoản.
 
 > **ĐIỀU KIỆN TIÊN QUYẾT (UX-06 — logic tự suy, không có trong Master Roadmap gốc nhưng cần thiết).** Bước 4 thu thập secrets (mật khẩu tài khoản, mật khẩu email, recovery code). Nếu vault chưa unlock ở bước này, app không có DEK để mã hoá — người dùng gõ xong 4 trường nhạy cảm rồi mới bị chặn, và cách "sửa" tự nhiên (giữ tạm trong React state chờ unlock) là chính hành vi mà §9.3 cấm. **Nút "Thêm tài khoản" vô hiệu hoá khi vault khoá**, kèm tooltip mở dialog unlock trước khi vào form.
 
@@ -208,13 +208,13 @@ Follower tự động qua Meta API/OAuth · tự động đăng nhập, tự đi
 
 ### 5.2 Dashboard composition
 
-- Header: "Good evening, Tiến" + Tully **Neutral** nhỏ, không chiếm quá 88 px chiều cao.
+- Header: "Good evening, Tiến" + Mochi **Neutral** nhỏ, không chiếm quá 88 px chiều cao.
 - Summary: Total Accounts, Active, Needs Attention; card số liệu cao 104–116 px.
 - Search/filter: search 360 px, platform segmented control, status dropdown, sort dropdown.
 - Account grid: ưu tiên card có mật độ vừa; không đưa password ra Dashboard.
-- Empty state: Tully Search + CTA "Thêm tài khoản đầu tiên".
+- Empty state: Mochi Search + CTA "Thêm tài khoản đầu tiên".
 
-> **SỬA (UX-05 — Master Roadmap tự mâu thuẫn với chính mình).** §6.2 gốc ghi "Tully Wave nhỏ" ở header Dashboard, nhưng bảng §9.2 "Quy tắc sử dụng mascot" (cũng của Master Roadmap) định nghĩa `Wave → Onboarding, welcome back` và `Neutral → Dashboard greeting`. Đây không phải hai tài liệu khác nhau — cùng một file tự nói ngược nhau. Bảng §9.2 thắng vì nó là bảng quy tắc, còn §6.2 là mô tả. Header Dashboard dùng **Tully Neutral**, không phải Wave.
+> **SỬA (UX-05 — Master Roadmap tự mâu thuẫn với chính mình).** §6.2 gốc ghi "Mochi Wave nhỏ" ở header Dashboard, nhưng bảng §9.2 "Quy tắc sử dụng mascot" (cũng của Master Roadmap) định nghĩa `Wave → Onboarding, welcome back` và `Neutral → Dashboard greeting`. Đây không phải hai tài liệu khác nhau — cùng một file tự nói ngược nhau. Bảng §9.2 thắng vì nó là bảng quy tắc, còn §6.2 là mô tả. Header Dashboard dùng **Mochi Neutral**, không phải Wave.
 >
 > **Đã bỏ (09/08/2026):** stat card "Sync Errors" — không còn tác vụ tự động nào có thể lỗi.
 
@@ -278,9 +278,9 @@ Trang chi tiết dùng layout 2 cột: cột chính 65% cho identity, follower v
 - Edit secret tạo `updated_at` và audit event nhưng không lưu plaintext cũ.
 - Auto-lock mặc định 10 phút; tùy chọn 1/5/10/30 phút hoặc khi app minimize.
 
-> **SỬA — lời hứa clipboard không giữ được nguyên văn trên Windows (SEC-04, sự thật về Windows, không phụ thuộc tài liệu nào).** Windows Clipboard History (`Win+V`) giữ một bản sao riêng mà việc xoá clipboard của app **không** động tới. Toast không nên hứa "clipboard sẽ được xóa" như một đảm bảo tuyệt đối — đổi thành *"Đã sao chép — Turtly sẽ xoá sau 30 giây"*. Trước khi xoá, **so sánh nội dung hiện tại**: chỉ xoá nếu vẫn đúng là thứ Turtly đã ghi, để không xoá mất thứ người dùng vừa copy sau đó. Nếu phát hiện Clipboard History đang bật (đọc registry `HKCU\Software\Microsoft\Clipboard\EnableClipboardHistory`), hiện một banner cảnh báo **đúng một lần** trong Settings.
+> **SỬA — lời hứa clipboard không giữ được nguyên văn trên Windows (SEC-04, sự thật về Windows, không phụ thuộc tài liệu nào).** Windows Clipboard History (`Win+V`) giữ một bản sao riêng mà việc xoá clipboard của app **không** động tới. Toast không nên hứa "clipboard sẽ được xóa" như một đảm bảo tuyệt đối — đổi thành *"Đã sao chép — PawPass sẽ xoá sau 30 giây"*. Trước khi xoá, **so sánh nội dung hiện tại**: chỉ xoá nếu vẫn đúng là thứ PawPass đã ghi, để không xoá mất thứ người dùng vừa copy sau đó. Nếu phát hiện Clipboard History đang bật (đọc registry `HKCU\Software\Microsoft\Clipboard\EnableClipboardHistory`), hiện một banner cảnh báo **đúng một lần** trong Settings.
 >
-> **SỬA — bổ sung tác nhân khoá còn thiếu (SEC-05).** "Không hoạt động" và "minimize" không đủ. Bắt buộc khoá thêm khi: khoá màn hình Windows (`WTS_SESSION_LOCK`), sleep/hibernate, thoát app, đăng xuất Turtly — các tác nhân này không tuỳ chọn. Xem AT-13.
+> **SỬA — bổ sung tác nhân khoá còn thiếu (SEC-05).** "Không hoạt động" và "minimize" không đủ. Bắt buộc khoá thêm khi: khoá màn hình Windows (`WTS_SESSION_LOCK`), sleep/hibernate, thoát app, đăng xuất PawPass — các tác nhân này không tuỳ chọn. Xem AT-13.
 
 ### 6.4 Validation quan trọng
 
@@ -292,37 +292,39 @@ Trang chi tiết dùng layout 2 cột: cột chính 65% cho identity, follower v
 
 ---
 
-## 7. Hệ thống thiết kế Turtly
+## 7. Hệ thống thiết kế PawPass
 
 ### 7.1 Brand personality
 
-Turtly nên tạo cảm giác thân thiện, bình tĩnh và đáng tin: mềm mại hơn một công cụ quản trị doanh nghiệp nhưng nghiêm túc hơn một ứng dụng mascot thuần giải trí. "Chiếc mai" là ẩn dụ cho nơi gom và bảo vệ tài khoản; các ô trên mai gợi dashboard modules.
+PawPass nên tạo cảm giác thân thiện, bình tĩnh và đáng tin: mềm mại hơn một công cụ quản trị doanh nghiệp nhưng nghiêm túc hơn một ứng dụng mascot thuần giải trí. Mochi — chú Shiba trung thành — là ẩn dụ cho người canh cổng: thân thiện khi chào, nghiêm túc khi giữ bí mật. **Chiếc khiên có ổ khoá** đeo trên cổ Mochi là ẩn dụ cho kho mật khẩu được mã hoá; mỗi tài khoản là một "dấu chân" (paw print) được gom lại một chỗ.
 
 ### 7.2 Color tokens
 
-**Từ Master Roadmap gốc §8.2 — giữ nguyên:**
+> **ĐỔI BẢNG MÀU (09/08/2026) — lấy pixel thật từ `mochi-logo.png`, không đoán bằng mắt.** Bảng Deep Teal/Green Teal/Mint của Master Roadmap gốc gắn với brand "rùa" cũ, không còn dùng. Bảng dưới đây sample trực tiếp từ ảnh Mochi (script đọc raw PNG, xem `docs/brand-reference/`).
 
 | Token | Hex | Vai trò |
 |---|---|---|
-| Deep Teal | `#0E3D3B` | Brand primary, heading, sidebar, app icon background |
-| Green Teal | `#1E6F6A` | Primary action, link, selected state |
-| Mint | `#A7E1D2` | Tint, success background, illustration |
-| Soft Lime | `#CDEB7A` | Accent nhỏ, highlight; không dùng cho body text |
-| Dark Forest | `#0B2E28` | Text đậm/dark mode surface |
-| Surface | `#F6F8F7` | Nền app |
-| Border | `#D8E4E0` | Border card/input/divider |
-| Danger | `#A33B3B` | Delete, security error; luôn kèm icon/text |
+| Fur Orange | `#E46C00` | Brand primary, heading, sidebar, app icon background, nút chính |
+| Shield Navy | `#000C24` | Text đậm, dark mode surface, viền khiên |
+| Muzzle Cream | `#FCE4C0` | Tint, nền nhạt, illustration |
+| Outline Black | `#000000` | Viền nét vẽ mascot/logomark — **không** dùng cho text |
+| Surface | `#F8F6F2` | Nền app *(kem trung tính, hài hoà với Muzzle Cream — chưa đo tương phản, xem TODO §7.6)* |
+| Border | `#E8DFD0` | Border card/input/divider *(dẫn xuất từ Muzzle Cream, tối hơn 12%)* |
+| Danger | `#F05448` | Delete, security error; luôn kèm icon/text |
 
-> **LẤP KHOẢNG TRỐNG (UX-03 — §8.2 gốc không định nghĩa màu cho các trạng thái mà §5.4 đặt tên bằng lời. §8.6 tự đặt mục tiêu WCAG 2.2 AA. Cần giá trị hex thật để build được và để đo được tương phản.** Các màu dưới đây hài hoà với palette có sẵn và đã kiểm tra đạt ≥4.5:1 trên nền trắng cho phần chữ:
+**Ba màu thẻ tài khoản** (từ 3 card phía sau đầu Mochi trong ảnh gốc) — dùng làm accent phân loại nền tảng, không dùng cho text:
 
-| Trạng thái | Icon/viền | Chữ (≥4.5:1 trên trắng) | Nền chip nhạt |
-|---|---|---|---|
-| Success (Active) | `#2E9B64` | `#1F6E46` | `#EAF5EF` |
-| Warning (Review) | `#E3A32B` | `#8A5D0F` | `#FBF3E3` |
-| Error (Locked) | `#D95C59` hoặc dùng thẳng **Danger** `#A33B3B` *(đã đạt 6,5:1)* | `#A93832` | `#FBECEB` |
-| Inactive/Archived | `#8A9691` | `#5F6F6B` | `#EFF2F1` |
+| Token | Hex | Vai trò |
+|---|---|---|
+| Account Blue | `#246CE4` | Accent — có thể gán cho một nhóm nền tảng (ví dụ Gmail) |
+| Account Pink | `#D8186C` | Accent — nhóm nền tảng khác (ví dụ Instagram) |
+| Account Coral | `#F05448` | Accent — nhóm nền tảng khác (ví dụ Facebook) — **trùng giá trị với Danger**, cần tách nếu dùng cùng lúc trên một màn hình (xem TODO bên dưới) |
 
-Trạng thái luôn là **icon + chữ**, không chỉ dựa vào màu (§7.6).
+> **TODO trước Sprint 1 — hai việc chưa xong:**
+> 1. **Chưa đo tương phản WCAG.** Không có giá trị `-text`/`-bg` cho trạng thái (Success/Warning/Error/Inactive) như bảng cũ từng có — bảng màu cũ đã bị bỏ cùng với brand rùa, và bảng màu mới **chưa** được kiểm tra đạt ≥4.5:1 trên nền `Surface`. Trước khi dùng `Fur Orange`/`Account Blue`/`Account Pink`/`Account Coral` làm **chữ**, phải đo lại — nhiều khả năng cần biến thể đậm hơn giống cơ chế `-text` cũ (§7.6 đặt mục tiêu WCAG 2.2 AA, chưa có gì đảm bảo bảng mới đạt).
+> 2. **`Account Coral` trùng `Danger` (`#F05448`).** Nếu badge nền tảng và trạng thái lỗi cùng xuất hiện trên một card, chúng sẽ cùng màu và gây nhầm lẫn — cần đổi một trong hai trước khi code StatusChip.
+
+Trạng thái luôn là **icon + chữ**, không chỉ dựa vào màu (§7.6) — quy tắc này **không đổi**, chỉ giá trị hex đổi.
 
 ### 7.3 Typography
 
@@ -343,7 +345,7 @@ Trạng thái luôn là **icon + chữ**, không chỉ dựa vào màu (§7.6).
 
 ### 7.5 Component inventory
 
-Button: primary, secondary, outline, ghost, danger; icon-only luôn có tooltip · Input: text, password, search, select, combobox, tag input; label không dùng placeholder thay thế · AccountCard, StatCard, PlatformBadge, StatusPill, SyncIndicator (trạng thái đồng bộ đa thiết bị, không phải follower) · SecretField, CopyButton, RevealButton, VaultLockBanner · EmptyState, ErrorState, Skeleton, Toast, ConfirmDialog, Drawer/Modal · TullyIllustration với enum state, kích thước và alt text cố định.
+Button: primary, secondary, outline, ghost, danger; icon-only luôn có tooltip · Input: text, password, search, select, combobox, tag input; label không dùng placeholder thay thế · AccountCard, StatCard, PlatformBadge, StatusPill, SyncIndicator (trạng thái đồng bộ đa thiết bị, không phải follower) · SecretField, CopyButton, RevealButton, VaultLockBanner · EmptyState, ErrorState, Skeleton, Toast, ConfirmDialog, Drawer/Modal · MochiIllustration với enum state, kích thước và alt text cố định.
 
 ### 7.6 Accessibility
 
@@ -357,13 +359,15 @@ Button: primary, secondary, outline, ghost, danger; icon-only luôn có tooltip 
 
 ---
 
-## 8. Logo và mascot Tully
+## 8. Logo và mascot Mochi
 
-Các hình trong `docs/brand-reference/` là tài sản định hướng, **chưa phải asset production**.
+> **ĐỔI MASCOT (09/08/2026).** Brand cũ là con rùa Tully; 22 file PNG cũ trong `docs/brand-reference/` thuộc về brand đó và **không còn liên quan** — đã chuyển vào `docs/brand-reference/_obsolete-turtle/`, giữ lại chỉ để tra lịch sử, không dùng cho bất kỳ việc gì. Mascot chính thức từ nay là **Mochi**, một chú Shiba Inu, dựa trên `docs/brand-reference/mochi-logo.png`.
+
+Các hình trong `docs/brand-reference/` là tài sản định hướng, **chưa phải asset production** (trừ khi ghi rõ khác ở §8.2).
 
 ### 8.1 Mascot system
 
-Tully có 8 trạng thái: Neutral, Wave, Search, Security, Sync, Offline, Success, Import.
+Mochi có 8 trạng thái: Neutral, Wave, Search, Security, Sync, Offline, Success, Import.
 
 | State | Dùng tại | Không dùng |
 |---|---|---|
@@ -376,22 +380,28 @@ Tully có 8 trạng thái: Neutral, Wave, Search, Security, Sync, Offline, Succe
 | Success | Create/import/sync thành công | Hiển thị liên tục sau action |
 | Import | Post-MVP CSV/Excel import | MVP nếu chưa có import |
 
-### 8.2 Asset — trạng thái thật *(UX-07, UX-08 — đo trực tiếp trên file ảnh, độc lập với mọi tài liệu)*
+### 8.2 Asset — trạng thái thật *(đo trực tiếp trên file ảnh, độc lập với mọi tài liệu)*
 
-Đã giải nén 22 file PNG trong `docs/brand-reference/` và đọc pixel trực tiếp:
+`mochi-logo.png` đã giải nén và đọc pixel trực tiếp — **khác hẳn kết quả của 22 file rùa cũ**, phần lớn đạt chuẩn kỹ thuật:
 
-| Vấn đề | Bằng chứng |
-|---|---|
-| Nền magenta **nung cứng** vào ảnh | 22/22 file có kênh alpha nhưng **0,0 % pixel trong suốt**; `pixel(0,0) = (250, 3, 250, 255)` |
-| Magenta **không sạch** | Dao động `#FA03FA`…`#F505EF` giữa các pixel → đã qua nén mất dữ liệu. Chroma-key sẽ để lại viền tím quanh cạnh khử răng cưa |
-| Toàn bộ **raster, độ phân giải thấp** | Lớn nhất 399×219. App icon Windows cần 256×256 trong ICO đa kích thước |
-| Wordmark **không phải Nunito Sans** | Chữ vẽ trong ảnh render — không kern lại, không đổi cỡ, không dựng lại được |
-| **8 pose không cùng một con rùa** | Tỷ lệ thân, cỡ mắt, hình ô trên mai và sắc xanh khác nhau từng pose |
-| Bản mono giữ **chấm sáng ở mắt** | Ở 16 px chấm đó nhỏ hơn một pixel → mark thành khối đen không đặc điểm ở taskbar/favicon |
+| Chỉ số | Kết quả | Đạt chuẩn production? |
+|---|---|---|
+| Kích thước | 1254×1254 px | ✅ đủ cho app icon 256×256 và hero display |
+| Kênh alpha | Có (RGBA, colortype 6) | ✅ |
+| Pixel trong suốt hoàn toàn | 48,4% | ✅ |
+| Pixel viền lưng chừng (khử răng cưa) | chỉ 0,3% — rất sạch | ✅ không có viền rác |
+| Định dạng | **Raster PNG**, không phải vector | ⚠️ đủ dùng cho icon/hero tĩnh, **không co giãn vô hạn được** như SVG |
+| Số tư thế có sẵn | **1** (tư thế chào/neutral) | ❌ còn thiếu 7/8 trạng thái (Wave, Search, Security, Sync, Offline, Success, Import) |
+| Wordmark "PawPass" | Không có trong ảnh | ❌ cần làm riêng |
 
-**Việc phải làm** — hạng mục riêng 1–2 ngày, không lẫn vào sprint code: vẽ lại logomark + 8 pose thành SVG phẳng cùng một hệ dựng hình (cùng lưới, cùng độ dày nét, cùng token màu §7.2) · dựng wordmark bằng Nunito Sans ExtraBold thật, kern tay · thêm `logomark-small.svg` riêng cho ≤24px (bỏ chi tiết mắt) · xuất app icon từ vector 1024×1024 → ICO đa kích thước.
+**Việc còn thiếu trước khi coi là production-ready:**
 
-**Cho tới khi có SVG thật:** dùng placeholder hình học đơn giản từ màu Mint. Không tự sinh mascot khác phong cách.
+1. **7 tư thế còn lại.** Nếu sinh rời từng tư thế bằng AI (mỗi lần một prompt độc lập) thì lặp lại đúng rủi ro của 22 file rùa cũ — tỷ lệ đầu/mắt/tai lệch nhau giữa các lần sinh. Cách an toàn hơn: dùng `mochi-logo.png` làm ảnh tham chiếu (img2img / character reference) cho từng tư thế sau, giữ đúng seed hoặc reference image xuyên suốt.
+2. **Wordmark "PawPass"** — dựng riêng bằng font thật (Nunito Sans ExtraBold hoặc font khác nếu đổi theo §7.3), không vẽ chung vào ảnh mascot để còn kern/đổi cỡ được.
+3. **App icon multi-resolution** — xuất từ `mochi-logo.png` (đã đủ 1254px) xuống các cỡ 16/24/32/48/64/128/256, kiểm tra riêng bản 16px xem còn nhận ra được không (mắt/mũi Mochi khá chi tiết, có thể vỡ ở cỡ rất nhỏ — chưa kiểm tra).
+4. **Không có bản outline/mono** — cần cho theme tối hoặc chỗ chỉ nhận icon đơn sắc (ví dụ system tray).
+
+**Cho tới khi có đủ 8 tư thế:** dùng `mochi-logo.png` (tư thế Neutral) cho mọi trạng thái mascot cần dùng trước — tốt hơn placeholder hình học vì đây đã là asset thật, chỉ thiếu biến thể. Không trộn phong cách rùa cũ vào bất kỳ đâu.
 
 ---
 
@@ -403,7 +413,7 @@ Tully có 8 trạng thái: Neutral, Wave, Search, Security, Sync, Offline, Succe
 |---|---|---|
 | Desktop shell | Tauri 2 + Rust stable | Bundle nhẹ; permission allowlist; gọi native command rõ ràng |
 | Frontend | React + TypeScript + Vite | Hệ sinh thái mạnh, component hóa |
-| UI | Tailwind CSS + Radix/shadcn primitives tùy biến | Nhanh nhưng vẫn giữ brand Turtly |
+| UI | Tailwind CSS + Radix/shadcn primitives tùy biến | Nhanh nhưng vẫn giữ brand PawPass |
 | State/data | TanStack Query + Zustand | Tách server cache và local UI state |
 | Forms | React Hook Form + Zod | Validation type-safe |
 | Cloud | Supabase Auth/Postgres/Realtime | Đủ cho một người dùng nhiều máy |
@@ -417,14 +427,14 @@ Tully có 8 trạng thái: Neutral, Wave, Search, Security, Sync, Offline, Succe
 ### 9.2 Repository structure
 
 ```text
-turtly/
+pawpass/
 ├─ src/                      # React UI
 │  ├─ app/                   # router, providers, layouts
 │  ├─ features/accounts/     # CRUD, card, detail, forms
 │  ├─ features/vault/        # unlock, reveal, copy lifecycle
 │  ├─ components/ui/         # branded primitives
 │  ├─ lib/supabase/          # client + typed queries
-│  └─ assets/brand/          # approved logo/Tully assets (SVG)
+│  └─ assets/brand/          # approved logo/Mochi assets (SVG hoặc PNG production)
 ├─ src-tauri/
 │  ├─ src/commands/          # encrypt/decrypt/open URL/clipboard
 │  ├─ src/security/          # key lifecycle, Argon2id, XChaCha20
@@ -445,7 +455,7 @@ turtly/
 - Supabase client dùng publishable key + JWT; mọi bảng public bật RLS.
 - Tauri capabilities chỉ allow URL/provider cần thiết; không cấp shell/filesystem rộng nếu không dùng.
 
-> **BỔ SUNG (ARCH-07 — sự thật kỹ thuật về Tauri IPC, độc lập với tài liệu).** IPC tuần tự hoá qua JSON, nên plaintext reveal sẽ trở thành một `String` JavaScript — bất biến, GC dọn không xoá nội dung, không zeroize được từ JS. Giảm thiểu: **đúng hai** lệnh Rust chạm plaintext — `reveal_secret` (trả chuỗi, dùng cho hiển thị 15 giây) và `copy_secret_to_clipboard` (**không trả chuỗi về JS**, Rust ghi thẳng clipboard — đường mặc định). Giá trị reveal không đặt vào React state, giữ trong `ref`. Mô hình đe doạ của Turtly không bao gồm kẻ tấn công đã chạy được mã trên máy hoặc dump được bộ nhớ tiến trình — ghi rõ giới hạn này ra để không hứa quá.
+> **BỔ SUNG (ARCH-07 — sự thật kỹ thuật về Tauri IPC, độc lập với tài liệu).** IPC tuần tự hoá qua JSON, nên plaintext reveal sẽ trở thành một `String` JavaScript — bất biến, GC dọn không xoá nội dung, không zeroize được từ JS. Giảm thiểu: **đúng hai** lệnh Rust chạm plaintext — `reveal_secret` (trả chuỗi, dùng cho hiển thị 15 giây) và `copy_secret_to_clipboard` (**không trả chuỗi về JS**, Rust ghi thẳng clipboard — đường mặc định). Giá trị reveal không đặt vào React state, giữ trong `ref`. Mô hình đe doạ của PawPass không bao gồm kẻ tấn công đã chạy được mã trên máy hoặc dump được bộ nhớ tiến trình — ghi rõ giới hạn này ra để không hứa quá.
 >
 > **BỔ SUNG (ARCH-08 — danh sách capability cụ thể, Master Roadmap gốc chỉ nói nguyên tắc mà không liệt kê).**
 
@@ -467,7 +477,7 @@ turtly/
 
 | Bảng | Vai trò | Trường cốt lõi |
 |---|---|---|
-| profiles | Hồ sơ chủ Turtly | id, display_name, avatar_url, timezone, settings_json |
+| profiles | Hồ sơ chủ PawPass | id, display_name, avatar_url, timezone, settings_json |
 | accounts | Metadata tài khoản | id, owner_id, platform, name, username, emails, location, profile_url, status, tags, timestamps |
 | account_secrets | Payload đã mã hóa | account_id, ciphertext, nonce, algorithm, key_version, updated_at |
 | user_keyrings | DEK đã được master password bọc | owner_id, wrapped_dek_by_master, wrapped_dek_by_recovery, salt, kdf_params, version |
@@ -580,7 +590,7 @@ Tất cả bảng thuộc người dùng có `owner_id = auth.uid()` cho SELECT/
 | Giai đoạn | Thời gian | Deliverable | Quality gate |
 |---|---|---|---|
 | 0. Foundation | 2–3 ngày | Repo, ADR, env, Supabase project, asset manifest, **khoá updater** | Build dev chạy Windows; không commit secret |
-| 1. Design system | Tuần 1 | Tokens, components, Dashboard shell, Tully mapping | Storybook/component states; keyboard focus |
+| 1. Design system | Tuần 1 | Tokens, components, Dashboard shell, Mochi mapping | Storybook/component states; keyboard focus |
 | 2. Local core | Tuần 2–3 | CRUD, Account Card/Detail, vault, search/filter, **recovery key** | Secrets không xuất hiện trong log; unit tests pass; **AT-12 pass** |
 | 3. Cloud sync | Tuần 4 | Auth, schema, RLS, Realtime, device sessions | Máy A/B sync; RLS negative tests pass |
 | 4. Hardening | Tuần 5 | E2E, conflict, offline/reconnect, performance, a11y | Không còn P0 bug; 500-account test đạt |
@@ -598,7 +608,7 @@ Có acceptance criteria và test tương ứng · loading/empty/error/permission
 
 ### 12.3 Backlog theo sprint
 
-**Sprint 0** — ADR-001 (Tauri 2 thay Electron) · ADR-002 (XChaCha20-Poly1305 + tham số Argon2id, thay Stronghold) · pnpm workspace, lint, format, commit hooks, CI · `supabase link` project đã tạo + migration workflow (§13.1 — một project duy nhất) · **sinh khoá updater** · chuẩn hoá logo/Tully asset manifest (chưa cần SVG thật).
+**Sprint 0** — ADR-001 (Tauri 2 thay Electron) · ADR-002 (XChaCha20-Poly1305 + tham số Argon2id, thay Stronghold) · pnpm workspace, lint, format, commit hooks, CI · `supabase link` project đã tạo + migration workflow (§13.1 — một project duy nhất) · **sinh khoá updater** · chuẩn hoá logo/Mochi asset manifest (chưa cần SVG thật).
 
 **Sprint 1** — Sidebar/topbar/window state · AccountCard đủ states · Add/Edit form theo platform + Zod · Detail page không có secret thật.
 
@@ -606,7 +616,7 @@ Có acceptance criteria và test tương ứng · loading/empty/error/permission
 
 **Sprint 3** — Auth screens · migrations profiles/accounts/secrets/keyrings · RLS + negative test · optimistic CRUD + Realtime + device list/revoke · conflict detection.
 
-**Sprint 4** — 500-account performance seed · E2E happy path + auth expired + network loss + conflict · accessibility + copywriting + Tully states.
+**Sprint 4** — 500-account performance seed · E2E happy path + auth expired + network loss + conflict · accessibility + copywriting + Mochi states.
 
 **Sprint 5** — Windows installer (**NSIS, `perMachine: false`, `webviewInstallMode: embedBootstrapper`** — xem §13.1), versioning, backup/recovery guide, **AT-12 diễn tập khôi phục trên VM sạch**.
 
@@ -656,8 +666,8 @@ Auto-updater để sau khi quy trình signing/versioning ổn định; MVP cho t
 | Conflict nhiều máy | Ghi đè dữ liệu | row_version; conflict dialog không phơi giá trị; audit event |
 | DB/RLS cấu hình sai | Rò dữ liệu | Migration review; negative tests; least privilege |
 | Scope phình to | Không ship được | Giữ P0; dời auto-login/import/chart/team sang post-MVP |
-| UI mascot quá nhiều | Mất tính chuyên nghiệp | Tully chỉ ở onboarding/empty/status; không lặp trên từng card |
-| Asset chưa production-ready | Logo vỡ, nền magenta, icon nhỏ không đọc được | §8.2 — hạng mục riêng 1–2 ngày trước release |
+| UI mascot quá nhiều | Mất tính chuyên nghiệp | Mochi chỉ ở onboarding/empty/status; không lặp trên từng card |
+| Asset chưa đủ bộ | Chỉ có 1/8 tư thế Mochi, chưa có wordmark, chưa xuất app icon | §8.2 — hạng mục riêng, tiến độ tuỳ vào cách sinh 7 tư thế còn lại |
 
 > **Đã bỏ (09/08/2026):** rủi ro "Meta API thay đổi/quyền bị từ chối", "Chi phí thiết lập Meta × N tài khoản", "Token provider bị lộ" — không còn Meta trong scope.
 
@@ -723,11 +733,11 @@ Auto-login lưu cookie/session thô · scraping follower · AI features trước
 
 ### 16.1 Context phải cung cấp cùng task
 
-Sprint/milestone hiện tại và issue cụ thể · cấu trúc repo hiện tại, package versions, migration gần nhất · ảnh brand/logo/Tully production assets (không chỉ brand board) · environment sample không chứa secret thật · acceptance criteria + test command + định nghĩa "done".
+Sprint/milestone hiện tại và issue cụ thể · cấu trúc repo hiện tại, package versions, migration gần nhất · ảnh brand/logo/Mochi production assets (không chỉ brand board) · environment sample không chứa secret thật · acceptance criteria + test command + định nghĩa "done".
 
 ### 16.2 Guardrails cho coding agent
 
-Không đổi stack hoặc database schema chỉ vì tiện code · **không tự thêm lại Meta OAuth/Edge Function/Cron dưới bất kỳ hình thức nào — đã bị bỏ khỏi scope, xem §0** · không trả service-role key/app secret về desktop · không log request body chứa secret/token · không thay logo/Tully bằng emoji hoặc asset khác phong cách · không dùng màu ngoài token nếu không tạo named token mới · không merge khi lint/typecheck/test/security acceptance chưa pass.
+Không đổi stack hoặc database schema chỉ vì tiện code · **không tự thêm lại Meta OAuth/Edge Function/Cron dưới bất kỳ hình thức nào — đã bị bỏ khỏi scope, xem §0** · không trả service-role key/app secret về desktop · không log request body chứa secret/token · không thay logo/Mochi bằng emoji hoặc asset khác phong cách · không dùng màu ngoài token nếu không tạo named token mới · không merge khi lint/typecheck/test/security acceptance chưa pass.
 
 ### 16.3 Task template
 
@@ -756,13 +766,13 @@ DELIVERABLE: code + migration/test + cập nhật docs nếu có quyết định
 **Trạng thái:** repo mới, chưa có code. Rust và Supabase project đã sẵn sàng (09/08/2026).
 
 1. ~~Cài Rust~~ ✅
-2. ~~Tạo Supabase project~~ ✅ (project riêng cho Turtly)
+2. ~~Tạo Supabase project~~ ✅ (project riêng cho PawPass)
 3. Scaffold Tauri 2 + React + TS + Vite + Tailwind, pnpm workspace
 4. Sinh **khoá updater** (§9.3 ARCH-05) và nhúng public key
-5. Lên lịch **vẽ lại asset SVG** (§8.2) như một hạng mục riêng
+5. Sinh nốt **7 tư thế Mochi còn lại** + wordmark "PawPass" (§8.2) như một hạng mục riêng
 6. Bắt đầu Sprint 0 theo §12.3
 
 ---
 
-**All your accounts, in one shell.**
-*Turtly • Tully • Your shell. Your world.*
+**One Paw, Endless Access.**
+*PawPass • Mochi • Your accounts. Always within paw's reach.*

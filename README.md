@@ -1,7 +1,7 @@
-# Turtly
+# PawPass
 
 **Trình quản lý tài khoản mạng xã hội cho Windows.** Facebook · Instagram · Google/Gmail.
-Mascot **Tully**. *All your accounts, in one shell.*
+Mascot **Mochi**. *One Paw, Endless Access.*
 
 Thay thế file Excel chứa 50–200 tài khoản bằng một app desktop: tìm nhanh, mở đúng trang bằng một nút, và **mật khẩu được mã hoá trên máy trước khi rời thiết bị**.
 
@@ -17,7 +17,7 @@ Thay thế file Excel chứa 50–200 tài khoản bằng một app desktop: tì
 |---|---|
 | [`docs/SOURCE-OF-TRUTH.md`](docs/SOURCE-OF-TRUTH.md) | **Tài liệu duy nhất.** Bắt đầu từ đây — tự chứa, không phụ thuộc file nào khác |
 | [`docs/REVIEW-2026-08-08.md`](docs/REVIEW-2026-08-08.md) | Biên bản review 6 vai — tra khi muốn biết "tại sao lại chốt thế" (đọc ghi chú ở đầu file trước) |
-| [`docs/brand-reference/`](docs/brand-reference/) | 22 ảnh tham chiếu thị giác. **Chưa phải asset production** — xem SOURCE-OF-TRUTH §9.3 |
+| [`docs/brand-reference/`](docs/brand-reference/) | `mochi-logo.png` — logo Mochi thật, 1/8 tư thế. `_obsolete-turtle/` — 22 ảnh brand cũ, không dùng nữa. Xem SOURCE-OF-TRUTH §8.2 |
 
 Không còn `DECISIONS.md`/`BRAND.md`/`UI.md` — nội dung còn hiệu lực đã nằm trong `SOURCE-OF-TRUTH.md`, dựa trực tiếp trên `Turtly_Master_Roadmap_Design_Specification.md` gốc.
 
@@ -35,9 +35,10 @@ Xem [`docs/SOURCE-OF-TRUTH.md` §18](docs/SOURCE-OF-TRUTH.md#18-bắt-đầu-t�
 
 1. ~~Cài Rust~~ ✅
 2. ~~Tạo Supabase project~~ ✅
-3. Scaffold Tauri 2 + React + TS + Vite + Tailwind, pnpm workspace
-4. Sinh **khoá updater** — cửa một chiều, xem §9.3
-5. Vẽ lại **asset SVG** (§8.2) — hạng mục riêng 1–2 ngày
+3. ~~Đổi brand sang PawPass/Mochi~~ ✅ (09/08/2026)
+4. Scaffold Tauri 2 + React + TS + Vite + Tailwind, pnpm workspace
+5. Sinh **khoá updater** — cửa một chiều, xem §9.3
+6. Sinh nốt **7 tư thế Mochi** + wordmark "PawPass" (§8.2) — hạng mục riêng
 
 ## Stack
 
