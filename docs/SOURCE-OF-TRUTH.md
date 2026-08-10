@@ -286,7 +286,7 @@ Bản gốc của dòng `Archived` ở bảng trên từng ghi "opacity 60%". Đ
 > 2. ❌ Không chọn — chỉ làm mờ 60% phần **trang trí** (avatar + platform badge), giữ chữ và nút ở 100%; logo/ảnh được WCAG miễn trừ tương phản, nhưng mức de-emphasis quá yếu.
 > 3. ❌ Không chọn — giữ đúng chữ "opacity 60%" và **chấp nhận fail AA**; mâu thuẫn trực tiếp với §7.6.
 >
-> **Cài đặt (10/08/2026):** `src/components/account/AccountCard.tsx` — nhánh `account.status === "archived"` dùng `bg-surface` (không `shadow-elevation-2`), mọi trạng thái khác giữ nguyên `bg-white shadow-elevation-2`. Viền `border-border` giữ nguyên cho **mọi** trạng thái: cặp viền card vs `Surface` (1.13) là trang trí thuần, không có ngưỡng — đúng phân biệt `Border` vs `Border Strong` mà §7.2 đã đặt ra. `StatusPill.tsx` **không đổi**: Archived vẫn dùng đúng bộ token Neutral như Inactive.
+> **Cài đặt (10/08/2026):** `src/components/account/AccountCard.tsx` — nhánh `account.status === "archived"` dùng `bg-surface` (không `shadow-elevation-2`), mọi trạng thái khác giữ nguyên `bg-white shadow-elevation-2`. Viền `border-border` giữ nguyên cho **mọi** trạng thái: cặp viền card vs `Surface` (1.22) là trang trí thuần, không có ngưỡng — đúng phân biệt `Border` vs `Border Strong` mà §7.2 đã đặt ra. `StatusPill.tsx` **không đổi**: Archived vẫn dùng đúng bộ token Neutral như Inactive.
 
 ---
 
