@@ -43,9 +43,9 @@
   --font-body: "Inter", system-ui, sans-serif;
 }
 
-.focus-ring {
+.focus-ring:focus-visible {
   box-shadow: 0 0 0 3px rgb(228 108 0 / 0.45);
 }
-.focus-ring-on-solid {
+.focus-ring-on-solid:focus-visible {
   box-shadow: 0 0 0 3px rgb(0 12 36 / 0.55);
 }
